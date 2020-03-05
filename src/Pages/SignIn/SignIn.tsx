@@ -3,12 +3,11 @@ import useSigninStyles from "./styles"
 import { Grid, Typography, IconButton, Button, TextField, Link } from "@material-ui/core"
 import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import { Link as RouterLink } from "react-router-dom"
-import useSignIn from "./handler/useSignIn"
-import { UseSignIn } from "./handler/useSignIn"
+import useSignIn, { IUseSignIn } from "./handler/useSignIn"
 
 function SignIn(props: any) {
     const classes = useSigninStyles()
-    const { formState, handleBack, handleSignIn, handleChange, hasError }: UseSignIn = useSignIn()
+    const { formState, handleBack, handleSignIn, handleChange, hasError }: IUseSignIn = useSignIn()
 
     return (
         <div className={classes.root}>

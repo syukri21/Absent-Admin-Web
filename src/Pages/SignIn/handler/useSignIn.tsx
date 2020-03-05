@@ -18,25 +18,25 @@ const schema = {
     }
 }
 
-export interface FormState {
+export interface IFormState {
     isValid: boolean
     values: any
     touched: any
     errors: any
 }
 
-export interface UseSignIn {
-    formState: FormState
+export interface IUseSignIn {
+    formState: IFormState
     handleBack: () => void
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
     handleSignIn: (event: React.FormEvent<HTMLFormElement>) => void
     hasError: (field: string) => boolean
 }
 
-export default function useSignIn(): UseSignIn {
+export default function useSignIn(): IUseSignIn {
     const history = useHistory()
 
-    const [formState, setFormState] = useState<FormState>({
+    const [formState, setFormState] = useState<IFormState>({
         isValid: false,
         values: {},
         touched: {},
