@@ -58,7 +58,6 @@ export default function useSignIn(): UseSignIn {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.persist()
-
         setFormState((formState: any) => ({
             ...formState,
             values: {
