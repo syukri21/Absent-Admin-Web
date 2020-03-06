@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles"
 import { Theme } from "@material-ui/core/"
 
-const useSignUpStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
         height: "100%"
@@ -103,4 +103,4 @@ const useSignUpStyles = makeStyles((theme: Theme) => ({
     policyText: {}
 }))
 
-export default useSignUpStyles
+export default useStyles

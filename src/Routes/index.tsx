@@ -1,6 +1,6 @@
 import SignIn from "../Pages/SignIn"
 import SignUp from "../Pages/SignUp"
-import Home from "../Pages/Home"
+import Home from "../Pages/Dashboard"
 
 export interface IRoute {
     component: ((props: any) => JSX.Element) | React.SFC<any>

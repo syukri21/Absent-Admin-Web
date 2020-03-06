@@ -3,13 +3,13 @@ import { Grid, Typography, TextField, IconButton, Checkbox, Link, FormHelperText
 import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import { Link as RouterLink } from "react-router-dom"
 
-import useSignUpStyles from "./styles"
+import useStyles from "./styles"
 import useSignUp from "./handler"
 
 export interface SignUpProps {}
 
 const SignUp: React.SFC<SignUpProps> = props => {
-    const classes = useSignUpStyles()
+    const classes = useStyles()
     const { formState, hasError, handleChange, handleSignUp, handleBack } = useSignUp()
     return (
         <div className={classes.root}>

@@ -4,10 +4,10 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import { Link as RouterLink } from "react-router-dom"
 
 import useSignIn, { IUseSignIn } from "./handler/useSignIn"
-import useSigninStyles from "./styles"
+import useStyles from "./styles"
 
 function SignIn(props: any) {
-    const classes = useSigninStyles()
+    const classes = useStyles()
     const { formState, handleBack, handleSignIn, handleChange, hasError }: IUseSignIn = useSignIn()
 
     return (
