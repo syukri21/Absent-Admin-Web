@@ -1,15 +1,17 @@
 import { makeStyles } from "@material-ui/styles"
+import { Palette } from "@material-ui/core/styles/createPalette"
+import { Theme } from "@material-ui/core"
 
-const useSigninStyles = makeStyles((theme: any) => ({
+const useSigninStyles = makeStyles((theme: Theme) => ({
     root: {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.paper,
         height: "100%"
     },
     grid: {
         height: "100%"
     },
     overlay: {
-        background: "rgba(0,0,0,0.5)",
+        background: theme.palette.primary.dark + "66",
         position: "absolute",
         top: 0,
         left: 0,
@@ -22,7 +24,7 @@ const useSigninStyles = makeStyles((theme: any) => ({
         }
     },
     quote: {
-        backgroundColor: theme.palette.neutral,
+        backgroundColor: theme.palette.common.white,
         height: "100%",
         display: "flex",
         justifyContent: "center",
@@ -40,15 +42,15 @@ const useSigninStyles = makeStyles((theme: any) => ({
         zIndex: 10
     },
     quoteText: {
-        color: theme.palette.white,
+        color: theme.palette.common.white,
         fontWeight: 300
     },
     name: {
         marginTop: theme.spacing(3),
-        color: theme.palette.white
+        color: theme.palette.common.white
     },
     bio: {
-        color: theme.palette.white
+        color: theme.palette.common.white
     },
     contentContainer: {},
     content: {
