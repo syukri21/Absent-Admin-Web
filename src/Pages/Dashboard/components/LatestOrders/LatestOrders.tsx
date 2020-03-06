@@ -25,12 +25,14 @@ import dayjs from "dayjs"
 /*                           TODO MAKE STATUSBULLET                           */
 /* -------------------------------------------------------------------------- */
 
-// import { StatusBullet } from "components"
-// const statusColors: any = {
-//     delivered: "success",
-//     pending: "info",
-//     refunded: "danger"
-// }
+import StatusBullet from "../../../../components/StatusBullet"
+import { Size } from "../../../../components/StatusBullet/StatusBullet"
+
+const statusColors: any = {
+    delivered: "success",
+    pending: "info",
+    refunded: "danger"
+}
 
 /* -------------------------------------------------------------------------- */
 
@@ -75,9 +77,7 @@ const LatestOrders: React.SFC<LatestOrdersProps> = props => {
                                         <TableCell>{dayjs(order.createdAt).format("DD/MM/YYYY")}</TableCell>
                                         <TableCell>
                                             <div className={classes.statusContainer}>
-                                                {
-                                                    // <StatusBullet className={classes.status} color={statusColors[order.status]} size='sm' />
-                                                }
+                                                <StatusBullet className={classes.status} color={statusColors[order.status]} size={Size.sm} />
                                                 {order.status}
                                             </div>
                                         </TableCell>
