@@ -8,6 +8,14 @@ const useSigninStyles = makeStyles((theme: any) => ({
     grid: {
         height: "100%"
     },
+    overlay: {
+        background: "rgba(0,0,0,0.5)",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0
+    },
     quoteContainer: {
         [theme.breakpoints.down("md")]: {
             display: "none"
@@ -22,11 +30,14 @@ const useSigninStyles = makeStyles((theme: any) => ({
         backgroundImage: "url(/images/auth.jpg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
+        position: "relative"
     },
     quoteInner: {
         textAlign: "center",
-        flexBasis: "600px"
+        flexBasis: "600px",
+        position: "relative",
+        zIndex: 10
     },
     quoteText: {
         color: theme.palette.white,

@@ -14,19 +14,7 @@ function SignIn(props: any) {
             <Grid className={classes.grid} container>
                 <Grid className={classes.quoteContainer} item lg={5}>
                     <div className={classes.quote}>
-                        <div className={classes.quoteInner}>
-                            <Typography className={classes.quoteText} variant='h1'>
-                                Hella narwhal Cosby sweater McSweeney's, salvia kitsch before they sold out High Life.
-                            </Typography>
-                            <div>
-                                <Typography className={classes.name} variant='body1'>
-                                    Takamaru Ayako
-                                </Typography>
-                                <Typography className={classes.bio} variant='body2'>
-                                    Manager at inVision
-                                </Typography>
-                            </div>
-                        </div>
+                        <div className={classes.overlay}></div>
                     </div>
                 </Grid>
                 <Grid className={classes.content} item lg={7} xs={12}>
@@ -38,16 +26,10 @@ function SignIn(props: any) {
                         </div>
                         <div className={classes.contentBody}>
                             <form className={classes.form} onSubmit={handleSignIn}>
-                                <Typography className={classes.title} variant='h2'>
+                                <Typography className={classes.title} color='primary' variant='h2'>
                                     Sign in
                                 </Typography>
-                                <Typography color='textSecondary' gutterBottom>
-                                    Sign in with social media
-                                </Typography>
 
-                                <Typography align='center' className={classes.sugestion} color='textSecondary' variant='body1'>
-                                    or login with email address
-                                </Typography>
                                 <TextField
                                     className={classes.textField}
                                     error={hasError("email")}
@@ -72,15 +54,7 @@ function SignIn(props: any) {
                                     value={formState.values.password || ""}
                                     variant='outlined'
                                 />
-                                <Button
-                                    className={classes.signInButton}
-                                    color='primary'
-                                    disabled={!formState.isValid}
-                                    fullWidth
-                                    size='large'
-                                    type='submit'
-                                    variant='contained'
-                                >
+                                <Button className={classes.signInButton} color='primary' fullWidth size='large' type='submit' variant='contained'>
                                     Sign in now
                                 </Button>
                                 <Typography color='textSecondary' variant='body1'>
