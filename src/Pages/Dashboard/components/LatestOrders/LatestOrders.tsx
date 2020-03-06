@@ -20,15 +20,21 @@ import orders from "./data"
 import useStyles from "./styles"
 import ArrowRightIcon from "@material-ui/icons/ArrowRight"
 import dayjs from "dayjs"
-import { StatusBullet } from "components"
+
+/* -------------------------------------------------------------------------- */
+/*                           TODO MAKE STATUSBULLET                           */
+/* -------------------------------------------------------------------------- */
+
+// import { StatusBullet } from "components"
+// const statusColors: any = {
+//     delivered: "success",
+//     pending: "info",
+//     refunded: "danger"
+// }
+
+/* -------------------------------------------------------------------------- */
 
 export interface LatestOrdersProps {}
-
-const statusColors: any = {
-    delivered: "success",
-    pending: "info",
-    refunded: "danger"
-}
 
 const LatestOrders: React.SFC<LatestOrdersProps> = props => {
     const classes = useStyles()
@@ -69,7 +75,9 @@ const LatestOrders: React.SFC<LatestOrdersProps> = props => {
                                         <TableCell>{dayjs(order.createdAt).format("DD/MM/YYYY")}</TableCell>
                                         <TableCell>
                                             <div className={classes.statusContainer}>
-                                                <StatusBullet className={classes.status} color={statusColors[order.status]} size='sm' />
+                                                {
+                                                    // <StatusBullet className={classes.status} color={statusColors[order.status]} size='sm' />
+                                                }
                                                 {order.status}
                                             </div>
                                         </TableCell>
