@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/styles"
-import { Palette } from "@material-ui/core/styles/createPalette"
-import { Theme } from "@material-ui/core"
+import { Theme } from "@material-ui/core/"
 
 const useSigninStyles = makeStyles((theme: Theme) => ({
     root: {
