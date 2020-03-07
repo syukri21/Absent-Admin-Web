@@ -1,26 +1,32 @@
 import SignIn from "../Pages/SignIn"
 import SignUp from "../Pages/SignUp"
 import Home from "../Pages/Dashboard"
+import Minimal from "./../layouts/Minimal/Minimal"
+import Main from "../layouts/Main/Main"
 
 export interface IRoute {
-    component: ((props: any) => JSX.Element) | React.SFC<any>
+    Component: ((props: any) => JSX.Element) | React.SFC<any>
+    Layout: ((props: any) => JSX.Element) | React.SFC<any>
     exact: boolean
     path: string
 }
 
 const routes: IRoute[] = [
     {
-        component: SignUp,
+        Component: SignUp,
+        Layout: Minimal,
         exact: true,
         path: "/sign-up"
     },
     {
-        component: SignIn,
+        Component: SignIn,
+        Layout: Minimal,
         exact: true,
         path: "/sign-in"
     },
     {
-        component: Home,
+        Component: Home,
+        Layout: Main,
         exact: true,
         path: "/"
     }

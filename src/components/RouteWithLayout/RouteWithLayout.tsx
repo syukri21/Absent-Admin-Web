@@ -5,6 +5,7 @@ export interface RouteWithLayoutProps {
     component: React.SFC<any>
     layout: React.SFC<any>
     path: String
+    exact: boolean
 }
 
 const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {

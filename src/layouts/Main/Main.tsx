@@ -6,6 +6,7 @@ import { useMediaQuery, Theme } from "@material-ui/core"
 import useStyles from "./styles"
 import useMain from "./handler"
 import Topbar from "./components/Topbar/Topbar"
+import { Sidebar } from "./components"
 
 /* -------------------------------------------------------------------------- */
 /*                     TODO NEXT COMPONENT NEED TO FINISH                     */
@@ -32,9 +33,7 @@ const Main: React.SFC<MainProps> = props => {
             })}
         >
             <Topbar onSidebarOpen={handleSidebarOpen} />
-            {
-                // <Sidebar onClose={handleSidebarClose} open={shouldOpenSidebar} variant={isDesktop ? "persistent" : "temporary"} />
-            }
+            <Sidebar onClose={handleSidebarClose} isOpen={shouldOpenSidebar} variant={isDesktop ? "persistent" : "temporary"} />
             <main className={classes.content}>
                 {children}
                 {
