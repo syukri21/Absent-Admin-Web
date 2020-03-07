@@ -7,7 +7,7 @@ export interface DefaultState {
     data: any
 }
 
-type Type = "INIT" | "LOADING" | "ERROR" | "SUCCESS"
+type Type = "LOADING" | "ERROR" | "SUCCESS"
 
 declare module "reactn/default" {
     export interface Reducers {

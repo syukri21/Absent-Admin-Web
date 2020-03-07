@@ -22,6 +22,7 @@ class Api {
                 this.token = token
             }
         }
+
         return this.token
     }
 
@@ -33,8 +34,7 @@ class Api {
         const axiosRequestConfig: AxiosRequestConfig = {
             baseURL: this.apiUrl
         }
-
-        if (this.token) axiosRequestConfig.headers = this.getToken()
+        if (!this.token) axiosRequestConfig.headers = { Authorization: this.getToken() }
         return axios.create(axiosRequestConfig)(params)
     }
 }

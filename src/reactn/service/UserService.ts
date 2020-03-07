@@ -30,10 +30,11 @@ export default class UserService {
             getDispatch().getUser("LOADING")
             const result = await Api.fetch({
                 method: "GET",
-                url: "/teachers/ukiuki"
+                url: "/teachers/"
             })
             getDispatch().getUser("SUCCESS", result.data)
         } catch (err) {
+            console.log("UserService -> handleGetUser -> err", err)
             getDispatch().getUser("ERROR", err)
         }
     }
