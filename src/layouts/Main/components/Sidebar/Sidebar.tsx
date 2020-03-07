@@ -8,6 +8,7 @@ import SettingsIcon from "@material-ui/icons/Settings"
 
 import { Profile, SidebarNav } from "./components"
 import useStyles from "./styles"
+import PerfectScrollbar from "react-perfect-scrollbar"
 
 export interface SidebarProps {
     className?: string
@@ -47,11 +48,13 @@ const Sidebar: React.SFC<SidebarProps> = props => {
 
     return (
         <Drawer anchor='left' classes={{ paper: classes.drawer }} onClose={onClose} open={isOpen} variant={"persistent"}>
-            <div {...rest} className={clsx(classes.root, className)}>
-                <Profile />
-                <Divider className={classes.divider} />
-                <SidebarNav className={classes.nav} pages={pages} />
-            </div>
+            <PerfectScrollbar>
+                <div {...rest} className={clsx(classes.root, className)}>
+                    <Profile />
+                    <Divider className={classes.divider} />
+                    <SidebarNav className={classes.nav} pages={pages} />
+                </div>
+            </PerfectScrollbar>
         </Drawer>
     )
 }
