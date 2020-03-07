@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Link as RouterLink } from "react-router-dom"
 import clsx from "clsx"
-import PropTypes, { InferProps } from "prop-types"
 import { AppBar, Toolbar, Badge, Hidden, IconButton } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import NotificationsIcon from "@material-ui/icons/NotificationsOutlined"
@@ -13,7 +12,7 @@ export interface TopbarProps {
     onSidebarOpen: () => void
 }
 
-const Topbar: React.SFC<InferProps<TopbarProps>> = props => {
+const Topbar: React.SFC<TopbarProps> = props => {
     const [notifications] = useState([])
     const classes = useStyles()
     const { className, onSidebarOpen } = props

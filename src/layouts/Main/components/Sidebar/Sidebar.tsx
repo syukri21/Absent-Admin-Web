@@ -1,6 +1,5 @@
 import React from "react"
 import clsx from "clsx"
-import PropTypes from "prop-types"
 
 import { Divider, Drawer } from "@material-ui/core"
 import DashboardIcon from "@material-ui/icons/Dashboard"
