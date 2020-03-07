@@ -10,6 +10,8 @@ import RouteWithLayout from "./components/RouteWithLayout/RouteWithLayout"
 import "react-perfect-scrollbar/dist/css/styles.css"
 import "./assets/scss/index.scss"
 
+import "./reactn/reducers"
+
 const browserHistory = createBrowserHistory()
 
 function App() {
@@ -17,10 +19,10 @@ function App() {
         <ThemeProvider theme={theme}>
             <Router history={browserHistory}>
                 <Switch>
-                    {routes.map((route: IRoute) => {
+                    {routes.map((route: IRoute, key: number) => {
                         const Component = route.Component
                         const Layout = route.Layout
-                        return <RouteWithLayout component={Component} exact={route.exact} layout={Layout} path={route.path} />
+                        return <RouteWithLayout key={key} component={Component} exact={route.exact} layout={Layout} path={route.path} />
                     })}
                     <SignIn></SignIn>
                 </Switch>

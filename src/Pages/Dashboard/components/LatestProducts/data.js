@@ -1,4 +1,4 @@
-// import uuid from "uuid/v1"
+// import uuid from "uuid/v2"
 import moment from "moment"
 
 export default [
@@ -9,25 +9,25 @@ export default [
         updatedAt: moment().subtract(2, "hours")
     },
     {
-        id: 1,
+        id: 2,
         name: "Medium Corporation",
         imageUrl: "/images/products/product_2.png",
         updatedAt: moment().subtract(2, "hours")
     },
     {
-        id: 1,
+        id: 3,
         name: "Slack",
         imageUrl: "/images/products/product_3.png",
         updatedAt: moment().subtract(3, "hours")
     },
     {
-        id: 1,
+        id: 4,
         name: "Lyft",
         imageUrl: "/images/products/product_4.png",
         updatedAt: moment().subtract(5, "hours")
     },
     {
-        id: 1,
+        id: 5,
         name: "GitHub",
         imageUrl: "/images/products/product_5.png",
         updatedAt: moment().subtract(9, "hours")

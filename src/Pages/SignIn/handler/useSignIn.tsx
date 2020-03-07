@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useGlobal } from "reactn"
 import { useHistory } from "react-router-dom"
 import validate from "validate.js"
+import UserService from "../../../reactn/service/UserService"
 
 const schema = {
-    email: {
+    username: {
         presence: { allowEmpty: false, message: "is required" },
-        email: true,
         length: {
             maximum: 64
         }
@@ -32,10 +32,28 @@ export interface IUseSignIn {
     handleSignIn: (event: React.FormEvent<HTMLFormElement>) => void
     hasError: (field: string) => boolean
 }
-
 export default function useSignIn(): IUseSignIn {
+    /* ------------------------------- NAVIGATIONS ------------------------------ */
     const history = useHistory()
 
+    const handleBack = () => {
+        history.goBack()
+    }
+
+    const handleTo = (to: string) => {
+        history.push(to)
+    }
+    /* ----------------------------- ISLOGIN OR NOT ----------------------------- */
+    const [login] = useGlobal("Login")
+
+    useEffect(() => {
+        if (login.data && login.data.isLogin) {
+            handleTo("/")
+        }
+        // eslint-disable-next-line
+    }, [login.data])
+
+    /* ------------------------------- VALIDATION ------------------------------- */
     const [formState, setFormState] = useState<IFormState>({
         isValid: false,
         values: {},
@@ -51,10 +69,6 @@ export default function useSignIn(): IUseSignIn {
             errors: errors || {}
         }))
     }, [formState.values])
-
-    const handleBack = () => {
-        history.goBack()
-    }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.persist()
@@ -73,7 +87,10 @@ export default function useSignIn(): IUseSignIn {
 
     const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        history.push("/")
+        UserService.handleLogin({
+            username: formState.values.username,
+            password: formState.values.password
+        })
     }
 
     const hasError = (field: string) => (formState.touched[field] && formState.errors[field] ? true : false)

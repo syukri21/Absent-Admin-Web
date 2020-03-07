@@ -33,14 +33,14 @@ function SignIn(props: any) {
 
                                 <TextField
                                     className={classes.textField}
-                                    error={hasError("email")}
+                                    error={hasError("username")}
                                     fullWidth
-                                    helperText={hasError("email") ? formState.errors.email[0] : null}
-                                    label='Email address'
-                                    name='email'
+                                    helperText={hasError("username") ? formState.errors.username[0] : null}
+                                    label='Username'
+                                    name='username'
                                     onChange={handleChange}
                                     type='text'
-                                    value={formState.values.email || ""}
+                                    value={formState.values.username || ""}
                                     variant='outlined'
                                 />
                                 <TextField

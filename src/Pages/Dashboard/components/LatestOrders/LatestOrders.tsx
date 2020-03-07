@@ -70,8 +70,8 @@ const LatestOrders: React.SFC<LatestOrdersProps> = props => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {orders.map(order => (
-                                    <TableRow hover key={order.id}>
+                                {orders.map((order, index) => (
+                                    <TableRow hover key={index}>
                                         <TableCell>{order.ref}</TableCell>
                                         <TableCell>{order.customer.name}</TableCell>
                                         <TableCell>{dayjs(order.createdAt).format("DD/MM/YYYY")}</TableCell>

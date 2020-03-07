@@ -4,7 +4,7 @@ import { Route } from "react-router-dom"
 export interface RouteWithLayoutProps {
     component: React.SFC<any>
     layout: React.SFC<any>
-    path: String
+    path: string
     exact: boolean
 }
 
