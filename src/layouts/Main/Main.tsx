@@ -5,14 +5,6 @@ import useMain from "./handler"
 import Topbar from "./components/Topbar/Topbar"
 import { Sidebar } from "./components"
 
-/* -------------------------------------------------------------------------- */
-/*                     TODO NEXT COMPONENT NEED TO FINISH                     */
-/* -------------------------------------------------------------------------- */
-
-// import { Sidebar, Topbar, Footer } from "./components"
-
-/* -------------------------------------------------------------------------- */
-
 export interface MainProps {
     children: React.SFC<any> | JSX.Element
 }
@@ -31,12 +23,7 @@ const Main: React.SFC<MainProps> = props => {
         >
             <Topbar onSidebarOpen={handleSidebarOpen} />
             <Sidebar onClose={handleSidebarClose} isOpen={shouldOpenSidebar} variant={isDesktop ? "persistent" : "temporary"} />
-            <main className={classes.content}>
-                {children}
-                {
-                    // <Footer />
-                }
-            </main>
+            <main className={classes.content}>{children}</main>
         </div>
     )
 }
