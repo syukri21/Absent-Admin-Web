@@ -1,21 +1,29 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
+import { useEffect } from "reactn"
+import UserService from "../../reactn/service/UserService"
+import Api from "../../reactn/api/api"
 
 export interface RouteWithLayoutProps {
     component: React.SFC<any>
     layout: React.SFC<any>
     path: string
     exact: boolean
-    redirect: boolean
+    protect: boolean
 }
 
 const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
-    const { layout: Layout, component: Component, redirect } = props
+    const { layout: Layout, component: Component, protect } = props
+    const token = Api.getToken() ? true : false
+
+    useEffect(() => {
+        UserService.handleGetUser()
+    }, [])
 
     return (
         <Route
             render={matchProps =>
-                redirect ? (
+                !token && protect ? (
                     <Redirect to='/sign-in'></Redirect>
                 ) : (
                     <Layout>

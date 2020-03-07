@@ -35,22 +35,18 @@ export interface IUseSignIn {
 export default function useSignIn(): IUseSignIn {
     /* ------------------------------- NAVIGATIONS ------------------------------ */
     const history = useHistory()
+    const [user] = useGlobal("User")
+
+    useEffect(() => {
+        if (user.data && user.data.fullname) {
+            history.push("/")
+        }
+    }, [user.data])
 
     const handleBack = () => {
         history.goBack()
     }
 
-    /* ----------------------------- ISLOGIN OR NOT ----------------------------- */
-    const [login] = useGlobal("Login")
-
-    useEffect(() => {
-        if (login.data && login.data.isLogin) {
-            history.push("/")
-        }
-        // eslint-disable-next-line
-    }, [login.data])
-
-    /* ------------------------------- VALIDATION ------------------------------- */
     const [formState, setFormState] = useState<IFormState>({
         isValid: false,
         values: {},
@@ -82,12 +78,15 @@ export default function useSignIn(): IUseSignIn {
         }))
     }
 
-    const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        UserService.handleLogin({
-            username: formState.values.username,
-            password: formState.values.password
-        })
+        try {
+            await UserService.handleLogin({
+                username: formState.values.username,
+                password: formState.values.password
+            })
+            await UserService.handleGetUser()
+        } catch (err) {}
     }
 
     const hasError = (field: string) => (formState.touched[field] && formState.errors[field] ? true : false)

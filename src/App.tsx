@@ -15,18 +15,15 @@ import Api from "./reactn/api/api"
 const browserHistory = createBrowserHistory()
 
 function App() {
-    const token = Api.getToken() ? true : false
-    console.log("App -> Api.getToken() ", Api.getToken())
-    console.log("App -> token", token)
-
     return (
         <ThemeProvider theme={theme}>
             <Router history={browserHistory}>
-                <ReactnProvider isLogin={token}>
+                <ReactnProvider>
                     <Switch>
                         {routes.map((route: IRoute, key: number) => {
                             const Component = route.Component
                             const Layout = route.Layout
+                            const protect = route.Protected
                             return (
                                 <RouteWithLayout
                                     key={key}
@@ -34,7 +31,7 @@ function App() {
                                     exact={route.exact}
                                     layout={Layout}
                                     path={route.path}
-                                    redirect={route.Protected && !token}
+                                    protect={protect}
                                 />
                             )
                         })}

@@ -6,6 +6,7 @@ import MenuIcon from "@material-ui/icons/Menu"
 import NotificationsIcon from "@material-ui/icons/NotificationsOutlined"
 import InputIcon from "@material-ui/icons/Input"
 import useStyles from "./styles"
+import useSignout from "./handler/useSignout"
 
 export interface TopbarProps {
     className?: string
@@ -14,6 +15,7 @@ export interface TopbarProps {
 
 const Topbar: React.SFC<TopbarProps> = props => {
     const [notifications] = useState([])
+    const { handleSignout } = useSignout()
     const classes = useStyles()
     const { className, onSidebarOpen } = props
 
@@ -30,7 +32,7 @@ const Topbar: React.SFC<TopbarProps> = props => {
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
-                    <IconButton className={classes.signOutButton} color='inherit'>
+                    <IconButton className={classes.signOutButton} onClick={handleSignout} color='inherit'>
                         <InputIcon />
                     </IconButton>
                 </Hidden>

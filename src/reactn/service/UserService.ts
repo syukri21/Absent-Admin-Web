@@ -27,6 +27,13 @@ export default class UserService {
         }
     }
 
+    public static async handleLogout() {
+        window.location.replace("/sign-in")
+        window.onunload = () => {
+            window.localStorage.clear()
+        }
+    }
+
     public static async handleGetUser() {
         try {
             getDispatch().getUser("LOADING")
