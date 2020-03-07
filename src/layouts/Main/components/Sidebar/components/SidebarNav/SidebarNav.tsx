@@ -3,7 +3,6 @@
 import React, { forwardRef } from "react"
 import { NavLink as RouterLink } from "react-router-dom"
 import clsx from "clsx"
-import PropTypes from "prop-types"
 import { List, ListItem, Button } from "@material-ui/core"
 import useStyles from "./styles"
 import { Page } from "../../Sidebar"
