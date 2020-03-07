@@ -33,9 +33,8 @@ class Api {
         const axiosRequestConfig: AxiosRequestConfig = {
             baseURL: this.apiUrl
         }
-        console.log("Api -> fetch ->  this.apiUrl", this.apiUrl)
 
-        if (this.token) axiosRequestConfig.headers = this.token
+        if (this.token) axiosRequestConfig.headers = this.getToken()
         return axios.create(axiosRequestConfig)(params)
     }
 }

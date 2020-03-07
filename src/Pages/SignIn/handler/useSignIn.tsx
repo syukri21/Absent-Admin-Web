@@ -40,15 +40,12 @@ export default function useSignIn(): IUseSignIn {
         history.goBack()
     }
 
-    const handleTo = (to: string) => {
-        history.push(to)
-    }
     /* ----------------------------- ISLOGIN OR NOT ----------------------------- */
     const [login] = useGlobal("Login")
 
     useEffect(() => {
         if (login.data && login.data.isLogin) {
-            handleTo("/")
+            history.push("/")
         }
         // eslint-disable-next-line
     }, [login.data])
