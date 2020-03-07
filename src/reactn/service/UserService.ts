@@ -20,8 +20,10 @@ export default class UserService {
             })
             Api.setToken(result.data.token)
             getDispatch().login("SUCCESS", result.data)
+            return result
         } catch (err) {
             getDispatch().login("ERROR", err)
+            throw err
         }
     }
 
@@ -32,10 +34,13 @@ export default class UserService {
                 method: "GET",
                 url: "/teachers/"
             })
+            const token = Api.getToken()
+            getDispatch().login("SUCCESS", token)
             getDispatch().getUser("SUCCESS", result.data)
+            return result
         } catch (err) {
-            console.log("UserService -> handleGetUser -> err", err)
-            getDispatch().getUser("ERROR", err)
+            getDispatch().getUser("ERROR", "No Token")
+            throw err
         }
     }
 }

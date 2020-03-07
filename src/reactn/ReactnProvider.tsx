@@ -1,13 +1,18 @@
 import React, { useEffect } from "reactn"
-import "./reducers"
-import UserService from "./service/UserService"
 
-export interface ReactnProviderProps {}
+import UserService from "./service/UserService"
+import "./reducers"
+
+export interface ReactnProviderProps {
+    isLogin: boolean
+}
 
 const ReactnProvider: React.SFC<ReactnProviderProps> = props => {
+    const { isLogin } = props
+
     useEffect(() => {
         UserService.handleGetUser()
-    }, [])
+    }, [isLogin])
 
     return <>{props.children}</>
 }

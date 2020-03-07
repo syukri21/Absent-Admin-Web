@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from "axios"
 class Api {
     private static instance: Api
     private apiUrl: string | undefined = process.env.REACT_APP_API_URL
-    private token?: string
+    private token?: string | null
 
     private constructor() {}
 
@@ -34,7 +34,8 @@ class Api {
         const axiosRequestConfig: AxiosRequestConfig = {
             baseURL: this.apiUrl
         }
-        if (!this.token) axiosRequestConfig.headers = { Authorization: this.getToken() }
+        axiosRequestConfig.headers = { Authorization: this.getToken() }
+
         return axios.create(axiosRequestConfig)(params)
     }
 }
