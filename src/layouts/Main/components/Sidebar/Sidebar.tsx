@@ -16,7 +16,13 @@ export interface SidebarProps {
     variant: string
 }
 
-const pages = [
+export interface Page {
+    title: string
+    href: string
+    icon: React.SFC | JSX.Element
+}
+
+const pages: Array<Page> = [
     {
         title: "Dashboard",
         href: "/dashboard",
