@@ -11,7 +11,7 @@ const GlobalSnackbar: React.SFC<GlobalSnackbarProps> = props => {
     return (
         <Snackbar
             anchorOrigin={{
-                vertical: "top",
+                vertical: "bottom",
                 horizontal: "right"
             }}
             open={isOpen}
