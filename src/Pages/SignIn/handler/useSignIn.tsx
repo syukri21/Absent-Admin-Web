@@ -35,13 +35,6 @@ export interface IUseSignIn {
 export default function useSignIn(): IUseSignIn {
     /* ------------------------------- NAVIGATIONS ------------------------------ */
     const history = useHistory()
-    const [user] = useGlobal("User")
-
-    useEffect(() => {
-        if (user.data && user.data.fullname) {
-            history.push("/")
-        }
-    }, [user.data])
 
     const handleBack = () => {
         history.goBack()
@@ -86,6 +79,7 @@ export default function useSignIn(): IUseSignIn {
                 password: formState.values.password
             })
             await UserService.handleGetUser()
+            history.push("/")
         } catch (err) {}
     }
 
