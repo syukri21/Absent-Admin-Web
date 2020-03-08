@@ -24,7 +24,7 @@ const Topbar: React.SFC<TopbarProps> = props => {
             <Toolbar>
                 <RouterLink to='/'>
                     <Typography variant='h3' className={classes.logo}>
-                        Absensi
+                        A
                     </Typography>
                 </RouterLink>
                 <div className={classes.flexGrow} />

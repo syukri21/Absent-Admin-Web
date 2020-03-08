@@ -12,7 +12,15 @@ const useStyles = makeStyles((theme: CustomTheme) => ({
         marginLeft: theme.spacing(1)
     },
     logo: {
-        color: theme.palette.white
+        color: theme.palette.white,
+        border: "2px solid",
+        borderColor: theme.palette.white,
+        borderRadius: "100%",
+        width: theme.spacing(4),
+        height: theme.spacing(4),
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     }
 }))
 
