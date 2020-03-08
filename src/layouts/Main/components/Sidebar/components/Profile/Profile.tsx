@@ -16,7 +16,9 @@ const Profile: React.SFC<ProfileProps> = props => {
 
     return (
         <div className={clsx(classes.root, className)}>
-            <Avatar alt='Person' className={classes.avatar} component={RouterLink} src={"/images/avatars/avatar_11.png"} to='/settings' />
+            <Avatar alt='Person' className={classes.avatar} component={RouterLink} to='/settings'>
+                {user.data.fullname && user.data.fullname.charAt(0)}
+            </Avatar>
             <Typography className={classes.name} variant='h6'>
                 {user.data.fullname}
             </Typography>
