@@ -23,7 +23,13 @@ export function getDaySchedule(params: ScheduleFromNowParams): number {
     if (params.week !== statusWeek || params.week === "BOTH") {
         date = dayjs().add(7, "day")
     }
-    date = date.set("day", params.day).set("minute", params.time)
+    date = date
+        .set("day", params.day)
+        .set("hour", 0)
+        .set("second", 0)
+        .set("millisecond", 0)
+        .set("minute", params.time)
+
     return date.toDate().getTime()
 }
 

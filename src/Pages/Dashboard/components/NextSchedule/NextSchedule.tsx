@@ -12,7 +12,8 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemText,
-    IconButton
+    IconButton,
+    ButtonBase
 } from "@material-ui/core"
 import ArrowRightIcon from "@material-ui/icons/ArrowRight"
 import MoreVertIcon from "@material-ui/icons/MoreVert"
@@ -21,7 +22,7 @@ import Avatar from "@material-ui/core/Avatar"
 import useStyles from "./styles"
 import useNextSchedule from "./handle/useNextSchedule"
 import StringToRGB from "../../../../util/intoRgb"
-import scheduleFromNow, { getDaySchedule } from "./../../../../util/scheduleFromNow"
+import scheduleFromNow from "./../../../../util/scheduleFromNow"
 
 export interface NextScheduleProps {
     className?: string
@@ -29,7 +30,7 @@ export interface NextScheduleProps {
 
 const NextSchedule: React.SFC<NextScheduleProps> = props => {
     const classes = useStyles()
-    const { data } = useNextSchedule()
+    const { data, handleSelectSchedule } = useNextSchedule()
     const { className } = props
 
     return (
@@ -39,31 +40,30 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
             <CardContent className={classes.content}>
                 <List>
                     {data.map((schedule: any, i: any) => (
-                        <ListItem divider={i < data.length - 1} key={schedule.id}>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt='Person'
-                                    className={classes.image}
-                                    style={{
-                                        background: StringToRGB(schedule.Course.name)
-                                    }}
-                                >
-                                    {schedule.Course.name.slice(0, 2).toUpperCase()}
-                                </Avatar>
-                            </ListItemAvatar>
+                        <ButtonBase className={classes.buttonBase} key={schedule.id} onClick={() => handleSelectSchedule(schedule)}>
+                            <ListItem divider={i < data.length - 1}>
+                                <ListItemAvatar>
+                                    <Avatar
+                                        alt='Person'
+                                        className={classes.image}
+                                        style={{
+                                            background: StringToRGB(schedule.Course.name)
+                                        }}
+                                    >
+                                        {schedule.Course.name.slice(0, 2).toUpperCase()}
+                                    </Avatar>
+                                </ListItemAvatar>
 
-                            <ListItemText
-                                primary={schedule.Course.name}
-                                secondary={`${scheduleFromNow({
-                                    day: schedule.day,
-                                    time: schedule.time,
-                                    week: schedule.week
-                                })}`}
-                            />
-                            <IconButton edge='end' size='small'>
-                                <MoreVertIcon />
-                            </IconButton>
-                        </ListItem>
+                                <ListItemText
+                                    primary={schedule.Course.name}
+                                    secondary={`${scheduleFromNow({
+                                        day: schedule.day,
+                                        time: schedule.time,
+                                        week: schedule.week
+                                    })}`}
+                                />
+                            </ListItem>
+                        </ButtonBase>
                     ))}
                 </List>
             </CardContent>

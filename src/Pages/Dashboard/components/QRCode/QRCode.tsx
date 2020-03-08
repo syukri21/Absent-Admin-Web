@@ -3,6 +3,8 @@ import clsx from "clsx"
 import { Card, CardContent, Grid, Typography, Avatar } from "@material-ui/core"
 import ButtonBase from "@material-ui/core/ButtonBase"
 import useStyles from "./styles"
+import { useGlobal } from "reactn"
+import MoneyIcon from "@material-ui/icons/Money"
 
 export interface QRCodeProps {
     className?: string
@@ -10,6 +12,7 @@ export interface QRCodeProps {
 
 const QRCode: React.SFC<QRCodeProps> = props => {
     const { className } = props
+    const [activeCourse] = useGlobal("ActiveSchedule")
     const classes = useStyles()
 
     return (
@@ -19,7 +22,7 @@ const QRCode: React.SFC<QRCodeProps> = props => {
                     <Grid container justify='space-between'>
                         <Grid item>
                             <Typography className={classes.title} color='inherit' gutterBottom variant='body2'>
-                                KALKULUS
+                                {activeCourse.data.Course && activeCourse.data.Course.name.toUpperCase()}
                             </Typography>
                             <Typography color='inherit' variant='h3'>
                                 QRCODE
@@ -27,9 +30,7 @@ const QRCode: React.SFC<QRCodeProps> = props => {
                         </Grid>
                         <Grid item>
                             <Avatar className={classes.avatar}>
-                                <Typography variant='h3' color='primary'>
-                                    QR
-                                </Typography>
+                                <MoneyIcon className={classes.icon} />
                             </Avatar>
                         </Grid>
                     </Grid>

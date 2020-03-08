@@ -26,8 +26,10 @@ setGlobal({
         ...defaultState,
         data: {}
     },
-    NextSchedule: {
-        ...defaultState
+    NextSchedule: defaultState,
+    ActiveSchedule: {
+        ...defaultState,
+        data: {}
     }
     // Token: Api.getToken()
 })

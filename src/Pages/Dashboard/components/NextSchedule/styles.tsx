@@ -13,6 +13,10 @@ const useStyles = makeStyles(() => ({
     },
     actions: {
         justifyContent: "flex-end"
+    },
+    buttonBase: {
+        width: "100%",
+        height: "100%"
     }
 }))
 

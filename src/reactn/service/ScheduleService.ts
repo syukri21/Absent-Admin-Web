@@ -17,4 +17,9 @@ export default class ScheduleService {
             throw err
         }
     }
+
+    public static async handleSetActiveSchedule(payload: any) {
+        const dispatch = getDispatch()
+        dispatch.setActiveSchedule("SUCCESS", payload)
+    }
 }
