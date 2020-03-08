@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles"
-import { Theme } from "@material-ui/core"
+import { CustomTheme } from "../../../../theme/customTheme"
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: CustomTheme) => ({
     root: {
         boxShadow: "none"
     },
@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     signOutButton: {
         marginLeft: theme.spacing(1)
+    },
+    logo: {
+        color: theme.palette.white
     }
 }))
 
