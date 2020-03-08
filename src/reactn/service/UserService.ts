@@ -8,8 +8,10 @@ export interface LoginParams {
 
 export default class UserService {
     public static async handleLogin(params: LoginParams) {
+        const dispatch = getDispatch()
+
         try {
-            getDispatch().login("LOADING")
+            dispatch.login("LOADING")
             const result = await Api.fetch({
                 method: "POST",
                 url: "/login",
@@ -19,10 +21,18 @@ export default class UserService {
                 }
             })
             Api.setToken(result.data.token)
-            getDispatch().login("SUCCESS", result.data)
+            dispatch.login("SUCCESS", result.data)
+            dispatch.showGlobalSnackbar("SHOW", {
+                message: "Login success.",
+                severity: "success"
+            })
             return result
         } catch (err) {
-            getDispatch().login("ERROR", err)
+            dispatch.login("ERROR", err)
+            dispatch.showGlobalSnackbar("SHOW", {
+                message: "Password or Username is wrong.",
+                severity: "error"
+            })
             throw err
         }
     }
@@ -35,19 +45,20 @@ export default class UserService {
     }
 
     public static async handleGetUser() {
+        const dispatch = getDispatch()
         try {
-            getDispatch().getUser("LOADING")
+            dispatch.getUser("LOADING")
             const result = await Api.fetch({
                 method: "GET",
                 url: "/teachers/"
             })
             console.log("UserService -> handleGetUser -> result", result)
             const token = Api.getToken()
-            getDispatch().login("SUCCESS", token)
-            getDispatch().getUser("SUCCESS", result.data)
+            dispatch.login("SUCCESS", token)
+            dispatch.getUser("SUCCESS", result.data)
             return result
         } catch (err) {
-            getDispatch().getUser("ERROR", "No Token")
+            dispatch.getUser("ERROR", "No Token")
             UserService.handleLogout()
             throw err
         }

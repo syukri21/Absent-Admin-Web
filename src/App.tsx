@@ -10,7 +10,7 @@ import ReactnProvider from "./reactn/ReactnProvider"
 
 import "react-perfect-scrollbar/dist/css/styles.css"
 import "./assets/scss/index.scss"
-import Api from "./reactn/api/api"
+import GlobalSnackbar from "./components/GlobalSnackbar"
 
 const browserHistory = createBrowserHistory()
 
@@ -18,6 +18,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Router history={browserHistory}>
+                <GlobalSnackbar></GlobalSnackbar>
                 <ReactnProvider>
                     <Switch>
                         {routes.map((route: IRoute, key: number) => {

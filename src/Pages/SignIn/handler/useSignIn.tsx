@@ -1,4 +1,4 @@
-import { useState, useEffect, useGlobal } from "reactn"
+import { useState, useEffect } from "reactn"
 import { useHistory } from "react-router-dom"
 import validate from "validate.js"
 import UserService from "../../../reactn/service/UserService"

@@ -20,6 +20,7 @@ const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
         if (protect) {
             UserService.handleGetUser()
         }
+        // eslint-disable-next-line
     }, [])
 
     return (

@@ -1,25 +1,5 @@
-import { addReducer, setGlobal } from "reactn"
-import { DefaultState } from "./reactn"
-
-const defaultState: DefaultState = {
-    loading: false,
-    error: null,
-    data: []
-}
-
-setGlobal({
-    Login: {
-        ...defaultState,
-        data: {
-            isLogin: false
-        }
-    },
-    User: {
-        ...defaultState,
-        data: {}
-    }
-    // Token: Api.getToken()
-})
+import { addReducer } from "reactn"
+import "./setGlobal"
 
 addReducer("login", (global, _, type, payload) => {
     switch (type) {
@@ -53,6 +33,22 @@ addReducer("getUser", (global, _, type, payload) => {
             global.User.loading = false
             global.User.error = null
             global.User.data = payload
+            break
+    }
+    return global
+})
+
+addReducer("showGlobalSnackbar", (global, _, type, payload) => {
+    switch (type) {
+        case "SHOW":
+            global.GlobalSnackbar.isOpen = true
+            global.GlobalSnackbar.data = payload
+            break
+        case "HIDE":
+            global.GlobalSnackbar.isOpen = false
+            global.GlobalSnackbar.data.message = ""
+            break
+        default:
             break
     }
     return global

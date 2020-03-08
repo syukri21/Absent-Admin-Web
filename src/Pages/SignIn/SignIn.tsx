@@ -1,5 +1,10 @@
 import * as React from "react"
-import { Grid, Typography, IconButton, Button, TextField, Link } from "@material-ui/core"
+import Link from "@material-ui/core/Link"
+import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
+import IconButton from "@material-ui/core/IconButton"
+import Button from "@material-ui/core/Button"
+import TextField from "@material-ui/core/TextField"
 import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import { Link as RouterLink } from "react-router-dom"
 
