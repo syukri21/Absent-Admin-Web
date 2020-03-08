@@ -21,6 +21,7 @@ import Avatar from "@material-ui/core/Avatar"
 import useStyles from "./styles"
 import mockData from "./data"
 import useNextSchedule from "./handle/useNextSchedule"
+import StringToRGB from "../../../../util/intoRgb"
 
 export interface NextScheduleProps {
     className?: string
@@ -41,7 +42,13 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
                     {data.map((schedule: any, i) => (
                         <ListItem divider={i < data.length - 1} key={schedule.id}>
                             <ListItemAvatar>
-                                <Avatar alt='Person' className={classes.image}>
+                                <Avatar
+                                    alt='Person'
+                                    className={classes.image}
+                                    style={{
+                                        background: StringToRGB(schedule.Course.name)
+                                    }}
+                                >
                                     {schedule.Course.name.slice(0, 2).toUpperCase()}
                                 </Avatar>
                             </ListItemAvatar>

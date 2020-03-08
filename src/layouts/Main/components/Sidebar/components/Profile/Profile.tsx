@@ -4,6 +4,7 @@ import clsx from "clsx"
 import { Avatar, Typography } from "@material-ui/core"
 import useStyles from "./styles"
 import useProfile from "./handler/useProfile"
+import StringToRGB from "../../../../../../util/intoRgb"
 
 export interface ProfileProps {
     className?: string
@@ -16,7 +17,13 @@ const Profile: React.SFC<ProfileProps> = props => {
 
     return (
         <div className={clsx(classes.root, className)}>
-            <Avatar alt='Person' className={classes.avatar} component={RouterLink} to='/settings'>
+            <Avatar
+                alt='Person'
+                className={classes.avatar}
+                component={RouterLink}
+                style={{ background: StringToRGB(user.data.fullname || "    ") }}
+                to='/settings'
+            >
                 {user.data.fullname && user.data.fullname.slice(0, 2).toUpperCase()}
             </Avatar>
             <Typography className={classes.name} variant='h6'>
