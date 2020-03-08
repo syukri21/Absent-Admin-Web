@@ -17,7 +17,7 @@ const Profile: React.SFC<ProfileProps> = props => {
     return (
         <div className={clsx(classes.root, className)}>
             <Avatar alt='Person' className={classes.avatar} component={RouterLink} to='/settings'>
-                {user.data.fullname && user.data.fullname.charAt(0)}
+                {user.data.fullname && user.data.fullname.slice(0, 2).toUpperCase()}
             </Avatar>
             <Typography className={classes.name} variant='h6'>
                 {user.data.fullname}
