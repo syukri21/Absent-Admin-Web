@@ -33,7 +33,7 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
 
     return (
         <Card className={clsx(classes.root, className)}>
-            <CardHeader subheader={`${data.length} in total`} title='Next Courses' />
+            <CardHeader subheader={`${data.length} in total`} title='Next Schedule' />
             <Divider />
             <CardContent className={classes.content}>
                 <List>
