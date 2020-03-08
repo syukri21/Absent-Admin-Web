@@ -41,12 +41,14 @@ export default class UserService {
                 method: "GET",
                 url: "/teachers/"
             })
+            console.log("UserService -> handleGetUser -> result", result)
             const token = Api.getToken()
             getDispatch().login("SUCCESS", token)
             getDispatch().getUser("SUCCESS", result.data)
             return result
         } catch (err) {
             getDispatch().getUser("ERROR", "No Token")
+            UserService.handleLogout()
             throw err
         }
     }

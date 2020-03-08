@@ -1,6 +1,5 @@
-import React, { useEffect } from "reactn"
+import React from "reactn"
 
-import UserService from "./service/UserService"
 import "./reducers"
 
 export interface ReactnProviderProps {}

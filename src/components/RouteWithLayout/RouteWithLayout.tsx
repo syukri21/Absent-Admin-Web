@@ -17,7 +17,9 @@ const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
     const token = Api.getToken() ? true : false
 
     useEffect(() => {
-        UserService.handleGetUser()
+        if (protect) {
+            UserService.handleGetUser()
+        }
     }, [])
 
     return (
