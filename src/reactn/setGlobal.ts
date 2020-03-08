@@ -21,6 +21,10 @@ setGlobal({
     GlobalSnackbar: {
         isOpen: false,
         data: {}
+    },
+    Register: {
+        ...defaultState,
+        data: {}
     }
     // Token: Api.getToken()
 })

@@ -6,8 +6,14 @@ export interface LoginParams {
     password: string
 }
 
+export interface RegisterParams {
+    username: string
+    password: string
+    fullname: string
+}
+
 export default class UserService {
-    public static async handleLogin(params: LoginParams) {
+    public static async handleLogin(params: LoginParams, showAlert: boolean = true) {
         const dispatch = getDispatch()
 
         try {
@@ -20,14 +26,18 @@ export default class UserService {
                     password: params.password
                 }
             })
+            console.log("UserService -> handleLogin -> result", result)
             Api.setToken(result.data.token)
             dispatch.login("SUCCESS", result.data)
-            dispatch.showGlobalSnackbar("SHOW", {
-                message: "Login success.",
-                severity: "success"
-            })
+            if (showAlert) {
+                dispatch.showGlobalSnackbar("SHOW", {
+                    message: "Login success.",
+                    severity: "success"
+                })
+            }
             return result
         } catch (err) {
+            console.log("UserService -> handleLogin -> err", err)
             dispatch.login("ERROR", err)
             dispatch.showGlobalSnackbar("SHOW", {
                 message: "Password or Username is wrong.",
@@ -52,14 +62,47 @@ export default class UserService {
                 method: "GET",
                 url: "/teachers/"
             })
-            console.log("UserService -> handleGetUser -> result", result)
             const token = Api.getToken()
             dispatch.login("SUCCESS", token)
             dispatch.getUser("SUCCESS", result.data)
             return result
         } catch (err) {
+            dispatch.showGlobalSnackbar("SHOW", {
+                message: "Token Invalid",
+                severity: "error"
+            })
             dispatch.getUser("ERROR", "No Token")
             UserService.handleLogout()
+
+            throw err
+        }
+    }
+
+    public static async handleRegister(params: RegisterParams) {
+        const dispatch = getDispatch()
+        try {
+            dispatch.register("LOADING")
+            const result = await Api.fetch({
+                method: "POST",
+                url: "/teachers/register",
+                data: {
+                    username: params.username,
+                    password: params.password,
+                    fullname: params.fullname
+                }
+            })
+            dispatch.register("SUCCESS", result.data)
+            await UserService.handleLogin(params, false)
+            dispatch.showGlobalSnackbar("SHOW", {
+                message: "Register success.",
+                severity: "success"
+            })
+        } catch (err) {
+            dispatch.register("ERROR", err)
+            dispatch.showGlobalSnackbar("SHOW", {
+                message: "Something went wrong.",
+                severity: "error"
+            })
             throw err
         }
     }

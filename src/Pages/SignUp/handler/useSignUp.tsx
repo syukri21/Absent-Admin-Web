@@ -2,31 +2,32 @@ import { IFormState } from "../../SignIn/handler/useSignIn"
 import { useHistory } from "react-router-dom"
 import { useState, useEffect } from "react"
 import validate from "validate.js"
+import UserService from "../../../reactn/service/UserService"
 
 const schema = {
-    firstName: {
+    username: {
         presence: { allowEmpty: false, message: "is required" },
         length: {
             maximum: 32
         }
     },
-    lastName: {
+    fullname: {
         presence: { allowEmpty: false, message: "is required" },
         length: {
             maximum: 32
-        }
-    },
-    email: {
-        presence: { allowEmpty: false, message: "is required" },
-        email: true,
-        length: {
-            maximum: 64
         }
     },
     password: {
         presence: { allowEmpty: false, message: "is required" },
         length: {
             maximum: 128
+        }
+    },
+    confirmPassword: {
+        presence: { allowEmpty: false, message: "is required" },
+        equality: {
+            attribute: "password",
+            message: "Confirm password is not equal to password"
         }
     },
     policy: {
@@ -52,14 +53,26 @@ export default function(): IUseSignUp {
         errors: {}
     })
 
-    useEffect(() => {
+    function validateErrors(touched = false) {
         const errors = validate(formState.values, schema)
-
         setFormState(formState => ({
             ...formState,
             isValid: errors ? false : true,
-            errors: errors || {}
+            errors: errors || {},
+            touched: touched
+                ? {
+                      username: true,
+                      fullname: true,
+                      password: true,
+                      confirmPassword: true,
+                      policy: true
+                  }
+                : {}
         }))
+    }
+
+    useEffect(() => {
+        validateErrors()
     }, [formState.values])
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +97,18 @@ export default function(): IUseSignUp {
 
     const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        history.push("/")
+        const isValid = Object.keys(formState.errors).length === 0 && formState.errors.constructor === Object
+        if (!isValid) {
+            validateErrors(true)
+        } else {
+            UserService.handleRegister({
+                fullname: formState.values.fullname,
+                username: formState.values.username,
+                password: formState.values.password
+            }).then(() => {
+                history.push("/")
+            })
+        }
     }
 
     const hasError = (field: string) => (formState.touched[field] && formState.errors[field] ? true : false)

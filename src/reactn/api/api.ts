@@ -34,7 +34,9 @@ class Api {
         const axiosRequestConfig: AxiosRequestConfig = {
             baseURL: this.apiUrl
         }
-        axiosRequestConfig.headers = { Authorization: localStorage.getItem("token") }
+        const token = localStorage.getItem("token")
+        console.log("Api -> fetch -> token", token)
+        axiosRequestConfig.headers = { Authorization: token }
 
         return axios.create(axiosRequestConfig)(params)
     }

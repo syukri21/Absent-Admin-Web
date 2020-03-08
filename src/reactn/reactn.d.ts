@@ -23,6 +23,7 @@ type TypeGlobalSnackbar = "SHOW" | "HIDE" | undefined
 declare module "reactn/default" {
     export interface Reducers {
         login: (global: State, dispatch: Dispatch, type: Type, payload?: any) => Pick<State, "Token">
+        register: (global: State, dispatch: Dispatch, type: Type, payload?: any) => Pick<State, "Register">
         getUser: (global: State, dispatch: Dispatch, type: Type, payload?: any) => Pick<State, "User">
         showGlobalSnackbar: (global: State, dispatch: Dispatch, type: TypeGlobalSnackbar, payload?: any) => Pick<State, "GlobalSnackbar">
     }
@@ -31,5 +32,6 @@ declare module "reactn/default" {
         Login: DefaultState
         User: DefaultState
         GlobalSnackbar: GlobalSnackbarState
+        Register: DefaultState
     }
 }

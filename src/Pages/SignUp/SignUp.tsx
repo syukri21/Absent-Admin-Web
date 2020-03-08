@@ -11,6 +11,8 @@ export interface SignUpProps {}
 const SignUp: React.SFC<SignUpProps> = props => {
     const classes = useStyles()
     const { formState, hasError, handleChange, handleSignUp, handleBack } = useSignUp()
+    console.log("hasError()", hasError("username"))
+
     return (
         <div className={classes.root}>
             <Grid className={classes.grid} container>
@@ -33,38 +35,26 @@ const SignUp: React.SFC<SignUpProps> = props => {
                                 </Typography>
                                 <TextField
                                     className={classes.textField}
-                                    error={hasError("firstName")}
+                                    error={hasError("username")}
                                     fullWidth
-                                    helperText={hasError("firstName") ? formState.errors.firstName[0] : null}
-                                    label='First name'
-                                    name='firstName'
+                                    helperText={hasError("username") ? formState.errors.username[0] : null}
+                                    label='Username'
+                                    name='username'
                                     onChange={handleChange}
                                     type='text'
-                                    value={formState.values.firstName || ""}
+                                    value={formState.values.username || ""}
                                     variant='outlined'
                                 />
                                 <TextField
                                     className={classes.textField}
-                                    error={hasError("lastName")}
+                                    error={hasError("fullname")}
                                     fullWidth
-                                    helperText={hasError("lastName") ? formState.errors.lastName[0] : null}
-                                    label='Last name'
-                                    name='lastName'
+                                    helperText={hasError("fullname") ? formState.errors.fullname[0] : null}
+                                    label='Full name'
+                                    name='fullname'
                                     onChange={handleChange}
                                     type='text'
-                                    value={formState.values.lastName || ""}
-                                    variant='outlined'
-                                />
-                                <TextField
-                                    className={classes.textField}
-                                    error={hasError("email")}
-                                    fullWidth
-                                    helperText={hasError("email") ? formState.errors.email[0] : null}
-                                    label='Email address'
-                                    name='email'
-                                    onChange={handleChange}
-                                    type='text'
-                                    value={formState.values.email || ""}
+                                    value={formState.values.fullname || ""}
                                     variant='outlined'
                                 />
                                 <TextField
@@ -77,6 +67,18 @@ const SignUp: React.SFC<SignUpProps> = props => {
                                     onChange={handleChange}
                                     type='password'
                                     value={formState.values.password || ""}
+                                    variant='outlined'
+                                />
+                                <TextField
+                                    className={classes.textField}
+                                    error={hasError("confirmPassword")}
+                                    fullWidth
+                                    helperText={hasError("confirmPassword") ? formState.errors.confirmPassword[0] : null}
+                                    label='Confirm Password'
+                                    name='confirmPassword'
+                                    onChange={handleChange}
+                                    type='password'
+                                    value={formState.values.confirmPassword || ""}
                                     variant='outlined'
                                 />
                                 <div className={classes.policy}>

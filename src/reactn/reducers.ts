@@ -20,6 +20,24 @@ addReducer("login", (global, _, type, payload) => {
     return global
 })
 
+addReducer("register", (global, _, type, payload) => {
+    switch (type) {
+        case "LOADING":
+            global.Register.loading = true
+            break
+        case "ERROR":
+            global.Register.loading = false
+            global.Register.error = payload
+            break
+        case "SUCCESS":
+            global.Register.loading = false
+            global.Register.error = null
+            global.Register.data = payload
+            break
+    }
+    return global
+})
+
 addReducer("getUser", (global, _, type, payload) => {
     switch (type) {
         case "LOADING":
