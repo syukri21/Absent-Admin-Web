@@ -26,6 +26,7 @@ declare module "reactn/default" {
         register: (global: State, dispatch: Dispatch, type: Type, payload?: any) => Pick<State, "Register">
         getUser: (global: State, dispatch: Dispatch, type: Type, payload?: any) => Pick<State, "User">
         showGlobalSnackbar: (global: State, dispatch: Dispatch, type: TypeGlobalSnackbar, payload?: any) => Pick<State, "GlobalSnackbar">
+        getNextSchedule: (globale: State, dispatch: Dispatch, type: Type, payload?: any) => Pick<State, "NextSchedule">
     }
     export interface State {
         Token: string
@@ -33,5 +34,6 @@ declare module "reactn/default" {
         User: DefaultState
         GlobalSnackbar: GlobalSnackbarState
         Register: DefaultState
+        NextSchedule: DefaultState
     }
 }

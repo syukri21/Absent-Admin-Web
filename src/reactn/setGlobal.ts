@@ -25,6 +25,9 @@ setGlobal({
     Register: {
         ...defaultState,
         data: {}
+    },
+    NextSchedule: {
+        ...defaultState
     }
     // Token: Api.getToken()
 })
