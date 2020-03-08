@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import clsx from "clsx"
 
 import {
@@ -19,7 +19,6 @@ import MoreVertIcon from "@material-ui/icons/MoreVert"
 import Avatar from "@material-ui/core/Avatar"
 
 import useStyles from "./styles"
-import mockData from "./data"
 import useNextSchedule from "./handle/useNextSchedule"
 import StringToRGB from "../../../../util/intoRgb"
 
@@ -29,9 +28,8 @@ export interface NextScheduleProps {
 
 const NextSchedule: React.SFC<NextScheduleProps> = props => {
     const classes = useStyles()
-    const { data, error, loading } = useNextSchedule()
+    const { data } = useNextSchedule()
     const { className } = props
-    const [products] = useState(mockData)
 
     return (
         <Card className={clsx(classes.root, className)}>
