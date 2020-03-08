@@ -5,7 +5,7 @@ import Budget from "./components/Budget"
 import useStyles from "./styles"
 import LatestOrders from "./components/NewAbsent"
 import LatestProducts from "./components/NextSchedule/NextSchedule"
-import ActiveCourse from "./components/ActiveCourse/ActiveCourse"
+import QRCode from "./components/QRCode/QRCode"
 
 export interface DashboardProps {}
 
@@ -18,7 +18,7 @@ const Dashboard: React.SFC<DashboardProps> = props => {
                     <Budget />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                    <ActiveCourse />
+                    <QRCode />
                 </Grid>
                 <Grid item lg={4} md={12} xl={3} xs={12}>
                     <LatestProducts />

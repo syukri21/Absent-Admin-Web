@@ -1,14 +1,14 @@
 import React from "react"
 import clsx from "clsx"
-import { Card, CardContent, Grid, Typography, Avatar, Button } from "@material-ui/core"
+import { Card, CardContent, Grid, Typography, Avatar } from "@material-ui/core"
 import ButtonBase from "@material-ui/core/ButtonBase"
 import useStyles from "./styles"
 
-export interface ActiveCourseProps {
+export interface QRCodeProps {
     className?: string
 }
 
-const ActiveCourse: React.SFC<ActiveCourseProps> = props => {
+const QRCode: React.SFC<QRCodeProps> = props => {
     const { className } = props
     const classes = useStyles()
 
@@ -39,4 +39,4 @@ const ActiveCourse: React.SFC<ActiveCourseProps> = props => {
     )
 }
 
-export default ActiveCourse
+export default QRCode

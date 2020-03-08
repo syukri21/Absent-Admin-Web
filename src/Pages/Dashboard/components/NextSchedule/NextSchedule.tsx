@@ -38,35 +38,33 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
             <Divider />
             <CardContent className={classes.content}>
                 <List>
-                    {data
-                        .sort((a: any, b: any) => getDaySchedule(a) - getDaySchedule(b))
-                        .map((schedule: any, i: any) => (
-                            <ListItem divider={i < data.length - 1} key={schedule.id}>
-                                <ListItemAvatar>
-                                    <Avatar
-                                        alt='Person'
-                                        className={classes.image}
-                                        style={{
-                                            background: StringToRGB(schedule.Course.name)
-                                        }}
-                                    >
-                                        {schedule.Course.name.slice(0, 2).toUpperCase()}
-                                    </Avatar>
-                                </ListItemAvatar>
+                    {data.map((schedule: any, i: any) => (
+                        <ListItem divider={i < data.length - 1} key={schedule.id}>
+                            <ListItemAvatar>
+                                <Avatar
+                                    alt='Person'
+                                    className={classes.image}
+                                    style={{
+                                        background: StringToRGB(schedule.Course.name)
+                                    }}
+                                >
+                                    {schedule.Course.name.slice(0, 2).toUpperCase()}
+                                </Avatar>
+                            </ListItemAvatar>
 
-                                <ListItemText
-                                    primary={schedule.Course.name}
-                                    secondary={`${scheduleFromNow({
-                                        day: schedule.day,
-                                        time: schedule.time,
-                                        week: schedule.week
-                                    })}`}
-                                />
-                                <IconButton edge='end' size='small'>
-                                    <MoreVertIcon />
-                                </IconButton>
-                            </ListItem>
-                        ))}
+                            <ListItemText
+                                primary={schedule.Course.name}
+                                secondary={`${scheduleFromNow({
+                                    day: schedule.day,
+                                    time: schedule.time,
+                                    week: schedule.week
+                                })}`}
+                            />
+                            <IconButton edge='end' size='small'>
+                                <MoreVertIcon />
+                            </IconButton>
+                        </ListItem>
+                    ))}
                 </List>
             </CardContent>
             <Divider />
