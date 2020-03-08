@@ -26,7 +26,6 @@ export default class UserService {
                     password: params.password
                 }
             })
-            console.log("UserService -> handleLogin -> result", result)
             Api.setToken(result.data.token)
             dispatch.login("SUCCESS", result.data)
             if (showAlert) {
@@ -37,7 +36,6 @@ export default class UserService {
             }
             return result
         } catch (err) {
-            console.log("UserService -> handleLogin -> err", err)
             dispatch.login("ERROR", err)
             dispatch.showGlobalSnackbar("SHOW", {
                 message: "Password or Username is wrong.",
