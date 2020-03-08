@@ -16,31 +16,37 @@ import {
 } from "@material-ui/core"
 import ArrowRightIcon from "@material-ui/icons/ArrowRight"
 import MoreVertIcon from "@material-ui/icons/MoreVert"
+import Avatar from "@material-ui/core/Avatar"
 
 import useStyles from "./styles"
 import mockData from "./data"
+import useNextSchedule from "./handle/useNextSchedule"
 
-export interface NextCoursesProps {
+export interface NextScheduleProps {
     className?: string
 }
 
-const NextCourses: React.SFC<NextCoursesProps> = props => {
+const NextSchedule: React.SFC<NextScheduleProps> = props => {
     const classes = useStyles()
+    const { data, error, loading } = useNextSchedule()
     const { className } = props
     const [products] = useState(mockData)
 
     return (
         <Card className={clsx(classes.root, className)}>
-            <CardHeader subheader={`${products.length} in total`} title='Next Courses' />
+            <CardHeader subheader={`${data.length} in total`} title='Next Courses' />
             <Divider />
             <CardContent className={classes.content}>
                 <List>
-                    {products.map((product, i) => (
-                        <ListItem divider={i < products.length - 1} key={product.id}>
+                    {data.map((schedule: any, i) => (
+                        <ListItem divider={i < data.length - 1} key={schedule.id}>
                             <ListItemAvatar>
-                                <img alt='Product' className={classes.image} src={product.imageUrl} />
+                                <Avatar alt='Person' className={classes.image}>
+                                    {schedule.Course.name.slice(0, 2).toUpperCase()}
+                                </Avatar>
                             </ListItemAvatar>
-                            <ListItemText primary={product.name} secondary={`Updated ${product.updatedAt.fromNow()}`} />
+
+                            <ListItemText primary={schedule.Course.name} secondary={`Updated 2`} />
                             <IconButton edge='end' size='small'>
                                 <MoreVertIcon />
                             </IconButton>
@@ -58,4 +64,4 @@ const NextCourses: React.SFC<NextCoursesProps> = props => {
     )
 }
 
-export default NextCourses
+export default NextSchedule

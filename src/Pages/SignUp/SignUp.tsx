@@ -11,7 +11,6 @@ export interface SignUpProps {}
 const SignUp: React.SFC<SignUpProps> = props => {
     const classes = useStyles()
     const { formState, hasError, handleChange, handleSignUp, handleBack } = useSignUp()
-    console.log("hasError()", hasError("username"))
 
     return (
         <div className={classes.root}>

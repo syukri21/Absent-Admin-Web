@@ -73,6 +73,7 @@ export default function(): IUseSignUp {
 
     useEffect(() => {
         validateErrors()
+        // eslint-disable-next-line
     }, [formState.values])
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
