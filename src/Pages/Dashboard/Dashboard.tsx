@@ -3,8 +3,8 @@ import { Grid } from "@material-ui/core"
 
 import Budget from "./components/Budget"
 import useStyles from "./styles"
-import LatestOrders from "./components/LatestOrders"
-import LatestProducts from "./components/LatestProducts/LatestProducts"
+import LatestOrders from "./components/NewAbsent"
+import LatestProducts from "./components/NextCourses/NextCourses"
 
 export interface DashboardProps {}
 

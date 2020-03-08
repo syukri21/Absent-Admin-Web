@@ -36,9 +36,9 @@ const statusColors: any = {
 
 /* -------------------------------------------------------------------------- */
 
-export interface LatestOrdersProps {}
+export interface NewAbsentProps {}
 
-const LatestOrders: React.SFC<LatestOrdersProps> = props => {
+const NewAbsent: React.SFC<NewAbsentProps> = props => {
     const classes = useStyles()
     return (
         <Card className={classes.root}>
@@ -48,7 +48,7 @@ const LatestOrders: React.SFC<LatestOrdersProps> = props => {
                         New entry
                     </Button>
                 }
-                title='Latest Orders'
+                title='Absent'
             />
             <Divider />
             <CardContent className={classes.content}>
@@ -98,4 +98,4 @@ const LatestOrders: React.SFC<LatestOrdersProps> = props => {
     )
 }
 
-export default LatestOrders
+export default NewAbsent

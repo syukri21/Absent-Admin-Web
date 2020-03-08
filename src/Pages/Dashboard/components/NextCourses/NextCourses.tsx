@@ -20,18 +20,18 @@ import MoreVertIcon from "@material-ui/icons/MoreVert"
 import useStyles from "./styles"
 import mockData from "./data"
 
-export interface NextLectureProps {
+export interface NextCoursesProps {
     className?: string
 }
 
-const NextLecture: React.SFC<NextLectureProps> = props => {
+const NextCourses: React.SFC<NextCoursesProps> = props => {
     const classes = useStyles()
     const { className } = props
     const [products] = useState(mockData)
 
     return (
         <Card className={clsx(classes.root, className)}>
-            <CardHeader subheader={`${products.length} in total`} title='Latest products' />
+            <CardHeader subheader={`${products.length} in total`} title='Next Courses' />
             <Divider />
             <CardContent className={classes.content}>
                 <List>
@@ -58,4 +58,4 @@ const NextLecture: React.SFC<NextLectureProps> = props => {
     )
 }
 
-export default NextLecture
+export default NextCourses
