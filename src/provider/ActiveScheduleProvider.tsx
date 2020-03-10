@@ -14,10 +14,10 @@ reducers.map(val => {
     return (INITIAL_STATE[val.name] = val.type)
 })
 
-const DashboardProvider = createProvider(INITIAL_STATE)
+const ActiveScheduleProvider = createProvider(INITIAL_STATE)
 
 reducers.map(val => {
-    return DashboardProvider.addReducer(val.method + val.name, (global: any, _, type, payload) => {
+    return ActiveScheduleProvider.addReducer(val.method + val.name, (global: any, _, type, payload) => {
         switch (type) {
             case "LOADING":
                 global[val.name].loading = true
@@ -36,11 +36,4 @@ reducers.map(val => {
     })
 })
 
-export { DashboardProvider }
-export interface ProviderWrapperProps {}
-
-const DashboardProviderWrapper: React.SFC<ProviderWrapperProps> = props => {
-    return <DashboardProvider>{props.children}</DashboardProvider>
-}
-
-export default DashboardProviderWrapper
+export default ActiveScheduleProvider

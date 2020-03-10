@@ -21,7 +21,7 @@ import useStyles from "./styles"
 import useNextSchedule from "./handle/useNextSchedule"
 import StringToRGB from "../../../../util/intoRgb"
 import scheduleFromNow from "./../../../../util/scheduleFromNow"
-import ProviderWrapper from "./provider"
+import NextScheduleProvider from "../../../../provider/NextScheduleProvider"
 
 export interface NextScheduleProps {
     className?: string
@@ -33,7 +33,7 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
     const { className } = props
 
     return (
-        <ProviderWrapper>
+        <NextScheduleProvider>
             <Card className={clsx(classes.root, className)}>
                 <CardHeader subheader={`${data.length} in total`} title='Next Schedule' />
                 <Divider />
@@ -74,7 +74,7 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
                     </Button>
                 </CardActions>
             </Card>
-        </ProviderWrapper>
+        </NextScheduleProvider>
     )
 }
 

@@ -1,8 +1,8 @@
 import { useEffect } from "reactn"
 import ScheduleService from "../../../../../reactn/service/ScheduleService"
 import { getDaySchedule } from "../../../../../util/scheduleFromNow"
-import { NextScheduleProvider } from "../provider/provider"
-import { DashboardProvider } from "../../../provider/provider"
+import NextScheduleProvider from "../../../../../provider/NextScheduleProvider"
+import ActiveScheduleProvider from "../../../../../provider/ActiveScheduleProvider"
 
 interface UseNextSchedule {
     data: any[]
@@ -25,7 +25,7 @@ export default function useNextSchedule(): UseNextSchedule {
     function handleSelectSchedule(data: any) {
         ScheduleService.handleSetActiveSchedule({
             payload: data,
-            getDispatch: DashboardProvider.getDispatch
+            getDispatch: ActiveScheduleProvider.getDispatch
         })
     }
 
