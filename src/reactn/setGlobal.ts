@@ -1,7 +1,7 @@
 import { setGlobal } from "reactn"
 import { DefaultState } from "./reactn"
 
-const defaultState: DefaultState = {
+export const defaultState: DefaultState = {
     loading: false,
     error: null,
     data: []
@@ -25,11 +25,7 @@ setGlobal({
     Register: {
         ...defaultState,
         data: {}
-    },
-    NextSchedule: defaultState,
-    ActiveSchedule: {
-        ...defaultState,
-        data: {}
     }
+
     // Token: Api.getToken()
 })

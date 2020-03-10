@@ -1,6 +1,8 @@
-import { useGlobal, useEffect } from "reactn"
+import { useEffect } from "reactn"
 import ScheduleService from "../../../../../reactn/service/ScheduleService"
 import { getDaySchedule } from "../../../../../util/scheduleFromNow"
+import { NextScheduleProvider } from "../provider/provider"
+import { DashboardProvider } from "../../../provider/provider"
 
 interface UseNextSchedule {
     data: any[]
@@ -13,7 +15,7 @@ interface UseNextSchedule {
 let sorted = false
 
 export default function useNextSchedule(): UseNextSchedule {
-    const [nextSchedule] = useGlobal("NextSchedule")
+    const [nextSchedule] = NextScheduleProvider.useGlobal("NextSchedule")
 
     if (nextSchedule.data.length > 0 && !sorted) {
         nextSchedule.data = nextSchedule.data.sort((a: any, b: any) => getDaySchedule(a) - getDaySchedule(b))
@@ -21,13 +23,18 @@ export default function useNextSchedule(): UseNextSchedule {
     }
 
     function handleSelectSchedule(data: any) {
-        ScheduleService.handleSetActiveSchedule(data)
+        ScheduleService.handleSetActiveSchedule({
+            payload: data,
+            getDispatch: DashboardProvider.getDispatch
+        })
     }
 
     /* ----------------------------- GET NEXT SCHEDULE ---------------------------- */
 
     useEffect(() => {
-        ScheduleService.handleGetNextSchedule()
+        ScheduleService.handleGetNextSchedule({
+            getDispatch: NextScheduleProvider.getDispatch
+        })
     }, [])
 
     /* --------------------------- SET ACTIVE SCHEDULE -------------------------- */

@@ -1,17 +1,15 @@
 import * as React from "react"
 import { CardContent, Card, Grid, Typography, Avatar } from "@material-ui/core"
 import useStyles from "./styles"
-import { useGlobal } from "reactn"
 import { getDaySchedule } from "../../../../util/scheduleFromNow"
 import dayjs from "dayjs"
 import StringToRGB from "../../../../util/intoRgb"
+import { DashboardProvider } from "../../provider/provider"
 
 export interface BudgetProps {}
 
 const Budget: React.SFC<BudgetProps> = props => {
-    const [activeCourse] = useGlobal("ActiveSchedule")
-    console.log("activeCourse", activeCourse)
-    console.log("getDaySchedule(activeCourse.data)", getDaySchedule(activeCourse.data))
+    const [activeCourse] = DashboardProvider.useGlobal("ActiveSchedule")
 
     const classes = useStyles()
 

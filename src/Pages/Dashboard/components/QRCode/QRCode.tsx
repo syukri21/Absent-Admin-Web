@@ -3,8 +3,9 @@ import clsx from "clsx"
 import { Card, CardContent, Grid, Typography, Avatar } from "@material-ui/core"
 import ButtonBase from "@material-ui/core/ButtonBase"
 import useStyles from "./styles"
-import { useGlobal } from "reactn"
 import MoneyIcon from "@material-ui/icons/Money"
+import DashboardProviderWrapper from "../../provider"
+import { DashboardProvider } from "../../provider/provider"
 
 export interface QRCodeProps {
     className?: string
@@ -12,7 +13,7 @@ export interface QRCodeProps {
 
 const QRCode: React.SFC<QRCodeProps> = props => {
     const { className } = props
-    const [activeCourse] = useGlobal("ActiveSchedule")
+    const [activeCourse] = DashboardProvider.useGlobal("ActiveSchedule")
     const classes = useStyles()
 
     return (

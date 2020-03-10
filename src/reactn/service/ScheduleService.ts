@@ -1,8 +1,12 @@
-import { getDispatch } from "reactn"
 import Api from "../api/api"
 
+interface ParamsService {
+    payload?: any
+    getDispatch: any
+}
+
 export default class ScheduleService {
-    public static async handleGetNextSchedule() {
+    public static async handleGetNextSchedule({ getDispatch }: ParamsService) {
         const dispatch = getDispatch()
         try {
             dispatch.getNextSchedule("LOADING")
@@ -18,7 +22,7 @@ export default class ScheduleService {
         }
     }
 
-    public static async handleSetActiveSchedule(payload: any) {
+    public static async handleSetActiveSchedule({ payload, getDispatch }: ParamsService) {
         const dispatch = getDispatch()
         dispatch.setActiveSchedule("SUCCESS", payload)
     }
