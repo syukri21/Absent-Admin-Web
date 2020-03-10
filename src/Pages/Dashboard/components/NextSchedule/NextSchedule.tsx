@@ -12,11 +12,9 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemText,
-    IconButton,
     ButtonBase
 } from "@material-ui/core"
 import ArrowRightIcon from "@material-ui/icons/ArrowRight"
-import MoreVertIcon from "@material-ui/icons/MoreVert"
 import Avatar from "@material-ui/core/Avatar"
 
 import useStyles from "./styles"

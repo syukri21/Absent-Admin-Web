@@ -1,6 +1,5 @@
 import * as React from "react"
 import { CardContent, Card, Grid, Typography, Avatar } from "@material-ui/core"
-import MoneyIcon from "@material-ui/icons/Money"
 import useStyles from "./styles"
 import { useGlobal } from "reactn"
 import { getDaySchedule } from "../../../../util/scheduleFromNow"
