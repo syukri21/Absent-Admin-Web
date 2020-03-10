@@ -20,14 +20,26 @@ const statusWeek: WEEK = currentWeek % 2 === 0 ? "ODD" : "EVEN"
 
 export function getDaySchedule(params: ScheduleFromNowParams): number {
     let date = dayjs()
-    if (params.week !== statusWeek || params.week === "BOTH") {
+
+    if (params.week !== statusWeek) {
         date = dayjs().add(7, "day")
+    } else {
+        const nextDate = date.set("day", params.day)
+
+        if (nextDate.unix() < date.unix()) {
+            if (params.week === "BOTH") {
+                date = dayjs().add(7, "day")
+            } else {
+                date = dayjs().add(14, "day")
+            }
+        }
     }
+
     date = date
-        .set("day", params.day)
         .set("hour", 0)
         .set("second", 0)
         .set("millisecond", 0)
+        .set("day", params.day)
         .set("minute", params.time)
 
     return date.toDate().getTime()
