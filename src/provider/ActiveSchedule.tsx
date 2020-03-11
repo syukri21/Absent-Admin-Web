@@ -33,7 +33,7 @@ reducers.map(val => {
     })
 })
 
-export async function handleSetActiveSchedule(payload: any) {
+export async function setActiveSchedule(payload: any) {
     const dispatch = ActiveSchedule.getDispatch()
     dispatch.setActiveSchedule("SUCCESS", payload)
 }

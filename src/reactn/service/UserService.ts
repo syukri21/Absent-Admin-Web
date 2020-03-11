@@ -15,7 +15,6 @@ export interface RegisterParams {
 export default class UserService {
     public static async handleLogin(params: LoginParams, showAlert: boolean = true) {
         const dispatch = getDispatch()
-
         try {
             dispatch.login("LOADING")
             const result = await Api.fetch({

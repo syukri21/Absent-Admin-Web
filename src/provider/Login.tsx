@@ -3,14 +3,14 @@ import { defaultState } from "../reactn/setGlobal"
 import { DefaultState } from "../reactn/reactn"
 import Api from "../reactn/api/api"
 
-const reducers = [{ name: "NextSchedule", method: "get" }]
+const reducers = [{ name: "Login", method: "handle" }]
 
 const INITIAL_STATE: DefaultState = defaultState
 
-const NextSchedule = createProvider(INITIAL_STATE)
+const Login = createProvider(INITIAL_STATE)
 
 reducers.map(val => {
-    return NextSchedule.addReducer(val.method + val.name, (global: any, _, type, payload) => {
+    return Login.addReducer(val.method + val.name, (global: any, _, type, payload) => {
         switch (type) {
             case "LOADING":
                 global.loading = true
@@ -29,20 +29,20 @@ reducers.map(val => {
     })
 })
 
-export async function getNextSchedule() {
-    const dispatch = NextSchedule.getDispatch()
+export async function handleLogin() {
+    const dispatch = Login.getDispatch()
     try {
-        dispatch.getNextSchedule("LOADING")
+        dispatch.getLogin("LOADING")
         const result = await Api.fetch({
             method: "GET",
             url: "/schedules"
         })
-        dispatch.getNextSchedule("SUCCESS", result.data)
+        dispatch.getLogin("SUCCESS", result.data)
         return result.data
     } catch (err) {
-        dispatch.getNextSchedule("ERROR")
+        dispatch.getLogin("ERROR")
         throw err
     }
 }
 
-export default NextSchedule
+export default Login

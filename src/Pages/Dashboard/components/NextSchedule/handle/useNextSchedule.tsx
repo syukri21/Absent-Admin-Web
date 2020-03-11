@@ -1,7 +1,7 @@
 import { useEffect } from "reactn"
 import { getDaySchedule } from "../../../../../util/scheduleFromNow"
-import NextSchedule, { handleGetNextSchedule } from "../../../../../provider/NextSchedule"
-import { handleSetActiveSchedule } from "../../../../../provider/ActiveSchedule"
+import NextSchedule, { getNextSchedule } from "../../../../../provider/NextSchedule"
+import { setActiveSchedule } from "../../../../../provider/ActiveSchedule"
 
 interface UseNextSchedule {
     data: any[]
@@ -22,13 +22,13 @@ export default function useNextSchedule(): UseNextSchedule {
     }
 
     function handleSelectSchedule(data: any) {
-        handleSetActiveSchedule(data)
+        setActiveSchedule(data)
     }
 
     /* ----------------------------- GET NEXT SCHEDULE ---------------------------- */
 
     useEffect(() => {
-        handleGetNextSchedule()
+        getNextSchedule()
     }, [])
 
     /* --------------------------- SET ACTIVE SCHEDULE -------------------------- */
