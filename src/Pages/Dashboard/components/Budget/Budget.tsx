@@ -4,7 +4,7 @@ import useStyles from "./styles"
 import { getDaySchedule } from "../../../../util/scheduleFromNow"
 import dayjs from "dayjs"
 import StringToRGB from "../../../../util/intoRgb"
-import ActiveScheduleProvider from '../../../../provider/ActiveScheduleProvider';
+import ActiveScheduleProvider from "../../../../provider/ActiveSchedule"
 
 export interface BudgetProps {}
 

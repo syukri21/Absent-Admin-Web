@@ -1,7 +1,12 @@
 import { createProvider } from "reactn"
-import { defaultState } from "./../reactn/setGlobal"
 
-const reducers = [{ name: "NextSchedule", method: "get", type: defaultState }]
+export const defaultStateObj = {
+    loading: false,
+    error: null,
+    data: {}
+}
+
+const reducers = [{ name: "ActiveSchedule", type: defaultStateObj, method: "set" }]
 
 const INITIAL_STATE: any = {}
 
@@ -9,10 +14,10 @@ reducers.map(val => {
     return (INITIAL_STATE[val.name] = val.type)
 })
 
-const NextScheduleProvider = createProvider(INITIAL_STATE)
+const ActiveSchedule = createProvider(INITIAL_STATE)
 
 reducers.map(val => {
-    return NextScheduleProvider.addReducer(val.method + val.name, (global: any, _, type, payload) => {
+    return ActiveSchedule.addReducer(val.method + val.name, (global: any, _, type, payload) => {
         switch (type) {
             case "LOADING":
                 global[val.name].loading = true
@@ -31,4 +36,4 @@ reducers.map(val => {
     })
 })
 
-export default NextScheduleProvider
+export default ActiveSchedule

@@ -1,8 +1,8 @@
 import { useEffect } from "reactn"
 import ScheduleService from "../../../../../reactn/service/ScheduleService"
 import { getDaySchedule } from "../../../../../util/scheduleFromNow"
-import NextScheduleProvider from "../../../../../provider/NextScheduleProvider"
-import ActiveScheduleProvider from "../../../../../provider/ActiveScheduleProvider"
+import NextScheduleProvider from "../../../../../provider/NextSchedule"
+import ActiveScheduleProvider from "../../../../../provider/ActiveSchedule"
 
 interface UseNextSchedule {
     data: any[]

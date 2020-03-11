@@ -4,7 +4,7 @@ import { Card, CardContent, Grid, Typography, Avatar } from "@material-ui/core"
 import ButtonBase from "@material-ui/core/ButtonBase"
 import useStyles from "./styles"
 import MoneyIcon from "@material-ui/icons/Money"
-import ActiveScheduleProvider from "../../../../provider/ActiveScheduleProvider"
+import ActiveScheduleProvider from "../../../../provider/ActiveSchedule"
 
 export interface QRCodeProps {
     className?: string
