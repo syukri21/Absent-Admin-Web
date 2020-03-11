@@ -3,7 +3,6 @@ import { defaultState } from "../reactn/setGlobal"
 import { DefaultState, Type } from "../reactn/reactn"
 import Api from "../reactn/api/api"
 import { handleLogin } from "./Login"
-import { setGlobalSnackbar } from "./GlobalSnackbar"
 
 const reducers = [{ name: "Register", method: "handle" }]
 

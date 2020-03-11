@@ -43,7 +43,7 @@ export interface LoginParams {
 export async function handleLogin({ username, password, showAlert = true }: LoginParams) {
     const dispatch = Login.getDispatch()
     try {
-        dispatch.login("LOADING")
+        dispatch.handleLogin("LOADING")
         const result = await Api.fetch({
             method: "POST",
             url: "/login",
@@ -53,7 +53,7 @@ export async function handleLogin({ username, password, showAlert = true }: Logi
             }
         })
         Api.setToken(result.data.token)
-        dispatch.login("SUCCESS", result.data)
+        dispatch.handleLogin("SUCCESS", result.data)
         if (showAlert) {
             setGlobalSnackbar("SHOW", {
                 message: "Login success.",
@@ -61,7 +61,7 @@ export async function handleLogin({ username, password, showAlert = true }: Logi
             })
         }
     } catch (err) {
-        dispatch.login("ERROR", err)
+        dispatch.handleLogin("ERROR", err)
         setGlobalSnackbar("SHOW", {
             message: "Password or Username is wrong.",
             severity: "error"
