@@ -1,4 +1,4 @@
-import UserService from "../../../../../reactn/service/UserService"
+import { handleLogout } from "../../../../../provider/Login"
 
 export interface UseSignout {
     handleSignout: () => void
@@ -6,7 +6,7 @@ export interface UseSignout {
 
 export default function useSignout(): UseSignout {
     function handleSignout() {
-        UserService.handleLogout()
+        handleLogout()
     }
 
     return { handleSignout }

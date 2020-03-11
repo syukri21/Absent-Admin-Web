@@ -1,8 +1,8 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import { useEffect } from "reactn"
-import UserService from "../../reactn/service/UserService"
 import Api from "../../reactn/api/api"
+import { getUser } from "../../provider/User"
 
 export interface RouteWithLayoutProps {
     component: React.SFC<any>
@@ -17,9 +17,7 @@ const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
     const token = Api.getToken() ? true : false
 
     useEffect(() => {
-        if (protect) {
-            UserService.handleGetUser()
-        }
+        if (protect) getUser()
         // eslint-disable-next-line
     }, [])
 

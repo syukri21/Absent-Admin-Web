@@ -2,6 +2,7 @@ import { createProvider } from "reactn"
 import { defaultState } from "../reactn/setGlobal"
 import { DefaultState } from "../reactn/reactn"
 import Api from "../reactn/api/api"
+import { setGlobalSnackbar } from "./GlobalSnackbar"
 
 const reducers = [{ name: "Login", method: "handle" }]
 
@@ -29,20 +30,51 @@ reducers.map(val => {
     })
 })
 
-export async function handleLogin() {
+/* -------------------------------------------------------------------------- */
+/*                              NOTE HANDLE LOGIN                             */
+/* -------------------------------------------------------------------------- */
+
+export interface LoginParams {
+    username: string
+    password: string
+    showAlert?: boolean
+}
+
+export async function handleLogin({ username, password, showAlert = true }: LoginParams) {
     const dispatch = Login.getDispatch()
     try {
-        dispatch.getLogin("LOADING")
+        dispatch.login("LOADING")
         const result = await Api.fetch({
-            method: "GET",
-            url: "/schedules"
+            method: "POST",
+            url: "/login",
+            data: {
+                username: username,
+                password: password
+            }
         })
-        dispatch.getLogin("SUCCESS", result.data)
-        return result.data
+        Api.setToken(result.data.token)
+        dispatch.login("SUCCESS", result.data)
+        if (showAlert) {
+            setGlobalSnackbar("SHOW", {
+                message: "Login success.",
+                severity: "success"
+            })
+        }
     } catch (err) {
-        dispatch.getLogin("ERROR")
-        throw err
+        dispatch.login("ERROR", err)
+        setGlobalSnackbar("SHOW", {
+            message: "Password or Username is wrong.",
+            severity: "error"
+        })
     }
 }
+
+export function handleLogout() {
+    window.location.replace("/sign-in")
+    window.onunload = () => {
+        window.localStorage.clear()
+    }
+}
+/* -------------------------------------------------------------------------- */
 
 export default Login

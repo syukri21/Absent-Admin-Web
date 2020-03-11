@@ -2,7 +2,7 @@ import { IFormState } from "../../SignIn/handler/useSignIn"
 import { useHistory } from "react-router-dom"
 import { useState, useEffect } from "react"
 import validate from "validate.js"
-import UserService from "../../../reactn/service/UserService"
+import { handleRegister } from "../../../provider/Register"
 
 const schema = {
     username: {
@@ -102,7 +102,7 @@ export default function(): IUseSignUp {
         if (!isValid) {
             validateErrors(true)
         } else {
-            UserService.handleRegister({
+            handleRegister({
                 fullname: formState.values.fullname,
                 username: formState.values.username,
                 password: formState.values.password

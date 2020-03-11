@@ -1,7 +1,8 @@
 import { useState, useEffect } from "reactn"
 import { useHistory } from "react-router-dom"
 import validate from "validate.js"
-import UserService from "../../../reactn/service/UserService"
+import { handleLogin } from "../../../provider/Login"
+import { getUser } from "../../../provider/User"
 
 const schema = {
     username: {
@@ -74,11 +75,11 @@ export default function useSignIn(): IUseSignIn {
     const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         try {
-            await UserService.handleLogin({
+            await handleLogin({
                 username: formState.values.username,
                 password: formState.values.password
             })
-            await UserService.handleGetUser()
+            await getUser()
             history.push("/")
         } catch (err) {}
     }
