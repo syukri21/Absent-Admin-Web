@@ -1,4 +1,4 @@
-import { useGlobal, useDispatch } from "reactn"
+import GlobalSnackbar, { setGlobalSnackbar } from "./../../../provider/GlobalSnackbar"
 
 export interface UseGlobalSnackbar {
     isOpen: boolean
@@ -7,11 +7,10 @@ export interface UseGlobalSnackbar {
 }
 
 export default function useGlobalSnackbar(): UseGlobalSnackbar {
-    const [globalSnackbar] = useGlobal("GlobalSnackbar")
-    const toggleGlobalSnackbar = useDispatch("showGlobalSnackbar")
+    const [globalSnackbar] = GlobalSnackbar.useGlobal()
 
     function handleClose() {
-        toggleGlobalSnackbar("HIDE")
+        setGlobalSnackbar("HIDE")
     }
 
     return { ...globalSnackbar, handleClose }

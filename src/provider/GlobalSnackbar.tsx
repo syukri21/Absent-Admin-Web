@@ -31,7 +31,7 @@ interface Payload {
     severity: severity
 }
 
-export function setGlobalSnackbar(type: GlobalSnackbarType, payload: Payload) {
+export function setGlobalSnackbar(type: GlobalSnackbarType, payload?: Payload) {
     const dispatch = GlobalSnackbar.getDispatch()
     dispatch.setGlobalSnackbar(type, payload)
 }

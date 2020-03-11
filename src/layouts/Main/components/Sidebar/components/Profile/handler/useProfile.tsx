@@ -1,5 +1,6 @@
-import { useGlobal } from "reactn"
+import User from "../../../../../../../provider/User"
+
 export default function useProfile() {
-    const [user] = useGlobal<any>("User")
+    const [user] = User.useGlobal()
     return { user }
 }
