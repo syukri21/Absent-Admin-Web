@@ -1,4 +1,4 @@
-import React, { createProvider } from "reactn"
+import { createProvider } from "reactn"
 import { defaultState } from "./../reactn/setGlobal"
 
 const reducers = [{ name: "NextSchedule", method: "get", type: defaultState }]

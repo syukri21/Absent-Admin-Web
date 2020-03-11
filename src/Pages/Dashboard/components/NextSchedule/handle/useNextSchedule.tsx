@@ -15,10 +15,10 @@ interface UseNextSchedule {
 let sorted = false
 
 export default function useNextSchedule(): UseNextSchedule {
-    const [nextSchedule] = NextScheduleProvider.useGlobal("NextSchedule")
+    const [nextSchedule] = NextScheduleProvider.useGlobal()
 
     if (nextSchedule.data.length > 0 && !sorted) {
-        nextSchedule.data = nextSchedule.data.sort((a: any, b: any) => getDaySchedule(a) - getDaySchedule(b))
+        nextSchedule.data.sort((a: any, b: any) => getDaySchedule(a) - getDaySchedule(b))
         sorted = true
     }
 

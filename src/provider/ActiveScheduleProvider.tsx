@@ -1,4 +1,4 @@
-import React, { createProvider } from "reactn"
+import { createProvider } from "reactn"
 
 export const defaultStateObj = {
     loading: false,

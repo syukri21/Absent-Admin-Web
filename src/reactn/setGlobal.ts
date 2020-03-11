@@ -26,6 +26,4 @@ setGlobal({
         ...defaultState,
         data: {}
     }
-
-    // Token: Api.getToken()
 })
