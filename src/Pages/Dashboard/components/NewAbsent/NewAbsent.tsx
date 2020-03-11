@@ -27,6 +27,7 @@ import dayjs from "dayjs"
 
 import StatusBullet from "../../../../components/StatusBullet"
 import { Size } from "../../../../components/StatusBullet/StatusBullet"
+import useNewAbsent from "./handler/useNewAbsent"
 
 const statusColors: any = {
     delivered: "success",
@@ -40,6 +41,11 @@ export interface NewAbsentProps {}
 
 const NewAbsent: React.SFC<NewAbsentProps> = props => {
     const classes = useStyles()
+    const schedule = useNewAbsent()
+
+    const absents: any = schedule.data.Absents || []
+    console.log("absents", absents)
+
     return (
         <Card className={classes.root}>
             <CardHeader
@@ -56,31 +62,26 @@ const NewAbsent: React.SFC<NewAbsentProps> = props => {
                     <div className={classes.inner}>
                         <Table>
                             <TableHead>
-                                <TableRow>
-                                    <TableCell>Order Ref</TableCell>
-                                    <TableCell>Customer</TableCell>
-                                    <TableCell sortDirection='desc'>
+                                <TableRow hover>
+                                    <TableCell align='center'>No</TableCell>
+                                    <TableCell>Student</TableCell>
+                                    <TableCell align='left'>NIM</TableCell>
+                                    <TableCell align='right'>
                                         <Tooltip enterDelay={300} title='Sort'>
                                             <TableSortLabel active direction='desc'>
-                                                Date
+                                                Absent Date
                                             </TableSortLabel>
                                         </Tooltip>
                                     </TableCell>
-                                    <TableCell>Status</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {orders.map((order, index) => (
+                                {absents.map((absen: any, index: any) => (
                                     <TableRow hover key={index}>
-                                        <TableCell>{order.ref}</TableCell>
-                                        <TableCell>{order.customer.name}</TableCell>
-                                        <TableCell>{dayjs(order.createdAt).format("DD/MM/YYYY")}</TableCell>
-                                        <TableCell>
-                                            <div className={classes.statusContainer}>
-                                                <StatusBullet className={classes.status} color={statusColors[order.status]} size={Size.sm} />
-                                                {order.status}
-                                            </div>
-                                        </TableCell>
+                                        <TableCell align='center'>{index + 1}</TableCell>
+                                        <TableCell>{absen.Student.fullname}</TableCell>
+                                        <TableCell align='left'>{absen.Student.nim}</TableCell>
+                                        <TableCell align='right'>{dayjs(absen.absentTime).format("DD MMMM YYYY, HH:mm:ss")}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
