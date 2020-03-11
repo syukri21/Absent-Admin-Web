@@ -13,6 +13,7 @@ export interface ProfileProps {
 const Profile: React.SFC<ProfileProps> = props => {
     const classes = useStyles()
     const { user } = useProfile()
+
     const { className } = props
 
     return (

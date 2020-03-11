@@ -48,8 +48,6 @@ export async function getUser() {
             method: "GET",
             url: "/teachers/"
         })
-        const token = Api.getToken()
-        dispatch.login("SUCCESS", token)
         dispatch.getUser("SUCCESS", result.data)
     } catch (err) {
         setGlobalSnackbar("SHOW", {

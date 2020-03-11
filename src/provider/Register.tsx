@@ -3,6 +3,7 @@ import { defaultState } from "../reactn/setGlobal"
 import { DefaultState, Type } from "../reactn/reactn"
 import Api from "../reactn/api/api"
 import { handleLogin } from "./Login"
+import { setGlobalSnackbar } from "./GlobalSnackbar"
 
 const reducers = [{ name: "Register", method: "handle" }]
 
@@ -55,13 +56,13 @@ export async function handleRegister(params: RegisterParams) {
         })
         dispatch.handleRegister("SUCCESS", result.data)
         await handleLogin({ username: params.username, password: params.password, showAlert: false })
-        dispatch.setGlobalSnackbar("SHOW", {
+        setGlobalSnackbar("SHOW", {
             message: "Register success.",
             severity: "success"
         })
     } catch (err) {
         dispatch.handleRegister("ERROR", err)
-        dispatch.setGlobalSnackbar("SHOW", {
+        setGlobalSnackbar("SHOW", {
             message: "Something went wrong.",
             severity: "error"
         })

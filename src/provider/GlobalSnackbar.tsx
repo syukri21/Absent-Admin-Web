@@ -15,10 +15,10 @@ reducers.map(val => {
         switch (type) {
             case "SHOW":
                 global.isOpen = true
+                global.data = payload
                 break
             case "HIDE":
                 global.isOpen = false
-                global.data = payload
                 break
         }
         return global
