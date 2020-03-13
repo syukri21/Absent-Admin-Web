@@ -16,7 +16,6 @@ import {
     TableSortLabel
 } from "@material-ui/core"
 
-import orders from "./data"
 import useStyles from "./styles"
 import ArrowRightIcon from "@material-ui/icons/ArrowRight"
 import dayjs from "dayjs"
@@ -25,15 +24,7 @@ import dayjs from "dayjs"
 /*                           TODO MAKE STATUSBULLET                           */
 /* -------------------------------------------------------------------------- */
 
-import StatusBullet from "../../../../components/StatusBullet"
-import { Size } from "../../../../components/StatusBullet/StatusBullet"
 import useNewAbsent from "./handler/useNewAbsent"
-
-const statusColors: any = {
-    delivered: "success",
-    pending: "info",
-    refunded: "danger"
-}
 
 /* -------------------------------------------------------------------------- */
 

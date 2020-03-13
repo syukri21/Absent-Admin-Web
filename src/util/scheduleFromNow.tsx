@@ -16,7 +16,7 @@ interface ScheduleFromNowParams {
 
 const initialDay = dayjs("2020-03-02").toDate()
 const currentWeek = Math.ceil(dayjs("2020-03-10").diff(initialDay, "day") / 7)
-const statusWeek: WEEK = currentWeek % 2 === 0 ? "ODD" : "EVEN"
+const statusWeek: WEEK = currentWeek % 2 === 0 ? "EVEN" : "ODD"
 
 export function getDaySchedule(params: ScheduleFromNowParams): number {
     let date = dayjs()
