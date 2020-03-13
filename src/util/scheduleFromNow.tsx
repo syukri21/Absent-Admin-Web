@@ -45,6 +45,10 @@ export function getDaySchedule(params: ScheduleFromNowParams): number {
     return date.toDate().getTime()
 }
 
+export function getDayScheduleFormat(params: ScheduleFromNowParams): dayjs.Dayjs {
+    return dayjs(getDaySchedule(params))
+}
+
 export default function scheduleFromNow(params: ScheduleFromNowParams) {
     const date = getDaySchedule(params)
     const message = formatDistance(new Date(date), new Date(), {

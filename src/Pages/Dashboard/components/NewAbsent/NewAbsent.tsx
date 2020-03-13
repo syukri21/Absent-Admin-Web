@@ -35,7 +35,6 @@ const NewAbsent: React.SFC<NewAbsentProps> = props => {
     const schedule = useNewAbsent()
 
     const absents: any = schedule.data.Absents || []
-    console.log("absents", absents)
 
     return (
         <Card className={classes.root}>
