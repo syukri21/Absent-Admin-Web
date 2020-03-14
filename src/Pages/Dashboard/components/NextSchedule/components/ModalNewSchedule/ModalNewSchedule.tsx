@@ -1,18 +1,5 @@
 import * as React from "react"
-import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    TextField,
-    DialogActions,
-    Button,
-    Select,
-    MenuItem,
-    Box,
-    FormControl,
-    InputLabel
-} from "@material-ui/core"
+import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button, Select, MenuItem, FormControl, InputLabel } from "@material-ui/core"
 import useModalNewSchedule from "./useModalNewSchedule"
 import useStyles from "./styles"
 
