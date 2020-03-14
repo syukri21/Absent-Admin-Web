@@ -21,6 +21,8 @@ import useStyles from "./styles"
 import useNextSchedule from "./handle/useNextSchedule"
 import StringToRGB from "../../../../util/intoRgb"
 import scheduleFromNow from "./../../../../util/scheduleFromNow"
+import ModalNewSchedule from "./components/ModalNewSchedule/ModalNewSchedule"
+import { handleOpenModalNewSchedule } from "./../../../../provider/ModalNewSchedule"
 
 export interface NextScheduleProps {
     className?: string
@@ -67,10 +69,11 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
             </CardContent>
             <Divider />
             <CardActions className={classes.actions}>
-                <Button color='primary' size='small' variant='text'>
+                <Button color='primary' size='small' variant='text' onClick={handleOpenModalNewSchedule}>
                     ADD SCHEDULE &nbsp; <AddIcon />
                 </Button>
             </CardActions>
+            <ModalNewSchedule></ModalNewSchedule>
         </Card>
     )
 }
