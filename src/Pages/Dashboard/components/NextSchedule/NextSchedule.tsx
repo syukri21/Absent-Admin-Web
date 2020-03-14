@@ -14,7 +14,7 @@ import {
     ListItemText,
     ButtonBase
 } from "@material-ui/core"
-import ArrowRightIcon from "@material-ui/icons/ArrowRight"
+import AddIcon from "@material-ui/icons/AddCircleOutline"
 import Avatar from "@material-ui/core/Avatar"
 
 import useStyles from "./styles"
@@ -68,7 +68,7 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
             <Divider />
             <CardActions className={classes.actions}>
                 <Button color='primary' size='small' variant='text'>
-                    View all <ArrowRightIcon />
+                    ADD SCHEDULE &nbsp; <AddIcon />
                 </Button>
             </CardActions>
         </Card>

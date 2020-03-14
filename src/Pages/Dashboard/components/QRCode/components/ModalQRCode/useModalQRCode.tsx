@@ -32,7 +32,7 @@ function useModalQRCode(): UseModalQRCode {
     const token = absentSetup.data.token
 
     useEffect(() => {
-        if (courseId) {
+        if (courseId && isOpen) {
             getAbsentSetup({
                 data: {
                     courseId,
@@ -42,7 +42,7 @@ function useModalQRCode(): UseModalQRCode {
             })
         }
         // eslint-disable-next-line
-    }, [courseId])
+    }, [courseId, isOpen])
 
     return {
         fullScreen,
