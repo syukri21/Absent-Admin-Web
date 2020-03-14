@@ -7,7 +7,7 @@ export interface DefaultState {
     data: any
 }
 
-type severity = "success" | "error" | undefined
+type severity = "success" | "error" | "warning" | undefined
 
 export interface GlobalSnackbarState {
     isOpen: boolean

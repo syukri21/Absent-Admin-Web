@@ -26,7 +26,7 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
     })
 
     const [modalNewSchedule] = ModalNewSchedule.useGlobal()
-    const { courses } = useCourseSelect(modalNewSchedule.isOpen)
+    const { courses, isReady } = useCourseSelect(modalNewSchedule.isOpen)
     const createSchedule = useCreateSchedule()
 
     const handleOpenSelect = (field: string) => {
@@ -78,7 +78,7 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
     }
 
     return {
-        isOpen: modalNewSchedule.isOpen,
+        isOpen: modalNewSchedule.isOpen && isReady,
         handleClose: handleCloseModalNewSchedule,
         selectIsOpen: (field: string) => select[field].isOpen,
         handleOpenSelect,
