@@ -3,10 +3,7 @@ import DayjsUtils from "@date-io/dayjs"
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers"
 import {
     Dialog,
-    DialogTitle,
     DialogContent,
-    TextField,
-    DialogActions,
     Button,
     Select,
     MenuItem,
@@ -43,7 +40,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
             </AppBar>
             <DialogContent>
                 <Box display='flex' justifyContent='center'>
-                    <Box>
+                    <Box width={400}>
                         <FormControl className={classes.formControl} fullWidth>
                             <InputLabel id='course'>Mata Kuliah</InputLabel>
                             <Select
