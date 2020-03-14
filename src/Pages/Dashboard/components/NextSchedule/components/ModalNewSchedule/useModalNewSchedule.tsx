@@ -1,5 +1,7 @@
 import ModalNewSchedule, { handleCloseModalNewSchedule } from "../../../../../../provider/ModalNewSchedule"
 import { useState } from "react"
+import useCourseSelect from "./useCourseSelect"
+import { DefaultState } from "../../../../../../reactn/reactn"
 
 interface UseModalNewSchedule {
     isOpen: boolean
@@ -8,18 +10,17 @@ interface UseModalNewSchedule {
     handleOpenSelect: (field: string) => void
     handleCloseSelect: (field: string) => void
     handleChangeSelect: (field: string, value: number) => void
+    select: any
+    courses: DefaultState
 }
 
 export default function useModalNewSchedule(): UseModalNewSchedule {
+    const { courses } = useCourseSelect()
     const [select, setSelect] = useState<any>({
-        day: {
-            isOpen: false,
-            value: null
-        },
-        course: {
-            isOpen: false,
-            value: null
-        }
+        day: { isOpen: false, value: "" },
+        course: { isOpen: false, value: "" },
+        week: { isOpen: false, value: "" },
+        time: { value: new Date() }
     })
 
     const [modalNewSchedule] = ModalNewSchedule.useGlobal()
@@ -61,6 +62,8 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
         selectIsOpen: (field: string) => select[field].isOpen,
         handleOpenSelect,
         handleCloseSelect,
-        handleChangeSelect
+        handleChangeSelect,
+        select: select,
+        courses
     }
 }
