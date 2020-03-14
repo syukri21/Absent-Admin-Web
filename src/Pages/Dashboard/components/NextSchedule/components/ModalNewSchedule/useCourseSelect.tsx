@@ -7,28 +7,28 @@ interface UseCoursesSelect {
     courses: DefaultState
 }
 
-export default function useCourseSelect(): UseCoursesSelect {
+export default function useCourseSelect(isOpen: boolean): UseCoursesSelect {
     const [courses, setCourse] = Courses.useGlobal()
-    console.log("defaultfunctionuseCourseSelect -> courses", courses)
     const nextSchedule = NextSchedule.getGlobal()
 
     useEffect(() => {
-        getCourses()
-    }, [])
+        if (isOpen) getCourses()
+    }, [isOpen])
 
     useEffect(() => {
-        if (nextSchedule.data.length > 0 && courses.data.length > 0) {
-            const NextScheduleIds = nextSchedule.data.map((val: any) => val.Course.ID)
-            console.log("defaultfunctionuseCourseSelect -> NextScheduleIds", NextScheduleIds)
-            let newCourseData = courses.data.filter((value: any) => {
-                return !NextScheduleIds.includes(value.ID)
-            })
-            setCourse({
-                ...courses,
-                data: newCourseData
-            })
+        if (isOpen) {
+            if (nextSchedule.data.length > 0 && courses.data.length > 0) {
+                const NextScheduleIds = nextSchedule.data.map((val: any) => val.Course.ID)
+                let newCourseData = courses.data.filter((value: any) => {
+                    return !NextScheduleIds.includes(value.ID)
+                })
+                setCourse({
+                    ...courses,
+                    data: newCourseData
+                })
+            }
         }
-    }, [nextSchedule.data.length, courses.data.length])
+    }, [nextSchedule.data.length, courses.data.length, isOpen])
 
     return {
         courses: courses

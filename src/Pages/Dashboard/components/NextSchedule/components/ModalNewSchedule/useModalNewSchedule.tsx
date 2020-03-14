@@ -15,7 +15,6 @@ interface UseModalNewSchedule {
 }
 
 export default function useModalNewSchedule(): UseModalNewSchedule {
-    const { courses } = useCourseSelect()
     const [select, setSelect] = useState<any>({
         day: { isOpen: false, value: "" },
         course: { isOpen: false, value: "" },
@@ -24,6 +23,7 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
     })
 
     const [modalNewSchedule] = ModalNewSchedule.useGlobal()
+    const { courses } = useCourseSelect(modalNewSchedule.isOpen)
 
     const handleOpenSelect = (field: string) => {
         setSelect({
