@@ -15,6 +15,10 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
         day: {
             isOpen: false,
             value: null
+        },
+        course: {
+            isOpen: false,
+            value: null
         }
     })
 

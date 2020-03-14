@@ -47,6 +47,21 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                         <MenuItem value={0}>Minggu</MenuItem>
                     </Select>
                 </FormControl>
+                <FormControl className={classes.formControl} fullWidth>
+                    <InputLabel id='course'>Course</InputLabel>
+                    <Select
+                        label='course'
+                        id='course'
+                        margin='dense'
+                        open={selectIsOpen("course")}
+                        onClose={() => handleCloseSelect("course")}
+                        onOpen={() => handleOpenSelect("course")}
+                        onChange={(e: any) => handleChangeSelect("course", e.target.value)}
+                    >
+                        <MenuItem value={1}>Bahasa Indonesia</MenuItem>
+                        <MenuItem value={2}>Kalkulus</MenuItem>
+                    </Select>
+                </FormControl>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} color='primary'>
