@@ -23,7 +23,17 @@ import useStyles from "./styles"
 export interface ModalNewScheduleProps {}
 
 const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
-    const { isOpen, handleClose, handleChangeSelect, handleCloseSelect, handleOpenSelect, selectIsOpen, select, courses } = useModalNewSchedule()
+    const {
+        isOpen,
+        handleClose,
+        handleChangeSelect,
+        handleCloseSelect,
+        handleOpenSelect,
+        selectIsOpen,
+        select,
+        courses,
+        handleSubmit
+    } = useModalNewSchedule()
     const classes = useStyles()
 
     return (
@@ -56,15 +66,14 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                 <MenuItem value=''>
                                     <em>None</em>
                                 </MenuItem>
-                                {courses.loading ||
-                                    (courses.data.length > 0 &&
-                                        courses.data.map((course: any) => {
-                                            return (
-                                                <MenuItem key={course.ID} value={course.ID}>
-                                                    {course.name}
-                                                </MenuItem>
-                                            )
-                                        }))}
+                                {courses.data.length > 0 &&
+                                    courses.data.map((course: any) => {
+                                        return (
+                                            <MenuItem key={course.ID} value={course.ID}>
+                                                {course.name}
+                                            </MenuItem>
+                                        )
+                                    })}
                             </Select>
                         </FormControl>
 
@@ -131,7 +140,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                             </Select>
                         </FormControl>
 
-                        <Button fullWidth variant='contained' className={classes.button} onClick={handleClose} color='primary'>
+                        <Button fullWidth variant='contained' className={classes.button} onClick={handleSubmit} color='primary'>
                             ADD
                         </Button>
                     </Box>
