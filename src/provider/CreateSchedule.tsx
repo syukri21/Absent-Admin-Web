@@ -1,7 +1,6 @@
 import { createProvider } from "reactn"
 import { DefaultState } from "../reactn/reactn"
 import Api from "../reactn/api/api"
-import dayjs from "dayjs"
 
 const reducers = [{ name: "CreateSchedule", method: "handle" }]
 
@@ -41,7 +40,7 @@ export interface CreateScheduleParams {
     day: number
     courseId: number
     week: string
-    time: dayjs.Dayjs
+    time: number
 }
 
 export async function handleCreateSchedule(params: CreateScheduleParams) {
@@ -51,10 +50,7 @@ export async function handleCreateSchedule(params: CreateScheduleParams) {
         const result = await Api.fetch({
             method: "POST",
             url: "/schedules",
-            data: {
-                ...params,
-                time: params.time.get("minute")
-            }
+            data: { ...params, time: params.time }
         })
         dispatch.handleCreateSchedule("SUCCESS", result.data)
     } catch (err) {

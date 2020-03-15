@@ -5,6 +5,7 @@ import { DefaultState } from "../../../../../../reactn/reactn"
 import useCreateSchedule from "./useCreateSchedule"
 import { setGlobalSnackbar } from "../../../../../../provider/GlobalSnackbar"
 import { getNextSchedule } from "../../../../../../provider/NextSchedule"
+import dayjs from "dayjs"
 
 interface UseModalNewSchedule {
     isOpen: boolean
@@ -62,11 +63,14 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
     }
 
     const handleSubmit = () => {
+        const time: dayjs.Dayjs = select["time"].value
+        const timeInMinute = time.get("minute") + time.get("hour") * 60
+
         createSchedule
             .handleCreateSchedule({
                 courseId: select["course"].value,
                 day: select["day"].value,
-                time: select["time"].value,
+                time: timeInMinute,
                 week: select["week"].value
             })
             .then(() => {
