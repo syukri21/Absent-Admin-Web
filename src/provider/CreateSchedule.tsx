@@ -56,7 +56,6 @@ export async function handleCreateSchedule(params: CreateScheduleParams) {
                 time: params.time.get("minute")
             }
         })
-        console.log("handleCreateSchedule -> result", result)
         dispatch.handleCreateSchedule("SUCCESS", result.data)
     } catch (err) {
         dispatch.handleCreateSchedule("ERROR", err)

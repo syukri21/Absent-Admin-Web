@@ -21,7 +21,7 @@ const statusWeek: WEEK = currentWeek % 2 === 0 ? "EVEN" : "ODD"
 export function getDaySchedule(params: ScheduleFromNowParams): number {
     let date = dayjs()
 
-    if (params.week !== statusWeek) {
+    if (params.week !== statusWeek && params.week !== "BOTH") {
         date = dayjs().add(7, "day")
     } else {
         const nextDate = date.set("day", params.day)

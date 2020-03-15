@@ -22,7 +22,7 @@ export default function useCourseSelect(isOpen: boolean): UseCoursesSelect {
 
     useEffect(() => {
         if (isOpen) {
-            if (nextSchedule.data.length > 0 && courses.data.length > 0) {
+            if (courses.data.length > 0) {
                 const NextScheduleIds = nextSchedule.data.map((val: any) => val.Course.ID)
                 let newCourseData = courses.data.filter((value: any) => {
                     return !NextScheduleIds.includes(value.ID)

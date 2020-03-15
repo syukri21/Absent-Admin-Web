@@ -4,6 +4,7 @@ import useCourseSelect from "./useCourseSelect"
 import { DefaultState } from "../../../../../../reactn/reactn"
 import useCreateSchedule from "./useCreateSchedule"
 import { setGlobalSnackbar } from "../../../../../../provider/GlobalSnackbar"
+import { getNextSchedule } from "../../../../../../provider/NextSchedule"
 
 interface UseModalNewSchedule {
     isOpen: boolean
@@ -70,10 +71,11 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
             })
             .then(() => {
                 setGlobalSnackbar("SHOW", {
-                    message: "Something went wrong",
+                    message: "Success add new schedule",
                     severity: "success"
                 })
                 handleCloseModalNewSchedule()
+                getNextSchedule()
             })
     }
 
