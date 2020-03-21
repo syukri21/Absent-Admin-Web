@@ -25,15 +25,14 @@ const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
 
     return (
         <Route
-            render={matchProps =>
-                !token && protect ? (
-                    <Redirect to='/sign-in'></Redirect>
-                ) : (
+            render={matchProps => {
+                if (!token && protect) return <Redirect to='/sign-in'></Redirect>
+                return (
                     <Layout>
                         <Component {...matchProps} />
                     </Layout>
                 )
-            }
+            }}
         />
     )
 }
