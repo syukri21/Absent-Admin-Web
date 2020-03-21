@@ -1,12 +1,12 @@
 import { createProvider } from "reactn"
-import { defaultState } from "../reactn/setGlobal"
 import { DefaultState } from "../reactn/reactn"
 import Api from "../reactn/api/api"
 import { setGlobalSnackbar } from "./GlobalSnackbar"
+import { defaultStateObj } from "./User"
 
 const reducers = [{ name: "Login", method: "handle" }]
 
-const INITIAL_STATE: DefaultState = defaultState
+const INITIAL_STATE: DefaultState = defaultStateObj
 
 const Login = createProvider(INITIAL_STATE)
 
@@ -52,7 +52,8 @@ export async function handleLogin({ username, password, showAlert = true }: Logi
                 password: password
             }
         })
-        console.log("handleLogin -> result", result)
+        if (result.data.roleId == 2) throw "err"
+
         Api.setToken(result.data.token)
         dispatch.handleLogin("SUCCESS", result.data)
         if (showAlert) {
@@ -67,6 +68,7 @@ export async function handleLogin({ username, password, showAlert = true }: Logi
             message: "Password or Username is wrong.",
             severity: "error"
         })
+        throw err
     }
 }
 

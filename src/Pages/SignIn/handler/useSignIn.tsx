@@ -75,12 +75,12 @@ export default function useSignIn(): IUseSignIn {
     const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         try {
-            await handleLogin({
+            handleLogin({
                 username: formState.values.username,
                 password: formState.values.password
-            })
-            await getUser()
-            history.push("/")
+            }).then(getUser)
+
+            // history.push("/")
         } catch (err) {}
     }
 
