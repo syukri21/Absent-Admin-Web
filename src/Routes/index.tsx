@@ -3,6 +3,7 @@ import SignUp from "../Pages/SignUp"
 import Dashboard from "../Pages/Dashboard"
 import Minimal from "./../layouts/Minimal/Minimal"
 import Main from "../layouts/Main/Main"
+import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard"
 
 export interface IRoute {
     Component: ((props: any) => JSX.Element) | React.SFC<any>
@@ -32,6 +33,13 @@ const routes: IRoute[] = [
         Layout: Main,
         exact: true,
         path: "/",
+        Protected: true
+    },
+    {
+        Component: AdminDashboard,
+        Layout: Main,
+        exact: true,
+        path: "/admin",
         Protected: true
     }
 ]
