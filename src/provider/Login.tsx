@@ -52,6 +52,7 @@ export async function handleLogin({ username, password, showAlert = true }: Logi
                 password: password
             }
         })
+        console.log("handleLogin -> result", result)
         Api.setToken(result.data.token)
         dispatch.handleLogin("SUCCESS", result.data)
         if (showAlert) {
