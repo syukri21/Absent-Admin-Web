@@ -55,7 +55,6 @@ export default function MaterialTableDemo() {
                 components={{
                     Container: Box,
                     Header: copyProps => {
-                        console.log("MaterialTableDemo -> copyProps", copyProps)
                         return (
                             <TableHead>
                                 <TableRow hover>

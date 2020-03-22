@@ -48,7 +48,7 @@ export async function handleCourseDelete(params: CourseDeleteParams) {
         })
         dispatch.handleCourseDelete("SUCCESS", result.data)
         setGlobalSnackbar("SHOW", {
-            message: "Add Course success.",
+            message: "Deleted Course success.",
             severity: "success"
         })
         return result
