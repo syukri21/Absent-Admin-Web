@@ -1,9 +1,9 @@
 import { createProvider } from "reactn"
 import { DefaultState } from "../reactn/reactn"
 import Api from "../reactn/api/api"
-import { handleLogout } from "./Login"
 import { setGlobalSnackbar } from "./GlobalSnackbar"
 import jwt_decode from "jwt-decode"
+import { handleLogout } from "./Login"
 
 export const defaultStateObj = {
     loading: false,
@@ -59,7 +59,7 @@ export async function getUser() {
             severity: "error"
         })
         dispatch.getUser("ERROR", "No Token")
-        // handleLogout()
+        handleLogout()
     }
 }
 
