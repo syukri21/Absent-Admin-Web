@@ -33,7 +33,7 @@ function App() {
                                     layout={Layout}
                                     path={route.path}
                                     protect={protect}
-                                    previlage={route.previlage || "teacher"}
+                                    redirect={route.redirect}
                                 />
                             )
                         })}

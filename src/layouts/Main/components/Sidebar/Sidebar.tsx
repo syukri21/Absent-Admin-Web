@@ -26,7 +26,7 @@ export interface Page {
 const pages: Array<Page> = [
     {
         title: "Dashboard",
-        href: "/dashboard",
+        href: "/",
         icon: <DashboardIcon />
     },
     {

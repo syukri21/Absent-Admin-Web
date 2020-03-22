@@ -5,13 +5,18 @@ import Minimal from "./../layouts/Minimal/Minimal"
 import Main from "../layouts/Main/Main"
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard"
 
+export interface RouteRedirect {
+    roleId: number
+    to: string
+}
+
 export interface IRoute {
     Component: ((props: any) => JSX.Element) | React.SFC<any>
     Layout: ((props: any) => JSX.Element) | React.SFC<any>
     exact: boolean
     path: string
     Protected: boolean
-    previlage?: "admin" | "teacher" | undefined
+    redirect?: RouteRedirect[]
 }
 
 const routes: IRoute[] = [
@@ -34,7 +39,8 @@ const routes: IRoute[] = [
         Layout: Main,
         exact: true,
         path: "/",
-        Protected: true
+        Protected: true,
+        redirect: [{ roleId: 3, to: "/admin" }]
     },
     {
         Component: AdminDashboard,
@@ -42,7 +48,7 @@ const routes: IRoute[] = [
         exact: true,
         path: "/admin",
         Protected: true,
-        previlage: "admin"
+        redirect: [{ roleId: 1, to: "/" }]
     }
 ]
 
