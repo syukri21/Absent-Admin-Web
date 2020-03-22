@@ -24,7 +24,7 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
         day: { isOpen: false, value: "" },
         course: { isOpen: false, value: "" },
         week: { isOpen: false, value: "" },
-        time: { value: new Date() }
+        time: { value: dayjs() }
     })
 
     const [modalNewSchedule] = ModalNewSchedule.useGlobal()
@@ -65,7 +65,6 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
     const handleSubmit = () => {
         const time: dayjs.Dayjs = select["time"].value
         const timeInMinute = time.get("minute") + time.get("hour") * 60
-
         createSchedule
             .handleCreateSchedule({
                 courseId: select["course"].value,
