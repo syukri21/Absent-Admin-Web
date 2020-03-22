@@ -17,6 +17,8 @@ import {
 } from "@material-ui/core"
 
 import CloseIcon from "@material-ui/icons/Close"
+import FormHelperText from "@material-ui/core/FormHelperText"
+
 import useModalNewSchedule from "./useModalNewSchedule"
 import useStyles from "./styles"
 
@@ -32,7 +34,8 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
         selectIsOpen,
         select,
         courses,
-        handleSubmit
+        handleSubmit,
+        hasError
     } = useModalNewSchedule()
     const classes = useStyles()
 
@@ -59,6 +62,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                 margin='dense'
                                 open={selectIsOpen("course")}
                                 onClose={() => handleCloseSelect("course")}
+                                error={hasError("course")}
                                 value={select["course"].value}
                                 onOpen={() => handleOpenSelect("course")}
                                 onChange={(e: any) => handleChangeSelect("course", e.target.value)}
@@ -75,6 +79,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                         )
                                     })}
                             </Select>
+                            <FormHelperText error={hasError("course")}>{hasError("course") && select.errors["course"]}</FormHelperText>
                         </FormControl>
 
                         <FormControl className={classes.formControl} fullWidth>
@@ -83,6 +88,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                 label='day'
                                 id='day'
                                 margin='dense'
+                                error={hasError("day")}
                                 value={select["day"].value}
                                 open={selectIsOpen("day")}
                                 onClose={() => handleCloseSelect("day")}
@@ -100,6 +106,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                 <MenuItem value={6}>Sabtu</MenuItem>
                                 <MenuItem value={0}>Minggu</MenuItem>
                             </Select>
+                            <FormHelperText error={hasError("day")}>{hasError("day") && select.errors["day"]}</FormHelperText>
                         </FormControl>
 
                         <FormControl className={classes.formControl} fullWidth>
@@ -107,7 +114,8 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                 <KeyboardTimePicker
                                     margin='normal'
                                     id='time-picker'
-                                    label='Jam'
+                                    label='Time'
+                                    error={hasError("time")}
                                     value={select["time"].value}
                                     onChange={(e: any) => {
                                         handleChangeSelect("time", e)
@@ -116,6 +124,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                         "aria-label": "change time"
                                     }}
                                 />
+                                <FormHelperText error={hasError("time")}>{hasError("time") && select.errors["time"]}</FormHelperText>
                             </MuiPickersUtilsProvider>
                         </FormControl>
 
@@ -125,6 +134,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                 label='week'
                                 id='week'
                                 margin='dense'
+                                error={hasError("week")}
                                 value={select["week"].value}
                                 open={selectIsOpen("week")}
                                 onClose={() => handleCloseSelect("week")}
@@ -138,6 +148,7 @@ const ModalNewSchedule: React.SFC<ModalNewScheduleProps> = () => {
                                 <MenuItem value={"ODD"}>Genap</MenuItem>
                                 <MenuItem value={"BOTH"}>Ganjil & Genap</MenuItem>
                             </Select>
+                            <FormHelperText error={hasError("week")}>{hasError("week") && select.errors["week"]}</FormHelperText>
                         </FormControl>
 
                         <Button fullWidth variant='contained' className={classes.button} onClick={handleSubmit} color='primary'>

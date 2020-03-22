@@ -6,6 +6,8 @@ import useCreateSchedule from "./useCreateSchedule"
 import { setGlobalSnackbar } from "../../../../../../provider/GlobalSnackbar"
 import { getNextSchedule } from "../../../../../../provider/NextSchedule"
 import dayjs from "dayjs"
+import validate from "validate.js"
+import { useEffect } from "react"
 
 interface UseModalNewSchedule {
     isOpen: boolean
@@ -17,6 +19,14 @@ interface UseModalNewSchedule {
     handleSubmit: () => void
     select: any
     courses: DefaultState
+    hasError: (field: string) => boolean
+}
+
+const schema = {
+    day: { presence: { allowEmpty: false, message: "is required" } },
+    course: { presence: { allowEmpty: false, message: "is required" } },
+    week: { presence: { allowEmpty: false, message: "is required" } },
+    time: { presence: { allowEmpty: false, message: "is required" } }
 }
 
 export default function useModalNewSchedule(): UseModalNewSchedule {
@@ -24,8 +34,31 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
         day: { isOpen: false, value: "" },
         course: { isOpen: false, value: "" },
         week: { isOpen: false, value: "" },
-        time: { value: dayjs() }
+        time: { value: dayjs() },
+        isValid: false,
+        values: {},
+        touched: {},
+        errors: {}
     })
+
+    function validateErrors(touched = false) {
+        const time: dayjs.Dayjs = select["time"].value
+        const timeInMinute = time.get("minute") + time.get("hour") * 60
+
+        const errors = validate({ day: select.values.day, course: select.values.course, week: select.values.week, time: timeInMinute }, schema)
+
+        setSelect((select: any) => ({
+            ...select,
+            isValid: errors ? false : true,
+            errors: errors || {},
+            touched: touched ? { day: true, course: true, week: true, time: true } : {}
+        }))
+    }
+
+    useEffect(() => {
+        validateErrors()
+        // eslint-disable-next-line
+    }, [select.values])
 
     const [modalNewSchedule] = ModalNewSchedule.useGlobal()
     const { courses, isReady } = useCourseSelect(modalNewSchedule.isOpen)
@@ -54,6 +87,7 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
     const handleChangeSelect = (field: string, value: number) => {
         setSelect({
             ...select,
+            values: { ...select.values, [field]: value },
             [field]: {
                 ...select[field],
                 value,
@@ -63,24 +97,32 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
     }
 
     const handleSubmit = () => {
-        const time: dayjs.Dayjs = select["time"].value
-        const timeInMinute = time.get("minute") + time.get("hour") * 60
-        createSchedule
-            .handleCreateSchedule({
-                courseId: select["course"].value,
-                day: select["day"].value,
-                time: timeInMinute,
-                week: select["week"].value
-            })
-            .then(() => {
-                setGlobalSnackbar("SHOW", {
-                    message: "Success add new schedule",
-                    severity: "success"
+        const isValid = Object.keys(select.errors).length === 0 && select.errors.constructor === Object
+        if (!isValid) {
+            validateErrors(true)
+        } else {
+            const time: dayjs.Dayjs = select["time"].value
+            const timeInMinute = time.get("minute") + time.get("hour") * 60
+
+            createSchedule
+                .handleCreateSchedule({
+                    courseId: select["course"].value,
+                    day: select["day"].value,
+                    time: timeInMinute,
+                    week: select["week"].value
                 })
-                handleCloseModalNewSchedule()
-                getNextSchedule()
-            })
+                .then(() => {
+                    setGlobalSnackbar("SHOW", {
+                        message: "Success add new schedule",
+                        severity: "success"
+                    })
+                    handleCloseModalNewSchedule()
+                    getNextSchedule()
+                })
+        }
     }
+
+    const hasError = (field: string) => (select.touched[field] && select.errors[field] ? true : false)
 
     return {
         isOpen: modalNewSchedule.isOpen && isReady,
@@ -91,6 +133,7 @@ export default function useModalNewSchedule(): UseModalNewSchedule {
         handleChangeSelect,
         select: select,
         courses,
-        handleSubmit
+        handleSubmit,
+        hasError
     }
 }

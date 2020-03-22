@@ -1,5 +1,5 @@
 import React from "react"
-import MaterialTable, { Column, MTableAction, MTableToolbar } from "material-table"
+import MaterialTable, { Column, MTableToolbar } from "material-table"
 import Search from "@material-ui/icons/Search"
 import ViewColumn from "@material-ui/icons/ViewColumn"
 import SaveAlt from "@material-ui/icons/SaveAlt"
