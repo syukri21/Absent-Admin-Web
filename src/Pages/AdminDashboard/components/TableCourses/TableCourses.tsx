@@ -25,6 +25,7 @@ import useCourses from "./handler/useCourses"
 import { ColorTheme } from "../../../../theme/color"
 
 export interface Row {
+    ID: number
     name: string
     semester: number
     totalSks: number
@@ -41,7 +42,7 @@ const columns: Array<Column<Row>> = [
 ]
 
 export default function MaterialTableDemo() {
-    const { courses, addCourse } = useCourses()
+    const { courses, addCourse, deleteCourse } = useCourses()
     const classes = useStyles()
 
     return (
@@ -88,7 +89,7 @@ export default function MaterialTableDemo() {
                 editable={{
                     onRowAdd: addCourse,
                     onRowUpdate: (newData, oldData) => new Promise(resolve => {}),
-                    onRowDelete: oldData => new Promise(resolve => {})
+                    onRowDelete: deleteCourse
                 }}
             />
         </Card>
