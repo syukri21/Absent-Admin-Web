@@ -1,5 +1,5 @@
 import React from "react"
-import MaterialTable, { Column, Action, MTableToolbar, MTableAction } from "material-table"
+import MaterialTable, { Column } from "material-table"
 import Search from "@material-ui/icons/Search"
 import ViewColumn from "@material-ui/icons/ViewColumn"
 import SaveAlt from "@material-ui/icons/SaveAlt"
@@ -34,15 +34,13 @@ interface TableState {
     columns: Array<Column<Row>>
 }
 
-export default function MaterialTableDemo() {
-    const [state, setState] = React.useState<TableState>({
-        columns: [
-            { title: "Name", field: "name" },
-            { title: "Semester", field: "semester", type: "numeric" },
-            { title: "Total SKS", field: "totalSks", type: "numeric" }
-        ]
-    })
+const columns: Array<Column<Row>> = [
+    { title: "Name", field: "name" },
+    { title: "Semester", field: "semester", type: "numeric" },
+    { title: "Total SKS", field: "totalSks", type: "numeric" }
+]
 
+export default function MaterialTableDemo() {
     const { courses } = useCourses()
     const classes = useStyles()
 
@@ -84,7 +82,7 @@ export default function MaterialTableDemo() {
                     ResetSearch: (() => <Clear />) as any
                 }}
                 title='Courses'
-                columns={state.columns}
+                columns={columns}
                 data={courses.data}
                 isLoading={courses.loading || courses.data.length <= 0}
                 editable={{
