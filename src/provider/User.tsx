@@ -48,6 +48,7 @@ export async function getUser() {
             method: "GET",
             url: "/teachers/"
         })
+        console.log("getUser -> result", result)
         dispatch.getUser("SUCCESS", result.data)
     } catch (err) {
         setGlobalSnackbar("SHOW", {

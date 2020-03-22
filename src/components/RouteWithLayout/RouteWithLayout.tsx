@@ -11,12 +11,14 @@ export interface RouteWithLayoutProps {
     path: string
     exact: boolean
     protect: boolean
+    previlage: "admin" | "teacher"
 }
 
 const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
-    const { layout: Layout, component: Component, protect } = props
+    const { layout: Layout, component: Component, protect, previlage } = props
     const token = Api.getToken() ? true : false
     const [user] = User.useGlobal()
+    console.log("user", user)
 
     useEffect(() => {
         if (protect) getUser()
@@ -27,6 +29,9 @@ const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
         <Route
             render={matchProps => {
                 if (!token && protect) return <Redirect to='/sign-in'></Redirect>
+
+                if (previlage === "admin") return <Redirect to='/'></Redirect>
+
                 return (
                     <Layout>
                         <Component {...matchProps} />

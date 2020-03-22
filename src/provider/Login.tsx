@@ -52,7 +52,7 @@ export async function handleLogin({ username, password, showAlert = true }: Logi
                 password: password
             }
         })
-        if (result.data.roleId == 2) throw "err"
+        if (result.data.roleId === 2) throw new Error("err")
         Api.setToken(result.data.token)
         dispatch.handleLogin("SUCCESS", result.data)
         if (showAlert) {

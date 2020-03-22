@@ -11,6 +11,7 @@ export interface IRoute {
     exact: boolean
     path: string
     Protected: boolean
+    previlage?: "admin" | "teacher" | undefined
 }
 
 const routes: IRoute[] = [
@@ -40,7 +41,8 @@ const routes: IRoute[] = [
         Layout: Main,
         exact: true,
         path: "/admin",
-        Protected: true
+        Protected: true,
+        previlage: "admin"
     }
 ]
 
