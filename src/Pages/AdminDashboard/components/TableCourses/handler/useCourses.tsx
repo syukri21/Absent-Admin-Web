@@ -11,14 +11,8 @@ export default function useCourses() {
     }, [])
 
     function addCourse(val: CourseCreateParams): Promise<any> {
-        val = {
-            ...val,
-            semester: parseInt(val.semester.toString()),
-            totalSks: parseInt(val.totalSks.toString())
-        }
-        return handleCourseCreate(val).then(() => {
-            getCourses()
-        })
+        val = { ...val, semester: parseInt(val.semester.toString()), totalSks: parseInt(val.totalSks.toString()) }
+        return handleCourseCreate(val).then(getCourses)
     }
     return {
         courses,
