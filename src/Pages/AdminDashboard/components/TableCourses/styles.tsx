@@ -2,10 +2,7 @@ import { CustomTheme } from "../../../../theme/customTheme"
 import { lighten, makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme: CustomTheme) => ({
-    root: {
-        paddingLeft: theme.spacing(2),
-        paddingRight: theme.spacing(1)
-    },
+    root: {},
     highlight:
         theme.palette.type === "light"
             ? {

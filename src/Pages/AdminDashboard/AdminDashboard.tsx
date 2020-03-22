@@ -14,9 +14,7 @@ const AdminDashboard: React.SFC<AdminDashboardProps> = props => {
                 <Grid item lg={6} sm={6} xl={3} xs={12}>
                     <TableList></TableList>
                 </Grid>
-                <Grid item lg={6} sm={6} xl={3} xs={12}>
-                    There will be form
-                </Grid>
+                <Grid item lg={6} sm={6} xl={3} xs={12}></Grid>
             </Grid>
         </div>
     )

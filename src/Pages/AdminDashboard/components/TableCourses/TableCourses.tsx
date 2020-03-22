@@ -1,5 +1,5 @@
 import React from "react"
-import MaterialTable, { Column } from "material-table"
+import MaterialTable, { Column, MTableAction, MTableToolbar } from "material-table"
 import Search from "@material-ui/icons/Search"
 import ViewColumn from "@material-ui/icons/ViewColumn"
 import SaveAlt from "@material-ui/icons/SaveAlt"
@@ -17,6 +17,9 @@ import Card from "@material-ui/core/Card"
 import CardHeader from "@material-ui/core/CardHeader"
 import Divider from "@material-ui/core/Divider"
 import Box from "@material-ui/core/Box"
+import TableHead from "@material-ui/core/TableHead"
+import TableRow from "@material-ui/core/TableRow"
+import TableCell from "@material-ui/core/TableCell"
 
 import FilterList from "@material-ui/icons/FilterList"
 import Remove from "@material-ui/icons/Remove"
@@ -37,8 +40,8 @@ interface TableState {
 
 const columns: Array<Column<Row>> = [
     { title: "Name", field: "name" },
-    { title: "Semester", field: "semester", type: "numeric" },
-    { title: "Total SKS", field: "totalSks", type: "numeric" }
+    { title: "Semester", field: "semester", type: "numeric", cellStyle: { textAlign: "center" } },
+    { title: "Total SKS", field: "totalSks", type: "numeric", cellStyle: { textAlign: "center" } }
 ]
 
 export default function MaterialTableDemo() {
@@ -46,26 +49,45 @@ export default function MaterialTableDemo() {
     const classes = useStyles()
 
     return (
-        <Card>
-            <CardHeader subheader={`${10} in total`} title='Courses' />
+        <Card elevation={1} className={classes.root}>
             <Divider></Divider>
             <MaterialTable
                 components={{
-                    Container: Box
+                    Container: Box,
+                    Header: copyProps => {
+                        console.log("MaterialTableDemo -> copyProps", copyProps)
+                        return (
+                            <TableHead>
+                                <TableRow hover>
+                                    <TableCell align='left'>Name</TableCell>
+                                    <TableCell align='center'>Semester</TableCell>
+                                    <TableCell align='center'>Total SKS</TableCell>
+                                    <TableCell align='center'>Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                        )
+                    },
+                    Toolbar: copyProps => (
+                        <CardHeader
+                            subheader={`${courses.data.length} in total`}
+                            title='Courses'
+                            action={<MTableToolbar {...copyProps}></MTableToolbar>}
+                        />
+                    )
                 }}
                 options={{
                     sorting: false,
                     draggable: false,
                     showEmptyDataSourceMessage: true,
                     showTitle: false,
-                    actionsColumnIndex: 0,
+                    actionsColumnIndex: 3,
                     headerStyle: { minWidth: 106 },
                     searchFieldAlignment: "left",
                     paginationType: "stepped",
                     paging: false
                 }}
                 icons={{
-                    Check: (() => <Check />) as any,
+                    Check: (() => <Check style={{ color: ColorTheme.success }} />) as any,
                     Export: (() => <SaveAlt />) as any,
                     Filter: (() => <FilterList />) as any,
                     FirstPage: (() => <FirstPage />) as any,
@@ -77,7 +99,7 @@ export default function MaterialTableDemo() {
                     ViewColumn: (() => <ViewColumn />) as any,
                     DetailPanel: (() => <ChevronRight />) as any,
                     Delete: (() => <Delete color='error' />) as any,
-                    Clear: (() => <Clear />) as any,
+                    Clear: (() => <Clear color='error' />) as any,
                     Add: (() => <Add color='primary' />) as any,
                     Edit: (() => <Edit style={{ color: ColorTheme.success }} />) as any,
                     ResetSearch: (() => <Clear />) as any
