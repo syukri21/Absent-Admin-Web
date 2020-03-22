@@ -3,6 +3,7 @@ import { DefaultState } from "../reactn/reactn"
 import Api from "../reactn/api/api"
 import { handleLogout } from "./Login"
 import { setGlobalSnackbar } from "./GlobalSnackbar"
+import jwt_decode from "jwt-decode"
 
 export const defaultStateObj = {
     loading: false,
@@ -42,13 +43,15 @@ reducers.map(val => {
 
 export async function getUser() {
     const dispatch = User.getDispatch()
+    const token = Api.getToken()
+    const parseToken: any = jwt_decode(token || "")
+
     try {
         dispatch.getUser("LOADING")
         const result = await Api.fetch({
             method: "GET",
-            url: "/teachers/"
+            url: parseToken.role_id === 1 ? "/teachers/" : "/admins/"
         })
-        console.log("getUser -> result", result)
         dispatch.getUser("SUCCESS", result.data)
     } catch (err) {
         setGlobalSnackbar("SHOW", {
@@ -56,7 +59,7 @@ export async function getUser() {
             severity: "error"
         })
         dispatch.getUser("ERROR", "No Token")
-        handleLogout()
+        // handleLogout()
     }
 }
 

@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom"
 import { useEffect } from "reactn"
 import Api from "../../reactn/api/api"
 import { getUser } from "../../provider/User"
-import User from "../../provider/User"
 
 export interface RouteWithLayoutProps {
     component: React.SFC<any>
@@ -17,11 +16,11 @@ export interface RouteWithLayoutProps {
 const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
     const { layout: Layout, component: Component, protect, previlage } = props
     const token = Api.getToken() ? true : false
-    const [user] = User.useGlobal()
-    console.log("user", user)
 
     useEffect(() => {
-        if (protect) getUser()
+        if (protect && token) {
+            getUser()
+        }
         // eslint-disable-next-line
     }, [])
 
