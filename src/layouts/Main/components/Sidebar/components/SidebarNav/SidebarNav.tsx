@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 /* eslint-disable react/display-name */
 import React, { forwardRef } from "react"
-import { NavLink as RouterLink } from "react-router-dom"
+import { NavLink as RouterLink, useLocation } from "react-router-dom"
 import clsx from "clsx"
 import { List, ListItem, Button } from "@material-ui/core"
 import useStyles from "./styles"
@@ -20,14 +20,19 @@ export interface SidebarNavProps {
 
 const SidebarNav: React.SFC<SidebarNavProps> = props => {
     const { pages, className, ...rest } = props
-
+    const location = useLocation()
     const classes = useStyles()
 
     return (
         <List {...rest} className={clsx(classes.root, className)}>
             {pages.map((page: Page) => (
                 <ListItem className={classes.item} disableGutters key={page.title}>
-                    <Button activeClassName={classes.active} className={classes.button} component={CustomRouterLink} to={page.href}>
+                    <Button
+                        activeClassName={location.pathname === page.href ? classes.active : ""}
+                        className={classes.button}
+                        component={CustomRouterLink}
+                        to={page.href}
+                    >
                         <div className={classes.icon}>{page.icon}</div>
                         {page.title}
                     </Button>
