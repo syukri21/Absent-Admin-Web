@@ -4,9 +4,9 @@ import Grid from "@material-ui/core/Grid"
 import TableList from "./components/TableCourses/TableCourses"
 import useStyles from "./styles"
 
-export interface AdminDashboardProps {}
+export interface CourseProps {}
 
-const AdminDashboard: React.SFC<AdminDashboardProps> = props => {
+const Course: React.SFC<CourseProps> = props => {
     const classes = useStyles()
     return (
         <div className={classes.root}>
@@ -19,4 +19,4 @@ const AdminDashboard: React.SFC<AdminDashboardProps> = props => {
     )
 }
 
-export default AdminDashboard
+export default Course
