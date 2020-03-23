@@ -1,9 +1,9 @@
 import SignIn from "../Pages/SignIn"
 import SignUp from "../Pages/SignUp"
-import Dashboard from "../Pages/Dashboard"
+import Dashboard from "../Pages/Teacher/Dashboard"
 import Minimal from "./../layouts/Minimal/Minimal"
 import Main from "../layouts/Main/Main"
-import Course from "../Pages/Course/Course"
+import Course from "../Pages/Admin/Course"
 
 export interface RouteRedirect {
     roleId: number
