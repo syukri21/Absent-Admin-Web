@@ -4,6 +4,7 @@ import Dashboard from "../Pages/Teacher/Dashboard"
 import Minimal from "./../layouts/Minimal/Minimal"
 import Main from "../layouts/Main/Main"
 import Course from "../Pages/Admin/Course"
+import Class from "../Pages/Teacher/Class/Class"
 
 export interface RouteRedirect {
     roleId: number
@@ -42,6 +43,19 @@ const routes: IRoute[] = [
         Protected: true,
         redirect: [{ roleId: 3, to: "/course" }]
     },
+    {
+        Component: Class,
+        Layout: Main,
+        exact: true,
+        path: "/class",
+        Protected: true,
+        redirect: [{ roleId: 3, to: "/course" }]
+    },
+
+    /* -------------------------------------------------------------------------- */
+    /*                                 NOTE ADMIN                                 */
+    /* -------------------------------------------------------------------------- */
+
     {
         Component: Course,
         Layout: Main,
