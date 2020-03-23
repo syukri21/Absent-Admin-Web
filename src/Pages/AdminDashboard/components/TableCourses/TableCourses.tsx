@@ -34,10 +34,6 @@ export interface Row {
     totalSks: number
 }
 
-interface TableState {
-    columns: Array<Column<Row>>
-}
-
 const columns: Array<Column<Row>> = [
     { title: "Name", field: "name" },
     { title: "Semester", field: "semester", type: "numeric", cellStyle: { textAlign: "center" } },
@@ -45,7 +41,7 @@ const columns: Array<Column<Row>> = [
 ]
 
 export default function MaterialTableDemo() {
-    const { courses, addCourse, deleteCourse } = useCourses()
+    const { courses, addCourse, deleteCourse, updateCourse } = useCourses()
     const classes = useStyles()
 
     return (
@@ -83,7 +79,7 @@ export default function MaterialTableDemo() {
                     headerStyle: { minWidth: 106 },
                     searchFieldAlignment: "left",
                     paginationType: "stepped",
-                    paging: false
+                    addRowPosition: "first"
                 }}
                 icons={{
                     Check: (() => <Check style={{ color: ColorTheme.success }} />) as any,
@@ -109,7 +105,7 @@ export default function MaterialTableDemo() {
                 isLoading={courses.loading || courses.data.length <= 0}
                 editable={{
                     onRowAdd: addCourse,
-                    onRowUpdate: (newData, oldData) => new Promise(resolve => {}),
+                    onRowUpdate: (newData, oldData) => updateCourse(newData, oldData),
                     onRowDelete: deleteCourse
                 }}
             />
