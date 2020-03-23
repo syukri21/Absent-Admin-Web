@@ -23,12 +23,21 @@ export default function useCourses() {
     }
 
     function updateCourse(newData: Row, oldData: Row | undefined): Promise<any> {
-        console.log("useCourses -> oldData", oldData)
-        console.log("useCourses -> newData", newData)
-        return handleCourseEdit({
-            ...newData,
-            id: newData.ID
-        }).then(getCourses)
+        newData.totalSks = parseInt(newData.totalSks.toString())
+        newData.semester = parseInt(newData.semester.toString())
+
+        if (oldData) {
+            if (newData.name !== oldData.name || newData.semester !== oldData.semester || newData.totalSks !== oldData.totalSks) {
+                return handleCourseEdit({
+                    ...newData,
+                    id: newData.ID
+                }).then(getCourses)
+            } else {
+                return Promise.resolve()
+            }
+        } else {
+            return Promise.resolve()
+        }
     }
 
     return {

@@ -35,9 +35,9 @@ export interface Row {
 }
 
 const columns: Array<Column<Row>> = [
-    { title: "Name", field: "name" },
-    { title: "Semester", field: "semester", type: "numeric", cellStyle: { textAlign: "center" } },
-    { title: "Total SKS", field: "totalSks", type: "numeric", cellStyle: { textAlign: "center" } }
+    { title: "Name", field: "name", cellStyle: { width: "40%" } },
+    { title: "Semester", field: "semester", type: "numeric", cellStyle: { textAlign: "center", width: "20%" } },
+    { title: "Total SKS", field: "totalSks", type: "numeric", cellStyle: { textAlign: "center", width: "20%" } }
 ]
 
 export default function MaterialTableDemo() {
@@ -55,9 +55,15 @@ export default function MaterialTableDemo() {
                             <TableHead>
                                 <TableRow hover>
                                     <TableCell align='left'>Name</TableCell>
-                                    <TableCell align='center'>Semester</TableCell>
-                                    <TableCell align='center'>Total SKS</TableCell>
-                                    <TableCell align='center'>Action</TableCell>
+                                    <TableCell align='center' size='small'>
+                                        Semester
+                                    </TableCell>
+                                    <TableCell align='center' size='small'>
+                                        Total SKS
+                                    </TableCell>
+                                    <TableCell align='center' size='small'>
+                                        Action
+                                    </TableCell>
                                 </TableRow>
                             </TableHead>
                         )
@@ -82,22 +88,22 @@ export default function MaterialTableDemo() {
                     addRowPosition: "first"
                 }}
                 icons={{
-                    Check: (() => <Check style={{ color: ColorTheme.success }} />) as any,
-                    Export: (() => <SaveAlt />) as any,
-                    Filter: (() => <FilterList />) as any,
-                    FirstPage: (() => <FirstPage />) as any,
-                    LastPage: (() => <LastPage />) as any,
-                    NextPage: (() => <ChevronRight />) as any,
-                    PreviousPage: (() => <ChevronLeft />) as any,
-                    Search: (() => <Search />) as any,
-                    ThirdStateCheck: (() => <Remove />) as any,
-                    ViewColumn: (() => <ViewColumn />) as any,
-                    DetailPanel: (() => <ChevronRight />) as any,
-                    Delete: (() => <Delete color='error' />) as any,
-                    Clear: (() => <Clear color='error' />) as any,
-                    Add: (() => <Add color='primary' />) as any,
-                    Edit: (() => <Edit style={{ color: ColorTheme.success }} />) as any,
-                    ResetSearch: (() => <Clear />) as any
+                    Check: React.forwardRef(() => <Check style={{ color: ColorTheme.success }} />),
+                    Export: React.forwardRef(() => <SaveAlt />),
+                    Filter: React.forwardRef(() => <FilterList />),
+                    FirstPage: React.forwardRef(() => <FirstPage />),
+                    LastPage: React.forwardRef(() => <LastPage />),
+                    NextPage: React.forwardRef(() => <ChevronRight />),
+                    PreviousPage: React.forwardRef(() => <ChevronLeft />),
+                    Search: React.forwardRef(() => <Search />),
+                    ThirdStateCheck: React.forwardRef(() => <Remove />),
+                    ViewColumn: React.forwardRef(() => <ViewColumn />),
+                    DetailPanel: React.forwardRef(() => <ChevronRight />),
+                    Delete: React.forwardRef(() => <Delete color='error' />),
+                    Clear: React.forwardRef(() => <Clear color='error' />),
+                    Add: React.forwardRef(() => <Add color='primary' />),
+                    Edit: React.forwardRef(() => <Edit style={{ color: ColorTheme.success }} />),
+                    ResetSearch: React.forwardRef(() => <Clear />)
                 }}
                 title='Courses'
                 columns={columns}
