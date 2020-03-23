@@ -67,7 +67,6 @@ const pagesAdmin: Array<Page> = [
 const Sidebar: React.SFC<SidebarProps> = props => {
     const { isOpen, variant, onClose, className, ...rest } = props
     const [user] = User.useGlobal()
-    console.log("user", user)
 
     const classes = useStyles()
 
