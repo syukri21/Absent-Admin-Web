@@ -11,10 +11,9 @@ const AdminDashboard: React.SFC<AdminDashboardProps> = props => {
     return (
         <div className={classes.root}>
             <Grid container spacing={4}>
-                <Grid item lg={6} sm={6} xl={3} xs={12}>
+                <Grid item lg={12} sm={12} xl={12} xs={12}>
                     <TableList></TableList>
                 </Grid>
-                <Grid item lg={6} sm={6} xl={3} xs={12}></Grid>
             </Grid>
         </div>
     )

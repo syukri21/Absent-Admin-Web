@@ -35,9 +35,9 @@ export interface Row {
 }
 
 const columns: Array<Column<Row>> = [
-    { title: "Name", field: "name", cellStyle: { width: "40%" } },
-    { title: "Semester", field: "semester", type: "numeric", cellStyle: { textAlign: "center", width: "20%" } },
-    { title: "Total SKS", field: "totalSks", type: "numeric", cellStyle: { textAlign: "center", width: "20%" } }
+    { title: "Name", field: "name", cellStyle: { width: "50%" } },
+    { title: "Semester", field: "semester", type: "numeric", cellStyle: { textAlign: "center", width: "25%" } },
+    { title: "Total SKS", field: "totalSks", type: "numeric", cellStyle: { textAlign: "center", width: "25%" } }
 ]
 
 export default function MaterialTableDemo() {
