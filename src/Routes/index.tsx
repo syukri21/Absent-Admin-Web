@@ -5,6 +5,7 @@ import Minimal from "./../layouts/Minimal/Minimal"
 import Main from "../layouts/Main/Main"
 import Course from "../Pages/Admin/Course"
 import Class from "../Pages/Teacher/Class/Class"
+import Settings from "../Pages/Settings/Settings"
 
 export interface RouteRedirect {
     roleId: number
@@ -35,6 +36,19 @@ const routes: IRoute[] = [
         path: "/sign-in",
         Protected: false
     },
+
+    {
+        Component: Settings,
+        Layout: Main,
+        exact: true,
+        path: "/settings",
+        Protected: false
+    },
+
+    /* -------------------------------------------------------------------------- */
+    /*                                  NOTE ALL                                  */
+    /* -------------------------------------------------------------------------- */
+
     {
         Component: Dashboard,
         Layout: Main,
