@@ -34,12 +34,7 @@ function useModalQRCode(): UseModalQRCode {
     const token = absentSetup.data.token
 
     useEffect(() => {
-        socket.onOpen()
-        socket.onError()
-        socket.onClose()
-        return function cleanup() {
-            socket.close()
-        }
+       
     }, [])
 
     useEffect(() => {
