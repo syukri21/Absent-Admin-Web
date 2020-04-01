@@ -27,7 +27,10 @@ reducers.map(val => {
             case "SUCCESS":
                 global.loading = false
                 global.error = null
-                global.data = payload
+                global.data = {
+                    ...global.data,
+                    ...payload
+                }
                 break
         }
         return global
@@ -59,6 +62,11 @@ export async function getAbsentSetup(params: GetAbsentSetupParams) {
     } catch (err) {
         dispatch.getAbsentSetup("ERROR", "No Token")
     }
+}
+
+export async function handleChangeTokenAbsentSetup(token: string) {
+    const dispatch = AbsentSetup.getDispatch()
+    dispatch.getAbsentSetup("SUCCESS", { token })
 }
 
 /* -------------------------------------------------------------------------- */

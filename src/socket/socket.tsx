@@ -1,8 +1,9 @@
 import io from "socket.io-client"
+import Api from "../reactn/api/api"
 
 class SocketClient {
     private static instance: SocketClient | null = null
-    private socket = io(process.env.REACT_APP_SOCKET_URL || "http://localhost:3000")
+    private socket: SocketIOClient.Socket | undefined
 
     private constructor() {}
 
@@ -14,11 +15,22 @@ class SocketClient {
     }
 
     public onAbsent(userId: string, fn: Function) {
-        this.socket.on(`absent.${userId}`, fn)
+        const token = Api.getToken()
+        this.socket = io("http://localhost:3000", {
+            path: "/socket.io",
+            autoConnect: false,
+            query: {
+                token,
+                protected: "teacher",
+                room: `absent.${userId}`
+            }
+        })
+        this.socket.open()
+        this.socket.on(`absent`, fn)
     }
 
     off(name: string) {
-        this.socket.removeListener(name)
+        if (this.socket) this.socket.removeAllListeners()
     }
 }
 

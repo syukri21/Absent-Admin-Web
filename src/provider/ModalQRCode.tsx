@@ -1,4 +1,5 @@
 import { createProvider } from "reactn"
+import { handleChangeTokenAbsentSetup } from "./AbsentSetup"
 
 const INITIAL_STATE = {
     isOpen: false,
@@ -7,18 +8,38 @@ const INITIAL_STATE = {
 
 const ModalQRCode = createProvider(INITIAL_STATE)
 
+ModalQRCode.addReducer("handleModalQRCode", (global, _, type, payload) => {
+    switch (type) {
+        case "OPEN":
+            global.isOpen = true
+            break
+        case "CLOSE":
+            global.isOpen = false
+            break
+        case "CHANGE_TOKEN":
+            global.token = payload
+            break
+        default:
+            break
+    }
+
+    return global
+})
+
 export function handleOpenModalQRCode() {
-    ModalQRCode.setGlobal({
-        ...global,
-        isOpen: true
-    })
+    const dispatch = ModalQRCode.getDispatch()
+    dispatch.handleModalQRCode("OPEN")
 }
 
 export function handleCloseModalQRCode() {
-    ModalQRCode.setGlobal({
-        ...global,
-        isOpen: false
-    })
+    const dispatch = ModalQRCode.getDispatch()
+    dispatch.handleModalQRCode("CLOSE")
+}
+
+export function handleChangeTokenModalQRCode(token: string) {
+    const dispatch = ModalQRCode.getDispatch()
+    dispatch.handleModalQRCode("CHANGE_TOKEN", token)
+    handleChangeTokenAbsentSetup(token)
 }
 
 export default ModalQRCode

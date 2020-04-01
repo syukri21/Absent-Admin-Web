@@ -6,7 +6,6 @@ import ActiveSchedule from "../../../../../../../provider/ActiveSchedule"
 import { getDayScheduleFormat } from "../../../../../../../util/scheduleFromNow"
 import AbsentSetup, { getAbsentSetup } from "../../../../../../../provider/AbsentSetup"
 import { useEffect } from "react"
-import socket from "../../../../../../../socket/socket"
 // import SocketClient from "../../../../../../../socket/socket"
 
 interface UseModalQRCode {
@@ -33,9 +32,7 @@ function useModalQRCode(): UseModalQRCode {
     const isOpen = providerModalQRCode.isOpen
     const token = absentSetup.data.token
 
-    useEffect(() => {
-       
-    }, [])
+    useEffect(() => {}, [])
 
     useEffect(() => {
         if (courseId && isOpen) {
