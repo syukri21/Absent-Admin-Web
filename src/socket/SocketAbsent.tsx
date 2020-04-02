@@ -1,5 +1,6 @@
 import SocketClient from "./socket"
 import { handleChangeTokenModalQRCode } from "../provider/ModalQRCode"
+import { onCreateAbsentByScheduleId } from "../provider/AbsentByScheduleId"
 
 const SocketAbsent = {
     listen: (userId: string) => {
@@ -7,6 +8,9 @@ const SocketAbsent = {
             switch (value.type) {
                 case "GENERATE_QRCODE":
                     handleChangeTokenModalQRCode(value.data.token)
+                    break
+                case "ABSENT_CREATE":
+                    onCreateAbsentByScheduleId(value.data)
                     break
                 default:
                     break

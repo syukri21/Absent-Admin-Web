@@ -1,11 +1,11 @@
 import { createProvider } from "reactn"
-import { defaultState } from "../reactn/setGlobal"
 import { DefaultState } from "../reactn/reactn"
 import Api from "../reactn/api/api"
+import { defaultStateObj } from "./User"
 
 const reducers = [{ name: "AbsentByScheduleId", method: "get" }]
 
-const INITIAL_STATE: DefaultState = defaultState
+const INITIAL_STATE: DefaultState = defaultStateObj
 
 const AbsentByScheduleId = createProvider(INITIAL_STATE)
 
@@ -44,6 +44,17 @@ export async function getAbsentByScheduleId(params: any) {
         dispatch.getAbsentByScheduleId("ERROR")
         throw err
     }
+}
+
+export async function onCreateAbsentByScheduleId(newData: any) {
+    const global = AbsentByScheduleId.getGlobal()
+    AbsentByScheduleId.setGlobal({
+        ...global,
+        data: {
+            ...global.data,
+            Absents: [...global.data.Absents, newData]
+        }
+    })
 }
 
 export default AbsentByScheduleId
