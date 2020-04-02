@@ -19,23 +19,9 @@ class SocketClient {
             const token = Api.getToken()
             this.socket = io("http://localhost:3000", {
                 path: "/socket.io",
-                transports: ["websocket"],
-                transportOptions: {
-                    websocket: {
-                        extraHeaders: {
-                            "x-clientid": "abc"
-                        }
-                    }
-                },
-                query: {
-                    token,
-                    protected: "teacher",
-                    room: `absent.${scheduleId}`
-                }
+                transports: ["websocket"]
             })
-            this.socket.emit("/join", {
-                name: `absent.${scheduleId}`
-            })
+            this.socket.emit("/join", { name: `absent.${scheduleId}` })
             this.socket.on(`absent`, fn)
         }
     }
