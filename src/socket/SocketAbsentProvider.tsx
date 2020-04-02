@@ -1,21 +1,21 @@
 import React, { useEffect } from "react"
 import SocketAbsent from "./SocketAbsent"
-import User from "../provider/User"
+import ActiveSchedule from "../provider/ActiveSchedule"
 
 export interface SocketAbsentProviderProps {
     children: React.ReactNode
 }
 
 const SocketAbsentProvider: React.SFC<SocketAbsentProviderProps> = props => {
-    const [user] = User.useGlobal()
+    const [activeSchedule] = ActiveSchedule.useGlobal()
     useEffect(() => {
-        if (user.data.userId) {
-            SocketAbsent.listen(user.data.userId)
+        if (activeSchedule.data.id) {
+            SocketAbsent.listen(activeSchedule.data.id)
             return function cleanup() {
-                SocketAbsent.off(user.data.userId)
+                SocketAbsent.off(activeSchedule.data.id)
             }
         }
-    }, [user.data.userId])
+    }, [activeSchedule.data.id])
 
     return <>{props.children}</>
 }
