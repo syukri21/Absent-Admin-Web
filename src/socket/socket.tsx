@@ -19,7 +19,6 @@ class SocketClient {
         this.socket = io("http://localhost:3000", {
             path: "/socket.io",
             transports: ["websocket"],
-            autoConnect: false,
             transportOptions: {
                 websocket: {
                     extraHeaders: {
@@ -33,8 +32,6 @@ class SocketClient {
                 room: `absent.${scheduleId}`
             }
         })
-        this.socket.open()
-        this.socket.connect()
         this.socket.emit("/join", {
             name: `absent.${scheduleId}`
         })
