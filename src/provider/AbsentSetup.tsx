@@ -43,7 +43,7 @@ reducers.map(val => {
 
 interface GetAbsentSetupParams {
     data: {
-        numberOfMeetings: number
+        numberOfMeeting: number
         scheduleId: number
         courseId: number
     }

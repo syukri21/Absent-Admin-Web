@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Grid } from "@material-ui/core"
 
-import Budget from "./components/Budget"
+import Budget from "./components/Label"
 import useStyles from "./styles"
 import LatestOrders from "./components/NewAbsent"
 import LatestProducts from "./components/NextSchedule/NextSchedule"

@@ -26,6 +26,7 @@ function useModalQRCode(): UseModalQRCode {
     const [absentSetup] = AbsentSetup.useGlobal()
 
     const courseName = activeSchedule.data.Course ? activeSchedule.data.Course.name : ""
+    const numberOfMeeting = activeSchedule.data.numberOfMeeting
     const courseDate = activeSchedule.data.Course ? getDayScheduleFormat(activeSchedule.data).format("DD MMMM YYYY: HH:mm:ss") : ""
     const courseId = activeSchedule.data.Course ? activeSchedule.data.Course.ID : null
     const scheduleId = activeSchedule.data.id
@@ -36,13 +37,7 @@ function useModalQRCode(): UseModalQRCode {
 
     useEffect(() => {
         if (courseId && isOpen) {
-            getAbsentSetup({
-                data: {
-                    courseId,
-                    numberOfMeetings: 1,
-                    scheduleId
-                }
-            })
+            getAbsentSetup({ data: { courseId, numberOfMeeting, scheduleId } })
         }
         // eslint-disable-next-line
     }, [courseId, isOpen])
