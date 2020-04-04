@@ -5,7 +5,14 @@ class SocketClient {
     private static instance: SocketClient | null = null
     private socket: SocketIOClient.Socket | undefined
 
-    private constructor() {}
+    private constructor() {
+        if (!this.socket && process.env.REACT_APP_SOCKET_URL) {
+            this.socket = io(process.env.REACT_APP_SOCKET_URL, {
+                path: "/socket.io",
+                transports: ["websocket"]
+            })
+        }
+    }
 
     public static getInstance() {
         if (!SocketClient.instance) {
@@ -15,13 +22,11 @@ class SocketClient {
     }
 
     public onAbsent(scheduleId: string, fn: Function) {
-        if (!this.socket) {
+        if (this.socket) {
             const token = Api.getToken()
-            this.socket = io("http://localhost:3000", {
-                path: "/socket.io",
-                transports: ["websocket"]
+            this.socket.on("onReconnect", () => {
+                if (this.socket) this.socket.emit("/join", { name: `absent.${scheduleId}`, token })
             })
-            this.socket.emit("/join", { name: `absent.${scheduleId}` })
             this.socket.on(`absent`, fn)
         }
     }
