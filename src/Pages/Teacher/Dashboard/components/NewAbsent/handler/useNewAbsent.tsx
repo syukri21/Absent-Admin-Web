@@ -8,9 +8,9 @@ export default function useNewAbsent() {
 
     useEffect(() => {
         if (typeof activeSchedule.data.id !== "undefined") {
-            getAbsentByScheduleId({ scheduleId: activeSchedule.data.id })
+            getAbsentByScheduleId({ scheduleId: activeSchedule.data.id, numberOfMeeting: activeSchedule.data.numberOfMeeting })
         }
     }, [activeSchedule.data])
 
-    return absentByScheduleId
+    return { absentByScheduleId, activeSchedule }
 }

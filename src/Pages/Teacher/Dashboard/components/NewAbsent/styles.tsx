@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     actions: {
         justifyContent: "flex-end"
+    },
+    cardHeader: {
+        "& .MuiCardHeader-action": {
+            margin: "auto"
+        }
     }
 }))
 

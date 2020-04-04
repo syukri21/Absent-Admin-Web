@@ -13,11 +13,13 @@ import {
     TableHead,
     TableRow,
     Tooltip,
-    TableSortLabel
+    TableSortLabel,
+    Typography
 } from "@material-ui/core"
 
 import useStyles from "./styles"
 import ArrowRightIcon from "@material-ui/icons/ArrowRight"
+
 import dayjs from "dayjs"
 
 /* -------------------------------------------------------------------------- */
@@ -32,20 +34,23 @@ export interface NewAbsentProps {}
 
 const NewAbsent: React.SFC<NewAbsentProps> = props => {
     const classes = useStyles()
-    const schedule = useNewAbsent()
+    const { absentByScheduleId, activeSchedule } = useNewAbsent()
 
-    const absents: any = schedule.data.Absents || []
+    const absents: any = absentByScheduleId.data.Absents || []
 
     return (
         <Card className={classes.root}>
             <CardHeader
+                title='Absent'
                 action={
-                    <Button color='primary' size='small' variant='outlined'>
-                        New entry
+                    <Button color='primary' size='small' variant='text'>
+                        View Detail <ArrowRightIcon />
                     </Button>
                 }
-                title='Absent'
+                className={classes.cardHeader}
+                subheader={<Typography color='primary'> Pertemuan ke-{activeSchedule.data.numberOfMeeting}</Typography>}
             />
+
             <Divider />
             <CardContent className={classes.content}>
                 <PerfectScrollbar>
@@ -82,7 +87,7 @@ const NewAbsent: React.SFC<NewAbsentProps> = props => {
             <Divider />
             <CardActions className={classes.actions}>
                 <Button color='primary' size='small' variant='text'>
-                    View all <ArrowRightIcon />
+                    Close
                 </Button>
             </CardActions>
         </Card>

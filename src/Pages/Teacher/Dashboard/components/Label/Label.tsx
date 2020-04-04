@@ -52,7 +52,7 @@ const Label: React.SFC<LabelProps> = props => {
                     <Grid item>
                         <div className={classes.difference}>
                             <Typography className={classes.differenceValue} variant='body2'>
-                                Pertemuan {activeSchedule.data.numberOfMeeting}
+                                Pertemuan ke-{activeSchedule.data.numberOfMeeting}
                             </Typography>
                         </div>
                     </Grid>

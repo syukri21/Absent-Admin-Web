@@ -34,9 +34,10 @@ export async function getAbsentByScheduleId(params: any) {
     const dispatch = AbsentByScheduleId.getDispatch()
     try {
         dispatch.getAbsentByScheduleId("LOADING")
+        const queryParams = params.numberOfMeeting ? "?nom=" + params.numberOfMeeting : ""
         const result = await Api.fetch({
             method: "GET",
-            url: `/schedules/${params.scheduleId}`
+            url: `/schedules/${params.scheduleId}` + queryParams
         })
         dispatch.getAbsentByScheduleId("SUCCESS", result.data)
         return result.data
