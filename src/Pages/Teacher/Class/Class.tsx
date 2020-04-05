@@ -11,18 +11,16 @@ export interface ClassProps {}
 const Class: React.SFC<ClassProps> = (props) => {
     const classes = useStyles()
     return (
-        <SocketAbsentProvider>
-            <div className={classes.root}>
-                <Grid container spacing={4}>
-                    <Grid item lg={3} xl={3} sm={12} xs={12}>
-                        <NextSchedule></NextSchedule>
-                    </Grid>
-                    <Grid item lg={9} sm={12} xl={9} xs={12}>
-                        <TableStudentsByAbsent></TableStudentsByAbsent>
-                    </Grid>
+        <div className={classes.root}>
+            <Grid container spacing={4}>
+                <Grid item lg={3} xl={3} sm={12} xs={12}>
+                    <NextSchedule></NextSchedule>
                 </Grid>
-            </div>
-        </SocketAbsentProvider>
+                <Grid item lg={9} sm={12} xl={9} xs={12}>
+                    <TableStudentsByAbsent></TableStudentsByAbsent>
+                </Grid>
+            </Grid>
+        </div>
     )
 }
 
