@@ -8,9 +8,8 @@ import ActiveScheduleProvider from "../../../../../provider/ActiveSchedule"
 
 export interface LabelProps {}
 
-const Label: React.SFC<LabelProps> = props => {
+const Label: React.SFC<LabelProps> = (props) => {
     const [activeSchedule] = ActiveScheduleProvider.useGlobal()
-    console.log("activeSchedule", activeSchedule)
 
     const classes = useStyles()
 
@@ -20,10 +19,7 @@ const Label: React.SFC<LabelProps> = props => {
                 <Grid container justify='space-between'>
                     <Grid item>
                         <Typography className={classes.title} color='textSecondary' gutterBottom variant='body2'>
-                            {activeSchedule.data.time &&
-                                dayjs(getDaySchedule(activeSchedule.data))
-                                    .locale("id")
-                                    .format("dddd - D MMM YYYY, HH:mm")}
+                            {activeSchedule.data.time && dayjs(getDaySchedule(activeSchedule.data)).locale("id").format("dddd - D MMM YYYY, HH:mm")}
                         </Typography>
                         <Typography variant='h3'>{activeSchedule.data.Course && activeSchedule.data.Course.name.toUpperCase()}</Typography>
                     </Grid>
@@ -31,7 +27,7 @@ const Label: React.SFC<LabelProps> = props => {
                         <Avatar
                             className={classes.avatar}
                             style={{
-                                background: activeSchedule.data.Course ? StringToRGB(activeSchedule.data.Course.name) : "gray"
+                                background: activeSchedule.data.Course ? StringToRGB(activeSchedule.data.Course.name) : "gray",
                             }}
                         >
                             {activeSchedule.data.Course && activeSchedule.data.Course.name.slice(0, 2).toUpperCase()}

@@ -9,7 +9,7 @@ const INITIAL_STATE: DefaultState = defaultState
 
 const NextSchedule = createProvider(INITIAL_STATE)
 
-reducers.map(val => {
+reducers.map((val) => {
     return NextSchedule.addReducer(val.method + val.name, (global: any, _, type, payload) => {
         switch (type) {
             case "LOADING":
@@ -35,7 +35,7 @@ export async function getNextSchedule() {
         dispatch.getNextSchedule("LOADING")
         const result = await Api.fetch({
             method: "GET",
-            url: "/schedules"
+            url: "/schedules",
         })
         dispatch.getNextSchedule("SUCCESS", result.data)
         return result.data
