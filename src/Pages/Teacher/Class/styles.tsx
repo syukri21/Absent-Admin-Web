@@ -1,6 +1,10 @@
 import { makeStyles } from "@material-ui/styles"
 import { CustomTheme } from "../../../theme/customTheme"
 
-const useHomeStyles = makeStyles((theme: CustomTheme) => {})
+const useStyles = makeStyles((theme: CustomTheme) => ({
+    root: {
+        padding: theme.spacing(4)
+    }
+}))
 
-export default useHomeStyles
+export default useStyles

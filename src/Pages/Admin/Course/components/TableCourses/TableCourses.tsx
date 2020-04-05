@@ -40,7 +40,7 @@ const columns: Array<Column<Row>> = [
     { title: "Total SKS", field: "totalSks", type: "numeric", cellStyle: { textAlign: "center", width: "25%" } }
 ]
 
-export default function MaterialTableDemo() {
+export default function TableCourses() {
     const { courses, addCourse, deleteCourse, updateCourse } = useCourses()
     const classes = useStyles()
 
