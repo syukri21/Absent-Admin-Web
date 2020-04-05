@@ -18,10 +18,7 @@ export default function useTableStudentsByAbsent() {
 
     useEffect(() => {
         if (activeSchdule.data.id) {
-            getAbsentByScheduleId({
-                numberOfMeeting: activeSchdule.data.numberOfMeeting || 2,
-                scheduleId: activeSchdule.data.id || 1,
-            })
+            getAbsentByScheduleId({ scheduleId: activeSchdule.data.id || 1 })
         }
     }, [activeSchdule.data])
 

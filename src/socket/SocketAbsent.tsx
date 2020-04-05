@@ -17,9 +17,9 @@ const SocketAbsent = {
             }
         })
     },
-    off: (userId: string) => {
-        SocketClient.off(`absent.${userId}`)
-    }
+    off: () => {
+        SocketClient.off()
+    },
 }
 
 export default SocketAbsent

@@ -1,18 +1,18 @@
 import React from "react"
 
-import TableStudentsByAbsentComponent from "./Table"
+import TableStudentsByAbsentComponent from "./TableStudentsByAbsentComponent"
 import useTableStudentsByAbsent from "./useTableStudentsByAbsent"
 import dayjs from "dayjs"
 
 export default function TableStudentsByAbsent() {
     const { absentByScheduleId } = useTableStudentsByAbsent()
 
-    const columns = React.useMemo(
-        () => [
+    const columns = React.useMemo(() => {
+        return [
             {
-                Header: () => null,
-                id: "expander",
-                Cell: ({ row }: any) => <span {...row.getToggleRowExpandedProps()}>{row.isExpanded ? "👇" : "👉"}</span>,
+                Header: "No",
+                accessor: null,
+                Cell: ({ row }: any) => row.index + 1,
             },
             {
                 Header: "Nama",
@@ -33,9 +33,8 @@ export default function TableStudentsByAbsent() {
                     align: "right",
                 },
             },
-        ],
-        []
-    )
+        ]
+    }, [])
 
     const data = React.useMemo(() => absentByScheduleId.data.Absents || [], [absentByScheduleId.data])
 

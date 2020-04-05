@@ -9,7 +9,8 @@ class SocketClient {
         if (!this.socket && process.env.REACT_APP_SOCKET_URL) {
             this.socket = io(process.env.REACT_APP_SOCKET_URL, {
                 path: "/socket.io",
-                transports: ["websocket"]
+                autoConnect: false,
+                transports: ["websocket"],
             })
         }
     }
@@ -24,6 +25,7 @@ class SocketClient {
     public onAbsent(scheduleId: string, fn: Function) {
         if (this.socket) {
             const token = Api.getToken()
+            this.socket.open()
             this.socket.on("onReconnect", () => {
                 if (this.socket) this.socket.emit("/join", { name: `absent.${scheduleId}`, token })
             })
@@ -31,11 +33,10 @@ class SocketClient {
         }
     }
 
-    off(name: string) {
+    off() {
         if (this.socket) {
             this.socket.removeAllListeners()
             this.socket.close()
-            this.socket = undefined
         }
     }
 }
