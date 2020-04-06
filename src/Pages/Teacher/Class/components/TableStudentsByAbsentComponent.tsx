@@ -124,7 +124,6 @@ export default function TableStudentsByAbsentComponent(props: TableStudentsByAbs
                 <TableBody {...getTableBodyProps()}>
                     {rows.map((row: any, i) => {
                         prepareRow(row)
-                        console.log("row", row)
                         return (
                             <TableRow key={i} {...row.getRowProps()}>
                                 {row.cells.map((cell: any) => {

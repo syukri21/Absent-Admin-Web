@@ -1,12 +1,15 @@
 import React from "react"
+import dayjs from "dayjs"
+import Card from "@material-ui/core/Card"
+import CardHeader from "@material-ui/core/CardHeader"
+import { Divider } from "@material-ui/core"
 
 import TableStudentsByAbsentComponent from "./TableStudentsByAbsentComponent"
 import useTableStudentsByAbsent from "./useTableStudentsByAbsent"
-import dayjs from "dayjs"
 
 const defaultCustomProps = () => ({})
 export default function TableStudentsByAbsent() {
-    const { absentByScheduleId } = useTableStudentsByAbsent()
+    const { absent } = useTableStudentsByAbsent()
 
     const columns = React.useMemo(() => {
         return [
@@ -51,7 +54,14 @@ export default function TableStudentsByAbsent() {
         ]
     }, [])
 
-    const data = React.useMemo(() => absentByScheduleId.data.Absents || [], [absentByScheduleId.data])
+    const data = React.useMemo(() => absent.data, [absent.data])
 
-    return <TableStudentsByAbsentComponent columns={columns} data={data}></TableStudentsByAbsentComponent>
+    return (
+        <Card>
+            <CardHeader title='Absent' subheader={`${data.length} in total`} />
+            <Divider />
+            <TableStudentsByAbsentComponent columns={columns} data={data}></TableStudentsByAbsentComponent>
+            <Divider />
+        </Card>
+    )
 }

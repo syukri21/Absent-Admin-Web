@@ -1,26 +1,28 @@
 import ActiveSchedule, { setActiveSchedule } from "../../../../provider/ActiveSchedule"
 import NextSchedule, { getNextSchedule } from "../../../../provider/NextSchedule"
-import AbsentByScheduleId, { getAbsentByScheduleId } from "../../../../provider/AbsentByScheduleId"
 import { useEffect } from "reactn"
+import Absent, { getAbsent } from "../../../../provider/Absent"
 
 export default function useTableStudentsByAbsent() {
     const [activeSchdule] = ActiveSchedule.useGlobal()
     const [schedule] = NextSchedule.useGlobal()
-    const [absentByScheduleId] = AbsentByScheduleId.useGlobal()
+    const [absent] = Absent.useGlobal()
 
     useEffect(() => {
-        if (schedule.data.length === 0) {
-            getNextSchedule().then((result) => {
-                setActiveSchedule({ ...result[0] })
-            })
+        if (schedule.data.length > 0 && !activeSchdule.data.id) {
+            setActiveSchedule(schedule.data[0])
         }
-    }, [schedule.data])
+    }, [schedule.data, activeSchdule.data])
 
     useEffect(() => {
         if (activeSchdule.data.id) {
-            getAbsentByScheduleId({ scheduleId: activeSchdule.data.id || 1 })
+            getAbsent({ scheduleId: activeSchdule.data.id, offset: 0, limit: 10 })
         }
     }, [activeSchdule.data])
 
-    return { absentByScheduleId, activeSchdule }
+    useEffect(() => {
+        getNextSchedule()
+    }, [])
+
+    return { absent, activeSchdule }
 }
