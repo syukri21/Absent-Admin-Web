@@ -12,7 +12,7 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemText,
-    ButtonBase
+    ButtonBase,
 } from "@material-ui/core"
 import AddIcon from "@material-ui/icons/AddCircleOutline"
 import Avatar from "@material-ui/core/Avatar"
@@ -28,7 +28,7 @@ export interface NextScheduleProps {
     className?: string
 }
 
-const NextSchedule: React.SFC<NextScheduleProps> = props => {
+const NextSchedule: React.SFC<NextScheduleProps> = (props) => {
     const classes = useStyles()
     const { data, handleSelectSchedule } = useNextSchedule()
     const { className } = props
@@ -47,7 +47,7 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
                                         alt='Person'
                                         className={classes.image}
                                         style={{
-                                            background: StringToRGB(schedule.Course.name)
+                                            background: StringToRGB(schedule.Course.name),
                                         }}
                                     >
                                         {schedule.Course.name.slice(0, 2).toUpperCase()}
@@ -59,7 +59,7 @@ const NextSchedule: React.SFC<NextScheduleProps> = props => {
                                     secondary={`${scheduleFromNow({
                                         day: schedule.day,
                                         time: schedule.time,
-                                        week: schedule.week
+                                        week: schedule.week,
                                     })}`}
                                 />
                             </ListItem>

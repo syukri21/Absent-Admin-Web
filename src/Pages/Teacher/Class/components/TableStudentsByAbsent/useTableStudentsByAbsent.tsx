@@ -1,7 +1,7 @@
-import ActiveSchedule, { setActiveSchedule } from "../../../../provider/ActiveSchedule"
-import NextSchedule, { getNextSchedule } from "../../../../provider/NextSchedule"
+import ActiveSchedule, { setActiveSchedule } from "../../../../../provider/ActiveSchedule"
+import NextSchedule, { getNextSchedule } from "../../../../../provider/NextSchedule"
 import { useEffect } from "reactn"
-import Absent, { getAbsent } from "../../../../provider/Absent"
+import Absent, { getAbsent } from "../../../../../provider/Absent"
 
 export default function useTableStudentsByAbsent() {
     const [activeSchdule] = ActiveSchedule.useGlobal()

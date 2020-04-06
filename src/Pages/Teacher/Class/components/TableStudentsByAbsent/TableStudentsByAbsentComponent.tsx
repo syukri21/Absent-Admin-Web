@@ -12,7 +12,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility"
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff"
 
 import { Button } from "@material-ui/core"
-import { CustomTheme } from "./../../../../theme/customTheme"
+import { CustomTheme } from "../../../../../theme/customTheme"
 
 const useStyles = makeStyles((theme: CustomTheme) => ({
     table: {
