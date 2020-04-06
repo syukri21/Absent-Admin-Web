@@ -1,11 +1,14 @@
-import SignIn from "../Pages/SignIn"
-import SignUp from "../Pages/SignUp"
-import Dashboard from "../Pages/Teacher/Dashboard"
+import React from "react"
+
 import Minimal from "./../layouts/Minimal/Minimal"
 import Main from "../layouts/Main/Main"
-import Course from "../Pages/Admin/Course"
-import Class from "../Pages/Teacher/Class/Class"
-import Settings from "../Pages/Settings/Settings"
+
+const Settings = React.lazy(() => import("../Pages/Settings/Settings"))
+const Class = React.lazy(() => import("../Pages/Teacher/Class/Class"))
+const Course = React.lazy(() => import("../Pages/Admin/Course"))
+const Dashboard = React.lazy(() => import("../Pages/Teacher/Dashboard"))
+const SignUp = React.lazy(() => import("../Pages/SignUp"))
+const SignIn = React.lazy(() => import("../Pages/SignIn"))
 
 export interface RouteRedirect {
     roleId: number
@@ -15,6 +18,7 @@ export interface RouteRedirect {
 export interface IRoute {
     Component: ((props: any) => JSX.Element) | React.SFC<any>
     Layout: ((props: any) => JSX.Element) | React.SFC<any>
+    Loading: ((props: any) => JSX.Element) | React.SFC<any> | null
     exact: boolean
     path: string
     Protected: boolean
@@ -25,24 +29,28 @@ const routes: IRoute[] = [
     {
         Component: SignUp,
         Layout: Minimal,
+        Loading: null,
         exact: true,
         path: "/sign-up",
-        Protected: false
+        Protected: false,
     },
     {
         Component: SignIn,
         Layout: Minimal,
+        Loading: null,
         exact: true,
         path: "/sign-in",
-        Protected: false
+        Protected: false,
     },
 
     {
         Component: Settings,
         Layout: Main,
         exact: true,
+        Loading: null,
+
         path: "/settings",
-        Protected: false
+        Protected: false,
     },
 
     /* -------------------------------------------------------------------------- */
@@ -51,19 +59,21 @@ const routes: IRoute[] = [
 
     {
         Component: Dashboard,
+        Loading: null,
         Layout: Main,
         exact: true,
         path: "/",
         Protected: true,
-        redirect: [{ roleId: 3, to: "/course" }]
+        redirect: [{ roleId: 3, to: "/course" }],
     },
     {
         Component: Class,
         Layout: Main,
         exact: true,
+        Loading: null,
         path: "/class",
         Protected: true,
-        redirect: [{ roleId: 3, to: "/course" }]
+        redirect: [{ roleId: 3, to: "/course" }],
     },
 
     /* -------------------------------------------------------------------------- */
@@ -72,12 +82,13 @@ const routes: IRoute[] = [
 
     {
         Component: Course,
+        Loading: null,
         Layout: Main,
         exact: true,
         path: "/course",
         Protected: true,
-        redirect: [{ roleId: 1, to: "/" }]
-    }
+        redirect: [{ roleId: 1, to: "/" }],
+    },
 ]
 
 export default routes

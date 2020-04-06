@@ -9,14 +9,15 @@ import { RouteRedirect } from "../../Routes/index"
 export interface RouteWithLayoutProps {
     component: React.SFC<any>
     layout: React.SFC<any>
+    loading: ((props: any) => JSX.Element) | React.SFC<any> | null
     path: string
     exact: boolean
     protect: boolean
     redirect: RouteRedirect[] | undefined
 }
 
-const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
-    const { layout: Layout, component: Component, protect, redirect } = props
+const RouteWithLayout: React.SFC<RouteWithLayoutProps> = (props) => {
+    const { layout: Layout, component: Component, protect, redirect, loading: Loading } = props
     const [to, setTo] = useState<string | undefined>()
 
     const token = Api.getToken() || false
@@ -27,7 +28,7 @@ const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
             // parse Token
             let parseToken: any = jwt_decode(token || "")
             if (typeof redirect !== "undefined") {
-                const to = redirect.find(val => val.roleId === parseToken.role_id)?.to
+                const to = redirect.find((val) => val.roleId === parseToken.role_id)?.to
                 setTo(to)
             }
         }
@@ -36,14 +37,16 @@ const RouteWithLayout: React.SFC<RouteWithLayoutProps> = props => {
 
     return (
         <Route
-            render={matchProps => {
+            render={(matchProps) => {
                 if (!token && protect) return <Redirect to='/sign-in'></Redirect>
 
                 if (to) return <Redirect to={to}></Redirect>
 
                 return (
                     <Layout>
-                        <Component {...matchProps} />
+                        <React.Suspense fallback={Loading}>
+                            <Component {...matchProps} />
+                        </React.Suspense>
                     </Layout>
                 )
             }}

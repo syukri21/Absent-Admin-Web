@@ -24,12 +24,14 @@ function App() {
                         {routes.map((route: IRoute, key: number) => {
                             const Component = route.Component
                             const Layout = route.Layout
+                            const Loading = route.Loading
                             const protect = route.Protected
                             return (
                                 <RouteWithLayout
                                     key={key}
                                     component={Component}
                                     exact={route.exact}
+                                    loading={Loading}
                                     layout={Layout}
                                     path={route.path}
                                     protect={protect}
