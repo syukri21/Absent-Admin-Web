@@ -3,7 +3,6 @@ import useStyles from "./styles"
 // import useClassStyles from "./styles"
 import Grid from "@material-ui/core/Grid"
 import TableStudentsByAbsent from "./components/TableStudentsByAbsent"
-import SocketAbsentProvider from "../../../socket/SocketAbsentProvider"
 import NextSchedule from "./../Dashboard/components/NextSchedule/NextSchedule"
 
 export interface ClassProps {}
