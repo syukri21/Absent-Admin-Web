@@ -15,7 +15,7 @@ const Dashboard: React.SFC<DashboardProps> = (props) => {
     return (
         <SocketAbsentProvider>
             <div className={classes.root}>
-                <Grid container spacing={4}>
+                <Grid container spacing={2}>
                     <Grid item lg={9} sm={6} xl={3} xs={12}>
                         <Budget />
                     </Grid>
