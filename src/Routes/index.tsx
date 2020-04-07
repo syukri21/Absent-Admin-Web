@@ -3,7 +3,8 @@ import React from "react"
 import Minimal from "./../layouts/Minimal/Minimal"
 import Main from "../layouts/Main/Main"
 
-const Settings = React.lazy(() => import("../Pages/Settings/Settings"))
+// const Settings = React.lazy(() => import("../Pages/Settings/Settings"))
+const Account = React.lazy(() => import("../Pages/Account/Account"))
 const Class = React.lazy(() => import("../Pages/Teacher/Class/Class"))
 const Course = React.lazy(() => import("../Pages/Admin/Course"))
 const Dashboard = React.lazy(() => import("../Pages/Teacher/Dashboard"))
@@ -44,12 +45,11 @@ const routes: IRoute[] = [
     },
 
     {
-        Component: Settings,
+        Component: Account,
         Layout: Main,
         exact: true,
         Loading: null,
-
-        path: "/settings",
+        path: "/account",
         Protected: false,
     },
 

@@ -6,7 +6,8 @@ import DashboardIcon from "@material-ui/icons/Dashboard"
 import Book from "@material-ui/icons/Book"
 
 import PeopleIcon from "@material-ui/icons/People"
-import SettingsIcon from "@material-ui/icons/Settings"
+// import SettingsIcon from "@material-ui/icons/Settings"
+import AccountBox from "@material-ui/icons/AccountBox"
 
 import { Profile, SidebarNav } from "./components"
 import useStyles from "./styles"
@@ -30,41 +31,41 @@ const pages: Array<Page> = [
     {
         title: "Dashboard",
         href: "/",
-        icon: <DashboardIcon />
+        icon: <DashboardIcon />,
     },
     {
         title: "Class",
         href: "/class",
-        icon: <PeopleIcon />
+        icon: <PeopleIcon />,
     },
 
     {
-        title: "Settings",
-        href: "/settings",
-        icon: <SettingsIcon />
-    }
+        title: "Account",
+        href: "/account",
+        icon: <AccountBox />,
+    },
 ]
 
 const pagesAdmin: Array<Page> = [
     {
         title: "Course",
         href: "/",
-        icon: <Book />
+        icon: <Book />,
     },
     {
         title: "Teacher",
         href: "/teacher",
-        icon: <PeopleIcon />
+        icon: <PeopleIcon />,
     },
 
     {
-        title: "Settings",
-        href: "/settings",
-        icon: <SettingsIcon />
-    }
+        title: "Account",
+        href: "/account",
+        icon: <AccountBox />,
+    },
 ]
 
-const Sidebar: React.SFC<SidebarProps> = props => {
+const Sidebar: React.SFC<SidebarProps> = (props) => {
     const { isOpen, variant, onClose, className, ...rest } = props
     const [user] = User.useGlobal()
 

@@ -11,10 +11,15 @@ import ReactnProvider from "./reactn/ReactnProvider"
 import "react-perfect-scrollbar/dist/css/styles.css"
 import "./assets/scss/index.scss"
 import GlobalSnackbar from "./components/GlobalSnackbar"
+import { useEffect } from "reactn"
+import { getUser } from "./provider/User"
 
 const browserHistory = createBrowserHistory()
 
 function App() {
+    React.useMemo(() => {
+        getUser()
+    }, [])
     return (
         <ThemeProvider theme={theme}>
             <Router history={browserHistory}>
