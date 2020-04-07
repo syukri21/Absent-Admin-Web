@@ -48,6 +48,8 @@ export async function getUser() {
     return _debounceFunction(async () => {
         const dispatch = User.getDispatch()
         const token = Api.getToken()
+        if (!token) return
+
         const parseToken: any = jwt_decode(token || "")
 
         try {
