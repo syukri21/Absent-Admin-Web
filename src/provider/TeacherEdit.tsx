@@ -30,25 +30,18 @@ TeacherEdit.addReducer("handleTeacherEdit", (global: any, _, type: Type, payload
 /*                              NOTE HANDLE TeacherEdit                             */
 /* -------------------------------------------------------------------------- */
 
-export interface TeacherEditParams {
-    id: number
-    name: string
-    semester: number
-    totalSks: number
-}
-
-export async function handleTeacherEdit(params: TeacherEditParams) {
+export async function handleTeacherEdit(params: any) {
     const dispatch = TeacherEdit.getDispatch()
     try {
         dispatch.handleTeacherEdit("LOADING")
         const result = await Api.fetch({
             method: "PUT",
-            url: "/courses",
+            url: "/teachers",
             data: params,
         })
         dispatch.handleTeacherEdit("SUCCESS", result.data)
         setGlobalSnackbar("SHOW", {
-            message: "Edit course success.",
+            message: "Edit Teacher success.",
             severity: "success",
         })
         return result

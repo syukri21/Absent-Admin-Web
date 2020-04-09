@@ -86,7 +86,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 margin='dense'
                                 name='country'
                                 inputRef={register}
-                                error={errors.state ? true : false}
+                                error={errors.country ? true : false}
                                 required
                                 variant='outlined'
                             />
