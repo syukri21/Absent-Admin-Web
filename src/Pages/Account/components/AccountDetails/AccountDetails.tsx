@@ -9,37 +9,17 @@ import TextField from "@material-ui/core/TextField"
 import CardActions from "@material-ui/core/CardActions"
 
 import useStyles from "./styles"
+import useAccountDetails from "./useAccountDetails"
 
 export interface AccountDetailsProps {}
 
 const AccountDetails: React.SFC<AccountDetailsProps> = () => {
     const classes = useStyles()
-
-    const [values, setValues] = useState({
-        firstName: "Shen",
-        lastName: "Zhi",
-        email: "shen.zhi@devias.io",
-        phone: "",
-        state: "Alabama",
-        country: "USA",
-    })
-
-    const handleChange = (event: any) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        })
-    }
-
-    const states = [
-        { value: "alabama", label: "Alabama" },
-        { value: "new-york", label: "New York" },
-        { value: "san-francisco", label: "San Francisco" },
-    ]
+    const { register, onSubmit, errors, states } = useAccountDetails()
 
     return (
         <Card className={classes.root}>
-            <form autoComplete='off' noValidate>
+            <form autoComplete='off' noValidate onSubmit={onSubmit}>
                 <CardHeader subheader='The information can be edited' title='Profile' />
                 <Divider />
                 <CardContent>
@@ -47,25 +27,28 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                         <Grid item md={6} xs={12}>
                             <TextField
                                 fullWidth
-                                helperText='Please specify the first name'
-                                label='First name'
+                                error={errors.fullname ? true : false}
+                                // helperText='Please specify the first name'
+                                label='Full Name'
                                 margin='dense'
-                                name='firstName'
-                                onChange={handleChange}
+                                name='fullname'
                                 required
-                                value={values.firstName}
+                                inputRef={register}
+                                // value={values.firstName}
                                 variant='outlined'
                             />
                         </Grid>
                         <Grid item md={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label='Last name'
+                                label='Nomor Induk Dosen'
                                 margin='dense'
-                                name='lastName'
-                                onChange={handleChange}
+                                name='nid'
+                                error={errors.nid ? true : false}
+                                type='text'
                                 required
-                                value={values.lastName}
+                                inputRef={register}
+                                // value={values.lastName}
                                 variant='outlined'
                             />
                         </Grid>
@@ -75,9 +58,10 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 label='Email Address'
                                 margin='dense'
                                 name='email'
-                                onChange={handleChange}
+                                error={errors.email ? true : false}
                                 required
-                                value={values.email}
+                                inputRef={register}
+                                // value={values.email}
                                 variant='outlined'
                             />
                         </Grid>
@@ -87,42 +71,59 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 label='Phone Number'
                                 margin='dense'
                                 name='phone'
-                                onChange={handleChange}
+                                error={errors.phone ? true : false}
                                 type='number'
-                                value={values.phone}
+                                required
+                                inputRef={register}
+                                // value={values.phone}
                                 variant='outlined'
                             />
                         </Grid>
-                        <Grid item md={6} xs={12}>
+                        <Grid item md={3} xs={12}>
                             <TextField
                                 fullWidth
-                                label='Select State'
+                                label='Negara'
                                 margin='dense'
+                                name='country'
+                                inputRef={register}
+                                error={errors.state ? true : false}
+                                required
+                                variant='outlined'
+                            />
+                        </Grid>
+                        <Grid item md={4} xs={12}>
+                            <TextField
+                                fullWidth
+                                label='Provinsi'
+                                margin='dense'
+                                error={errors.state ? true : false}
                                 name='state'
-                                onChange={handleChange}
                                 required
                                 select
+                                inputRef={register}
                                 // eslint-disable-next-line react/jsx-sort-props
                                 SelectProps={{ native: true }}
-                                value={values.state}
+                                // value={values.state}
                                 variant='outlined'
                             >
                                 {states.map((option) => (
-                                    <option key={option.value} value={option.value}>
-                                        {option.label}
+                                    <option key={option.id} value={option.name}>
+                                        {option.name}
                                     </option>
                                 ))}
                             </TextField>
                         </Grid>
-                        <Grid item md={6} xs={12}>
+                        <Grid item md={5} xs={12}>
                             <TextField
                                 fullWidth
-                                label='Country'
+                                label='Kota'
                                 margin='dense'
-                                name='country'
-                                onChange={handleChange}
+                                error={errors.city ? true : false}
+                                name='city'
                                 required
-                                value={values.country}
+                                type='text'
+                                inputRef={register}
+                                // value={values.phone}
                                 variant='outlined'
                             />
                         </Grid>
@@ -130,7 +131,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                 </CardContent>
                 <Divider />
                 <CardActions>
-                    <Button color='primary' variant='contained'>
+                    <Button color='primary' type='submit' variant='contained'>
                         Save details
                     </Button>
                 </CardActions>
