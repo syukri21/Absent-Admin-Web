@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: CustomTheme) => ({
     },
     avatar: {
         marginLeft: "auto",
-        height: 110,
+        height: 100,
         width: 100,
         flexShrink: 0,
         flexGrow: 0,
@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme: CustomTheme) => ({
     },
     uploadButton: {
         marginRight: theme.spacing(2),
+    },
+    cardActions: {
+        justifyContent: "space-between",
     },
 }))
 
