@@ -20,7 +20,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
     return (
         <Card className={classes.root}>
             <form autoComplete='off' noValidate onSubmit={onSubmit}>
-                <CardHeader subheader='The information can be edited' title='Profile' />
+                <CardHeader subheader='Informasi pribadi' title='Profile' />
                 <Divider />
                 <CardContent>
                     <Grid container spacing={3}>
@@ -131,7 +131,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                 </CardContent>
                 <Divider />
                 <CardActions>
-                    <Button color='primary' type='submit' variant='contained'>
+                    <Button color='primary' className={classes.button} type='submit' variant='contained'>
                         Save details
                     </Button>
                 </CardActions>
