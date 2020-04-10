@@ -19,14 +19,6 @@ const AccountProfiles: React.SFC<AccountProfilesProps> = () => {
     const classes = useStyles()
     const { user } = useAccountProfiles()
 
-    // const user = {
-    //     name: "Shen Zhi",
-    //     city: "Los Angeles",
-    //     country: "USA",
-    //     timezone: "GTM-7",
-    //     avatar: "/images/avatars/avatar_11.png",
-    // }
-
     return (
         <Card className={classes.root}>
             <CardContent>

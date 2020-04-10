@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import * as Yup from "yup"
 import csc from "country-state-city"
 import { useMemo, useEffect } from "react"
-import User from "../../../../provider/User"
+import User, { getUser } from "../../../../provider/User"
 import { handleTeacherEdit } from "../../../../provider/TeacherEdit"
 
 const schema = Yup.object().shape({
@@ -44,7 +44,9 @@ export default function useAccountDetails() {
     const states = useMemo(() => csc.getStatesOfCountry("102"), [])
 
     const onSubmit = handleSubmit((value) => {
-        handleTeacherEdit(value)
+        handleTeacherEdit(value).then(() => {
+            getUser()
+        })
     })
 
     return { register, errors, onSubmit, states }
