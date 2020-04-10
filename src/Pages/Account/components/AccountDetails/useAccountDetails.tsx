@@ -32,16 +32,14 @@ export default function useAccountDetails() {
     })
 
     useEffect(() => {
-        if (user.data.fullname) {
-            setValue("fullname", user.data.fullname)
-            setValue("nid", user.data.nid)
-            setValue("city", user.data.city)
-            setValue("phone", user.data.phone)
-            setValue("state", user.data.state)
-            setValue("country", "Indonesia")
-            setValue("email", user.data.email)
-        }
-    }, [user.data])
+        setValue("fullname", user.data.fullname)
+        setValue("nid", user.data.nid)
+        setValue("city", user.data.city)
+        setValue("phone", user.data.phone)
+        setValue("state", user.data.state)
+        setValue("country", "Indonesia")
+        setValue("email", user.data.email)
+    }, [user.data, setValue])
 
     const states = useMemo(() => csc.getStatesOfCountry("102"), [])
 
