@@ -1,13 +1,16 @@
 import { createProvider } from "reactn"
 import Api from "../reactn/api/api"
 import queryString from "query-string"
-import StudentSchedule from "../@types/StudentSchedules"
+import { StudentsByScheduleId } from "../@types/StudentsByScheduleId"
 import DefaultState from "../@types/DefaultState"
 
-const INITIAL_STATE: DefaultState<Array<StudentSchedule>> = {
+const INITIAL_STATE: DefaultState<StudentsByScheduleId> = {
     loading: false,
     error: null,
-    data: [],
+    data: {
+        students: [],
+        count: 0,
+    },
 }
 
 const StudentByScheduleId = createProvider(INITIAL_STATE)
@@ -53,7 +56,7 @@ export async function getStudentByScheduleId(params: any) {
     }
 }
 
-export async function onCreateStudentByScheduleId(newData: StudentSchedule) {
+export async function onCreateStudentByScheduleId(newData: StudentsByScheduleId) {
     const dispatch = StudentByScheduleId.getDispatch()
     dispatch.getStudentByScheduleId("ON_CREATE", newData)
 }

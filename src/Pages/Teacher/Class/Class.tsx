@@ -2,7 +2,6 @@ import * as React from "react"
 import useStyles from "./styles"
 // import useClassStyles from "./styles"
 import Grid from "@material-ui/core/Grid"
-import TableStudentsByAbsent from "./components/TableStudentsByAbsent/TableStudentsByAbsent"
 import TableStudentsBySchedule from "./components/TableStudentsBySchedule/TableStudentsBySchedule"
 import DetailClass from "./components/DetailClass/DetailClass"
 const SearchBoxSchedule = React.lazy(() => import("./components/SearchBoxSchedule"))

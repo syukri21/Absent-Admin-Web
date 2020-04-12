@@ -29,9 +29,11 @@ const AccountProfiles: React.SFC<AccountProfilesProps> = () => {
                         <Typography color='textPrimary' variant='subtitle2'>
                             NID : {user.nid}
                         </Typography>
-                        <Typography color='textSecondary' variant='body1'>
-                            {user.city}, {user.country}
-                        </Typography>
+                        {user.city && (
+                            <Typography color='textSecondary' variant='body1'>
+                                {user.city}, {user.country}
+                            </Typography>
+                        )}
                     </div>
                     <Avatar
                         className={classes.avatar}

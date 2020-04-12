@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer"
 import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
-import { useTable, useExpanded, useGroupBy } from "react-table"
+import { useTable } from "react-table"
 
 import { CustomTheme } from "../../../../../theme/customTheme"
 
