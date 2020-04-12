@@ -16,7 +16,12 @@ export default function useTableStudentsBySchedule() {
 
     useEffect(() => {
         if (activeSchdule.data.id) {
-            getStudentByScheduleId({ scheduleId: activeSchdule.data.id, offset: 0, limit: 10, nom: 1 })
+            getStudentByScheduleId({
+                scheduleId: activeSchdule.data.id,
+                offset: 0,
+                limit: 8,
+                nom: activeSchdule.data.numberOfMeeting,
+            })
         }
     }, [activeSchdule.data])
 

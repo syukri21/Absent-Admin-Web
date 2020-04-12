@@ -57,9 +57,8 @@ export default function TableStudentsByScheduleComponent(props: TableStudentsByS
                     {headerGroups.map((headerGroup) => (
                         <TableRow {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column: any) => {
-                                const getGroupByToggleProps = column.id === "numberOfMeeting" ? column.getGroupByToggleProps() : {}
                                 return (
-                                    <TableCell {...column.getHeaderProps()} {...column.customProps(column)} {...getGroupByToggleProps}>
+                                    <TableCell {...column.getHeaderProps()} {...column.customProps(column)}>
                                         {column.render("Header")}
                                     </TableCell>
                                 )
@@ -71,7 +70,7 @@ export default function TableStudentsByScheduleComponent(props: TableStudentsByS
                     {rows.map((row: any, i) => {
                         prepareRow(row)
                         return (
-                            <TableRow key={i} {...row.getRowProps()}>
+                            <TableRow key={i} {...row.getRowProps()} hover>
                                 {row.cells.map((cell: any) => {
                                     return (
                                         <TableCell
