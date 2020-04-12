@@ -6,7 +6,6 @@ import DashboardIcon from "@material-ui/icons/Dashboard"
 import Book from "@material-ui/icons/Book"
 
 import PeopleIcon from "@material-ui/icons/People"
-import GradeOutlinedIcon from "@material-ui/icons/GradeOutlined"
 import SchoolIcon from "@material-ui/icons/School"
 import AccountBox from "@material-ui/icons/AccountBox"
 

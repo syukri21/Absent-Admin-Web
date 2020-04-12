@@ -9,7 +9,6 @@ import Pagination from "@material-ui/lab/Pagination"
 import TableStudentsByScheduleComponent from "./TableStudentsByScheduleComponent"
 import useTableStudentsBySchedule from "./useTableStudentsBySchedule"
 
-const defaultCustomProps = (a: any) => ({})
 export default function TableStudentsBySchedule() {
     const { studentByScheduleId, activeSchdule, handleChangePagination, offset } = useTableStudentsBySchedule()
 

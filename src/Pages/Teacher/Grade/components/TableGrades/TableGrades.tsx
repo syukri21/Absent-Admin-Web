@@ -24,7 +24,7 @@ import TableCell from "@material-ui/core/TableCell"
 import FilterList from "@material-ui/icons/FilterList"
 import Remove from "@material-ui/icons/Remove"
 import useStyles from "./styles"
-import useCourses from "./handler/useCourses"
+import useGrades from "./handler/useGrades"
 import { ColorTheme } from "../../../../../theme/color"
 
 export interface Row {
@@ -40,8 +40,8 @@ const columns: Array<Column<Row>> = [
     { title: "Total SKS", field: "totalSks", type: "numeric", cellStyle: { textAlign: "center", width: "25%" } },
 ]
 
-export default function TableCourses() {
-    const { courses, addCourse, deleteCourse, updateCourse } = useCourses()
+export default function TableGrades() {
+    const { courses, addCourse, deleteCourse, updateCourse } = useGrades()
     const classes = useStyles()
 
     return (

@@ -26,7 +26,7 @@ export default function useTableStudentsBySchedule() {
                 nom: activeSchdule.data.numberOfMeeting,
             })
         }
-    }, [activeSchdule.data, page])
+    }, [activeSchdule.data, page, offset, limit])
 
     useEffect(() => {
         getNextSchedule()
