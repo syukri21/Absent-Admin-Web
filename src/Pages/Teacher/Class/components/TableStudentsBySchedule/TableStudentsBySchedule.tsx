@@ -14,6 +14,11 @@ export default function TableStudentsBySchedule() {
     const columns = React.useMemo(() => {
         return [
             {
+                Header: "No",
+                Cell: (cellProps: any): number => cellProps.row.index + 1,
+                customProps: () => ({ align: "center", size: "small", style: { width: "60px" } }),
+            },
+            {
                 Header: "Nama",
                 accessor: "student.fullname",
                 customProps: defaultCustomProps,
