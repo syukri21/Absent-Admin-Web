@@ -45,7 +45,7 @@ export async function getGradesByScheduleId(params: GradesByScheduleIdParams) {
     try {
         dispatch.getGradesByScheduleId("LOADING")
         const query: any = params.data
-        const url = queryString.stringifyUrl({ url: `/grade/schedule/${params.scheduleId}student/${params.studentId}`, query })
+        const url = queryString.stringifyUrl({ url: `/grades/schedule/${params.scheduleId}`, query })
         const result = await Api.fetch({
             method: "GET",
             url,

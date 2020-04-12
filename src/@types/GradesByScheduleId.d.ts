@@ -29,7 +29,6 @@ export interface Student {
 }
 
 export interface GradesByScheduleIdParams {
-    studentId: number
     scheduleId: number
     data: {
         limit: number

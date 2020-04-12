@@ -35,15 +35,33 @@ export interface Row {
 }
 
 const columns: Array<Column<Row>> = [
-    { title: "Name", field: "name", cellStyle: { width: "50%" } },
-    { title: "Semester", field: "semester", type: "numeric", cellStyle: { textAlign: "center", width: "25%" } },
-    { title: "Total SKS", field: "totalSks", type: "numeric", cellStyle: { textAlign: "center", width: "25%" } },
+    { title: "Nama", field: "student.fullname" },
+    { title: "NIM", field: "student.nim", cellStyle: { textAlign: "center" } },
+    { title: "Absensi", field: "grade.attendance", type: "numeric", cellStyle: { textAlign: "center" } },
+    { title: "Tugas", field: "grade.assignment", type: "numeric", cellStyle: { textAlign: "center" } },
+    { title: "UTS", field: "grade.uts", type: "numeric", cellStyle: { textAlign: "center" } },
+    { title: "UAS", field: "grade.uas", type: "numeric", cellStyle: { textAlign: "center" } },
+    { title: "Nilai Bobot", field: "grade.weightValue", type: "numeric", cellStyle: { textAlign: "center" } },
+    { title: "Nilai Huruf", field: "grade.letterValue", type: "numeric", cellStyle: { textAlign: "center" } },
 ]
 
-export default function TableGrades() {
-    const { courses, addCourse, deleteCourse, updateCourse } = useGrades()
-    const classes = useStyles()
+const options: any = {
+    sorting: false,
+    draggable: false,
+    showEmptyDataSourceMessage: true,
+    showTitle: false,
+    actionsColumnIndex: -1,
+    searchFieldAlignment: "left",
+    paginationType: "stepped",
+    addRowPosition: "first",
+    padding: "dense",
+    cellStyle: { whiteSpace: "nowrap" },
+    pageSize: 10,
+}
 
+export default function TableGrades() {
+    const { data, count, loading, limit } = useGrades()
+    const classes = useStyles()
     return (
         <Card elevation={1} className={classes.root}>
             <Divider></Divider>
@@ -51,42 +69,25 @@ export default function TableGrades() {
                 components={{
                     Container: Box,
                     Header: (copyProps) => {
+                        console.log("TableGrades -> copyProps", copyProps)
                         return (
                             <TableHead>
                                 <TableRow hover>
-                                    <TableCell align='left'>Name</TableCell>
-                                    <TableCell align='center' size='small'>
-                                        Semester
-                                    </TableCell>
-                                    <TableCell align='center' size='small'>
-                                        Total SKS
-                                    </TableCell>
-                                    <TableCell align='center' size='small'>
-                                        Action
-                                    </TableCell>
+                                    {copyProps.columns.map((column: any, index: any) => (
+                                        <TableCell size='small' style={column.cellStyle}>
+                                            {column.title}
+                                        </TableCell>
+                                    ))}
+                                    <TableCell size='small'>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                         )
                     },
                     Toolbar: (copyProps) => (
-                        <CardHeader
-                            subheader={`${courses.data.length} in total`}
-                            title='Courses'
-                            action={<MTableToolbar {...copyProps}></MTableToolbar>}
-                        />
+                        <CardHeader subheader={`${count} in total`} title='Courses' action={<MTableToolbar {...copyProps}></MTableToolbar>} />
                     ),
                 }}
-                options={{
-                    sorting: false,
-                    draggable: false,
-                    showEmptyDataSourceMessage: true,
-                    showTitle: false,
-                    actionsColumnIndex: 3,
-                    headerStyle: { minWidth: 106 },
-                    searchFieldAlignment: "left",
-                    paginationType: "stepped",
-                    addRowPosition: "first",
-                }}
+                options={options}
                 icons={React.useMemo(
                     () => ({
                         Check: React.forwardRef(() => <Check style={{ color: ColorTheme.success }} />),
@@ -110,12 +111,12 @@ export default function TableGrades() {
                 )}
                 title='Courses'
                 columns={columns}
-                data={courses.data}
-                isLoading={courses.loading || courses.data.length <= 0}
+                data={data}
+                isLoading={loading || data.length <= 0}
                 editable={{
-                    onRowAdd: addCourse,
-                    onRowUpdate: (newData, oldData) => updateCourse(newData, oldData),
-                    onRowDelete: deleteCourse,
+                    onRowAdd: (newData) => new Promise((resolve) => {}),
+                    onRowUpdate: (newData, oldData) => new Promise((resolve) => {}),
+                    onRowDelete: (oldData) => new Promise((resolve) => {}),
                 }}
             />
         </Card>
