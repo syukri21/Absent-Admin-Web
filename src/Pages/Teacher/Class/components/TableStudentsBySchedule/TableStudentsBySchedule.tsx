@@ -9,7 +9,7 @@ import useTableStudentsBySchedule from "./useTableStudentsBySchedule"
 
 const defaultCustomProps = (a: any) => ({})
 export default function TableStudentsBySchedule() {
-    const { studentByScheduleId } = useTableStudentsBySchedule()
+    const { studentByScheduleId, activeSchdule } = useTableStudentsBySchedule()
 
     const columns = React.useMemo(() => {
         return [
@@ -48,7 +48,7 @@ export default function TableStudentsBySchedule() {
 
     return (
         <Card>
-            <CardHeader title='Absent' subheader={`${data.length} in total`} />
+            <CardHeader title={`Pertemuan ${activeSchdule.data.numberOfMeeting || ""}`} subheader={`${data.length} in total`} />
             <Divider />
             <TableStudentsByScheduleComponent columns={columns} data={data}></TableStudentsByScheduleComponent>
             <Divider />

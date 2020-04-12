@@ -8,10 +8,7 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import { useTable, useExpanded, useGroupBy } from "react-table"
-import VisibilityIcon from "@material-ui/icons/Visibility"
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff"
 
-import { Button } from "@material-ui/core"
 import { CustomTheme } from "../../../../../theme/customTheme"
 
 const useStyles = makeStyles((theme: CustomTheme) => ({
@@ -35,20 +32,7 @@ export default function TableStudentsByScheduleComponent(props: TableStudentsByS
 
     const { columns, data } = props
 
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-        // visibleColumns,
-        // state: { expanded },
-    } = useTable(
-        //
-        { columns, data },
-        useGroupBy,
-        useExpanded
-    )
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data })
 
     return (
         <TableContainer component={Paper}>
