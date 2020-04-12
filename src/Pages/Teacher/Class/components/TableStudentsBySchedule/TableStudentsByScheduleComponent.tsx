@@ -36,7 +36,7 @@ export default function TableStudentsByScheduleComponent(props: TableStudentsByS
 
     return (
         <TableContainer component={Paper}>
-            <Table className={classes.table} {...getTableProps()} aria-label='simple table'>
+            <Table className={classes.table} {...getTableProps()} aria-label='simple table' size='small'>
                 <TableHead>
                     {headerGroups.map((headerGroup) => (
                         <TableRow {...headerGroup.getHeaderGroupProps()}>

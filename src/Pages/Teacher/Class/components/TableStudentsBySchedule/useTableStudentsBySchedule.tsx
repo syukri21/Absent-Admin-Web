@@ -8,6 +8,8 @@ export default function useTableStudentsBySchedule() {
     const [schedule] = NextSchedule.useGlobal()
     const [studentByScheduleId] = StudentByScheduleId.useGlobal()
     const [page, setPage] = useState(0)
+    const limit = 10
+    const offset = limit * page
 
     useEffect(() => {
         if (schedule.data.length > 0 && !activeSchdule.data.id) {
@@ -19,8 +21,8 @@ export default function useTableStudentsBySchedule() {
         if (activeSchdule.data.id) {
             getStudentByScheduleId({
                 scheduleId: activeSchdule.data.id,
-                offset: page * 8,
-                limit: 8,
+                offset,
+                limit,
                 nom: activeSchdule.data.numberOfMeeting,
             })
         }
@@ -34,5 +36,5 @@ export default function useTableStudentsBySchedule() {
         setPage(value - 1)
     }
 
-    return { studentByScheduleId, activeSchdule, handleChangePagination, offset: page * 8 }
+    return { studentByScheduleId, activeSchdule, handleChangePagination, offset }
 }

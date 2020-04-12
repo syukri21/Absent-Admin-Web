@@ -40,14 +40,14 @@ export default function TableStudentsBySchedule() {
                 customProps: () => ({
                     align: "center",
                     size: "small",
-                    style: { width: "180px" },
+                    style: { maxWidth: "180px" },
                 }),
             },
         ]
     }, [offset])
 
     const data = React.useMemo(() => studentByScheduleId.data.students, [studentByScheduleId.data])
-    const count = React.useMemo(() => Math.round(studentByScheduleId.data.count / 8), [studentByScheduleId.data.count])
+    const count = React.useMemo(() => Math.round(studentByScheduleId.data.count / 10), [studentByScheduleId.data.count])
     return (
         <Card>
             <CardHeader title={`Pertemuan ${activeSchdule.data.numberOfMeeting || ""}`} subheader={`${studentByScheduleId.data.count} in total`} />
