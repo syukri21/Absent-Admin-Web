@@ -18,17 +18,21 @@ export default function TableStudentsBySchedule() {
             {
                 Header: "No",
                 Cell: (cellProps: any): number => cellProps.row.index + offset + 1,
-                customProps: () => ({ align: "center", size: "small", style: { width: "60px" } }),
+                customProps: (a: any) => ({ align: "center", size: "small", style: { width: "60px" } }),
             },
             {
                 Header: "Nama",
                 accessor: "student.fullname",
-                customProps: defaultCustomProps,
+                customProps: () => ({
+                    align: "left",
+                    size: "small",
+                    style: { maxWidth: "100px" },
+                }),
             },
             {
                 Header: "NIM",
                 accessor: "student.nim",
-                customProps: () => ({ align: "center" }),
+                customProps: () => ({ align: "left" }),
             },
             {
                 Header: "Waktu Absen",
@@ -39,8 +43,7 @@ export default function TableStudentsBySchedule() {
                 },
                 customProps: () => ({
                     align: "center",
-                    size: "small",
-                    style: { maxWidth: "180px" },
+                    style: { maxWidth: "100px" },
                 }),
             },
         ]
