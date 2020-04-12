@@ -6,7 +6,8 @@ import DashboardIcon from "@material-ui/icons/Dashboard"
 import Book from "@material-ui/icons/Book"
 
 import PeopleIcon from "@material-ui/icons/People"
-// import SettingsIcon from "@material-ui/icons/Settings"
+import GradeOutlinedIcon from "@material-ui/icons/GradeOutlined"
+import SchoolIcon from "@material-ui/icons/School"
 import AccountBox from "@material-ui/icons/AccountBox"
 
 import { Profile, SidebarNav } from "./components"
@@ -34,13 +35,17 @@ const pages: Array<Page> = [
         icon: <DashboardIcon />,
     },
     {
-        title: "Class",
+        title: "Perkuliahan",
         href: "/class",
         icon: <PeopleIcon />,
     },
-
     {
-        title: "Account",
+        title: "Nilai Akademik",
+        href: "/grade",
+        icon: <SchoolIcon />,
+    },
+    {
+        title: "Akun Saya",
         href: "/account",
         icon: <AccountBox />,
     },

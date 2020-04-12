@@ -10,6 +10,7 @@ const Course = React.lazy(() => import("../Pages/Admin/Course"))
 const Dashboard = React.lazy(() => import("../Pages/Teacher/Dashboard"))
 const SignUp = React.lazy(() => import("../Pages/SignUp"))
 const SignIn = React.lazy(() => import("../Pages/SignIn"))
+const Grade = React.lazy(() => import("../Pages/Teacher/Grade/Grade"))
 
 export interface RouteRedirect {
     roleId: number
@@ -54,7 +55,7 @@ const routes: IRoute[] = [
     },
 
     /* -------------------------------------------------------------------------- */
-    /*                                  NOTE ALL                                  */
+    /*                                  NOTE Teacher                                  */
     /* -------------------------------------------------------------------------- */
 
     {
@@ -75,9 +76,18 @@ const routes: IRoute[] = [
         Protected: true,
         redirect: [{ roleId: 3, to: "/course" }],
     },
+    {
+        Component: Grade,
+        Layout: Main,
+        exact: true,
+        Loading: null,
+        path: "/grade",
+        Protected: true,
+        redirect: [{ roleId: 3, to: "/course" }],
+    },
 
     /* -------------------------------------------------------------------------- */
-    /*                                 NOTE ADMIN                                 */
+    /*                                 NOTE Admin                                 */
     /* -------------------------------------------------------------------------- */
 
     {
