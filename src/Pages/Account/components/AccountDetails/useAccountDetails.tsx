@@ -17,7 +17,6 @@ const schema = Yup.object().shape({
 
 export default function useAccountDetails() {
     const [user] = User.useGlobal()
-    const [isReady, setIsReady] = useState(false)
 
     const { register, handleSubmit, errors, setValue, watch } = useForm({
         defaultValues: {
@@ -52,5 +51,5 @@ export default function useAccountDetails() {
         })
     })
 
-    return { register, errors, onSubmit, states, isReady }
+    return { register, errors, onSubmit, states }
 }

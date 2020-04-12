@@ -15,7 +15,7 @@ export interface AccountDetailsProps {}
 
 const AccountDetails: React.SFC<AccountDetailsProps> = () => {
     const classes = useStyles()
-    const { register, onSubmit, errors, states, isReady } = useAccountDetails()
+    const { register, onSubmit, errors, states } = useAccountDetails()
 
     return (
         <Card className={classes.root}>
