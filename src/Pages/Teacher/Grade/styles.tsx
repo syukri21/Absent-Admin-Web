@@ -3,7 +3,11 @@ import { CustomTheme } from "../../../theme/customTheme"
 
 const useStyles = makeStyles((theme: CustomTheme) => ({
     root: {
-        padding: theme.spacing(4),
+        padding: theme.spacing(2),
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: "#fff",
     },
 }))
 

@@ -9,9 +9,9 @@ export default function useGrades() {
     const [gradesByScheduleId] = GradesByScheduleId.useGlobal()
     const [activeSchedule] = ActiveSchedule.useGlobal()
     const [schedule] = NextSchedule.useGlobal()
-    const [page, setPage] = useState(0)
+    const [page] = useState(0)
 
-    const limit = 10
+    const limit = 30
     const offset = limit * page
 
     useEffect(() => {
@@ -30,8 +30,10 @@ export default function useGrades() {
     }, [schedule.data, activeSchedule.data])
 
     useEffect(() => {
-        getNextSchedule()
-    }, [])
+        if (!activeSchedule.data.id) {
+            getNextSchedule()
+        }
+    }, [activeSchedule.data])
 
     function updateCourse(newData: any, oldData: any): Promise<any> {
         if (newData.grade.attendance) newData.grade.attendance = parseFloat(newData.grade.attendance)
@@ -59,5 +61,5 @@ export default function useGrades() {
     const data: any[] = React.useMemo(() => gradesByScheduleId.data.students || [], [gradesByScheduleId.data])
     const count = React.useMemo(() => gradesByScheduleId.data.count, [gradesByScheduleId.data])
 
-    return { data, page, count, loading: gradesByScheduleId.loading, error: gradesByScheduleId.error, limit, updateCourse }
+    return { data, page, count, loading: gradesByScheduleId.loading, error: gradesByScheduleId.error, limit, updateCourse, activeSchedule }
 }

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
 import csc from "country-state-city"
-import { useMemo, useEffect, useState } from "react"
+import { useMemo, useEffect } from "react"
 import User, { getUser } from "../../../../provider/User"
 import { handleTeacherEdit } from "../../../../provider/TeacherEdit"
 
@@ -18,7 +18,7 @@ const schema = Yup.object().shape({
 export default function useAccountDetails() {
     const [user] = User.useGlobal()
 
-    const { register, handleSubmit, errors, setValue, watch } = useForm({
+    const { register, handleSubmit, errors, setValue } = useForm({
         defaultValues: {
             country: "Indonesia",
             fullname: "",
