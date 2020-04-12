@@ -10,7 +10,6 @@ export default function useCourses() {
 
     useEffect(() => {
         getCourses()
-        // eslint-disable-next-line
     }, [])
 
     function addCourse(val: CourseCreateParams): Promise<any> {
