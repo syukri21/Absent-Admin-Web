@@ -1,5 +1,5 @@
 import React from "react"
-import MaterialTable, { Column, MTableToolbar } from "material-table"
+import MaterialTable, { Column, MTableToolbar, MTableActions } from "material-table"
 import Search from "@material-ui/icons/Search"
 import ViewColumn from "@material-ui/icons/ViewColumn"
 import SaveAlt from "@material-ui/icons/SaveAlt"
@@ -24,24 +24,48 @@ import TableCell from "@material-ui/core/TableCell"
 import FilterList from "@material-ui/icons/FilterList"
 import Remove from "@material-ui/icons/Remove"
 import useStyles from "./styles"
-import useGrades from "./handler/useGrades"
+import useGrades from "./useGrades"
 import { ColorTheme } from "../../../../../theme/color"
+import { StudentsEntity } from "../../../../../@types/GradesByScheduleId"
 
-export interface Row {
-    ID: number
-    name: string
-    semester: number
-    totalSks: number
-}
-
-const columns: Array<Column<Row>> = [
+const columns: Array<Column<StudentsEntity>> = [
     { title: "Nama", field: "student.fullname" },
     { title: "NIM", field: "student.nim", cellStyle: { textAlign: "center" } },
-    { title: "Absensi", field: "grade.attendance", type: "numeric", cellStyle: { textAlign: "center" } },
-    { title: "Tugas", field: "grade.assignment", type: "numeric", cellStyle: { textAlign: "center" } },
-    { title: "UTS", field: "grade.uts", type: "numeric", cellStyle: { textAlign: "center" } },
-    { title: "UAS", field: "grade.uas", type: "numeric", cellStyle: { textAlign: "center" } },
-    { title: "Nilai Bobot", field: "grade.weightValue", type: "numeric", cellStyle: { textAlign: "center" } },
+    {
+        title: "Absensi",
+        field: "grade.attendance",
+        type: "numeric",
+        cellStyle: { textAlign: "center" },
+        render: (data) => data.grade?.attendance || "- -",
+    },
+    {
+        title: "Tugas",
+        field: "grade.assignment",
+        type: "numeric",
+        cellStyle: { textAlign: "center" },
+        render: (data) => data.grade?.assignment || "- -",
+    },
+    {
+        title: "UTS",
+        field: "grade.uts",
+        type: "numeric",
+        cellStyle: { textAlign: "center" },
+        render: (data) => data.grade?.uts || "- -",
+    },
+    {
+        title: "UAS",
+        field: "grade.uas",
+        type: "numeric",
+        cellStyle: { textAlign: "center" },
+        render: (data) => data.grade?.uas || "- -",
+    },
+    {
+        title: "Nilai Bobot",
+        field: "grade.weightValue",
+        type: "numeric",
+        cellStyle: { textAlign: "center" },
+        render: (data) => data.grade?.weightValue || "- -",
+    },
     { title: "Nilai Huruf", field: "grade.letterValue", type: "numeric", cellStyle: { textAlign: "center" } },
 ]
 
@@ -60,7 +84,7 @@ const options: any = {
 }
 
 export default function TableGrades() {
-    const { data, count, loading, limit } = useGrades()
+    const { data, count, loading, limit, updateCourse } = useGrades()
     const classes = useStyles()
     return (
         <Card elevation={1} className={classes.root}>
@@ -69,18 +93,28 @@ export default function TableGrades() {
                 components={{
                     Container: Box,
                     Header: (copyProps) => {
-                        console.log("TableGrades -> copyProps", copyProps)
-                        return (
-                            <TableHead>
-                                <TableRow hover>
-                                    {copyProps.columns.map((column: any, index: any) => (
-                                        <TableCell size='small' style={column.cellStyle}>
-                                            {column.title}
+                        return React.useMemo(() => {
+                            return (
+                                <TableHead>
+                                    <TableRow hover>
+                                        {copyProps.columns.map((column: any, index: any) => (
+                                            <TableCell size='small' key={index} style={column.cellStyle}>
+                                                {column.title}
+                                            </TableCell>
+                                        ))}
+                                        <TableCell size='small' align='center'>
+                                            Action
                                         </TableCell>
-                                    ))}
-                                    <TableCell size='small'>Action</TableCell>
-                                </TableRow>
-                            </TableHead>
+                                    </TableRow>
+                                </TableHead>
+                            )
+                        }, [])
+                    },
+                    Actions: (copyProps) => {
+                        return (
+                            <Box margin='auto' display='flex'>
+                                <MTableActions {...copyProps}></MTableActions>
+                            </Box>
                         )
                     },
                     Toolbar: (copyProps) => (
@@ -114,9 +148,7 @@ export default function TableGrades() {
                 data={data}
                 isLoading={loading || data.length <= 0}
                 editable={{
-                    onRowAdd: (newData) => new Promise((resolve) => {}),
-                    onRowUpdate: (newData, oldData) => new Promise((resolve) => {}),
-                    onRowDelete: (oldData) => new Promise((resolve) => {}),
+                    onRowUpdate: (newData, oldData) => updateCourse(newData, oldData),
                 }}
             />
         </Card>

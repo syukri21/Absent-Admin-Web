@@ -35,3 +35,9 @@ export interface GradesByScheduleIdParams {
         offset: number
     }
 }
+
+export interface GradesCreateParams {
+    studentId: number
+    scheduleId: number
+    data: Grade
+}
