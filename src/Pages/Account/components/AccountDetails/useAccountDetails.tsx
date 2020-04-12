@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
 import csc from "country-state-city"
-import { useMemo, useEffect } from "react"
+import { useMemo, useEffect, useState } from "react"
 import User, { getUser } from "../../../../provider/User"
 import { handleTeacherEdit } from "../../../../provider/TeacherEdit"
 
@@ -17,8 +17,9 @@ const schema = Yup.object().shape({
 
 export default function useAccountDetails() {
     const [user] = User.useGlobal()
+    const [isReady, setIsReady] = useState(false)
 
-    const { register, handleSubmit, errors, setValue } = useForm({
+    const { register, handleSubmit, errors, setValue, watch } = useForm({
         defaultValues: {
             country: "Indonesia",
             fullname: "",
@@ -32,13 +33,15 @@ export default function useAccountDetails() {
     })
 
     useEffect(() => {
-        setValue("fullname", user.data.fullname)
-        setValue("nid", user.data.nid)
-        setValue("city", user.data.city)
-        setValue("phone", user.data.phone)
-        setValue("state", user.data.state)
-        setValue("country", "Indonesia")
-        setValue("email", user.data.email)
+        if (user.data.ID) {
+            setValue("fullname", user.data.fullname)
+            setValue("nid", user.data.nid)
+            setValue("city", user.data.city)
+            setValue("phone", user.data.phone)
+            setValue("state", user.data.state)
+            setValue("country", "Indonesia")
+            setValue("email", user.data.email)
+        }
     }, [user.data, setValue])
 
     const states = useMemo(() => csc.getStatesOfCountry("102"), [])
@@ -49,5 +52,5 @@ export default function useAccountDetails() {
         })
     })
 
-    return { register, errors, onSubmit, states }
+    return { register, errors, onSubmit, states, isReady }
 }

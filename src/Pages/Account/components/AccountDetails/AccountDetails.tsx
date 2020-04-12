@@ -15,7 +15,7 @@ export interface AccountDetailsProps {}
 
 const AccountDetails: React.SFC<AccountDetailsProps> = () => {
     const classes = useStyles()
-    const { register, onSubmit, errors, states } = useAccountDetails()
+    const { register, onSubmit, errors, states, isReady } = useAccountDetails()
 
     return (
         <Card className={classes.root}>
@@ -33,6 +33,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 margin='dense'
                                 name='fullname'
                                 required
+                                InputLabelProps={{ shrink: true }}
                                 inputRef={register}
                                 // value={values.firstName}
                                 variant='outlined'
@@ -45,6 +46,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 margin='dense'
                                 name='nid'
                                 error={errors.nid ? true : false}
+                                InputLabelProps={{ shrink: true }}
                                 type='text'
                                 required
                                 inputRef={register}
@@ -60,6 +62,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 name='email'
                                 error={errors.email ? true : false}
                                 required
+                                InputLabelProps={{ shrink: true }}
                                 inputRef={register}
                                 // value={values.email}
                                 variant='outlined'
@@ -74,6 +77,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 error={errors.phone ? true : false}
                                 type='number'
                                 required
+                                InputLabelProps={{ shrink: true }}
                                 inputRef={register}
                                 // value={values.phone}
                                 variant='outlined'
@@ -85,6 +89,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 label='Negara'
                                 margin='dense'
                                 name='country'
+                                InputLabelProps={{ shrink: true }}
                                 inputRef={register}
                                 error={errors.country ? true : false}
                                 required
@@ -97,6 +102,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 label='Provinsi'
                                 margin='dense'
                                 error={errors.state ? true : false}
+                                InputLabelProps={{ shrink: true }}
                                 name='state'
                                 required
                                 select
@@ -120,6 +126,7 @@ const AccountDetails: React.SFC<AccountDetailsProps> = () => {
                                 margin='dense'
                                 error={errors.city ? true : false}
                                 name='city'
+                                InputLabelProps={{ shrink: true }}
                                 required
                                 type='text'
                                 inputRef={register}
