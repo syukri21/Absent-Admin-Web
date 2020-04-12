@@ -40,8 +40,7 @@ export async function getStudentByScheduleId(params: any) {
     const dispatch = StudentByScheduleId.getDispatch()
     try {
         dispatch.getStudentByScheduleId("LOADING")
-
-        const url = queryString.stringifyUrl({ url: `/StudentByScheduleIds`, query: params })
+        const url = queryString.stringifyUrl({ url: `/students/schedule/${params.scheduleId}`, query: params })
         const result = await Api.fetch({
             method: "GET",
             url,

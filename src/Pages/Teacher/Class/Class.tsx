@@ -3,6 +3,7 @@ import useStyles from "./styles"
 // import useClassStyles from "./styles"
 import Grid from "@material-ui/core/Grid"
 import TableStudentsByAbsent from "./components/TableStudentsByAbsent/TableStudentsByAbsent"
+import TableStudentsBySchedule from "./components/TableStudentsBySchedule/TableStudentsBySchedule"
 import DetailClass from "./components/DetailClass/DetailClass"
 const SearchBoxSchedule = React.lazy(() => import("./components/SearchBoxSchedule"))
 
@@ -26,7 +27,7 @@ const Class: React.SFC<ClassProps> = (props) => {
                     </Grid>
                 </Grid>
                 <Grid item lg={9} sm={12} xl={9} xs={12}>
-                    <TableStudentsByAbsent></TableStudentsByAbsent>
+                    <TableStudentsBySchedule></TableStudentsBySchedule>
                 </Grid>
             </Grid>
         </div>
