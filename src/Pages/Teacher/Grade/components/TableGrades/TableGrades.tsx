@@ -59,8 +59,9 @@ const columns: Array<Column<StudentsEntity>> = [
         type: "numeric",
         cellStyle: { textAlign: "center" },
         render: (data) => data.grade?.weightValue || "- -",
+        editable: "never",
     },
-    { title: "Nilai Huruf", field: "grade.letterValue", type: "numeric", cellStyle: { textAlign: "center" } },
+    { title: "Nilai Huruf", field: "grade.letterValue", cellStyle: { textAlign: "center" }, editable: "never" },
 ]
 
 const options: any = {

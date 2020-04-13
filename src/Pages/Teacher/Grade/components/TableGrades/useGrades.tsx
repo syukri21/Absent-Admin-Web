@@ -36,11 +36,10 @@ export default function useGrades() {
     }, [activeSchedule.data])
 
     function updateCourse(newData: any, oldData: any): Promise<any> {
-        if (newData.grade.attendance) newData.grade.attendance = parseFloat(newData.grade.attendance)
-        if (newData.grade.assignment) newData.grade.assignment = parseFloat(newData.grade.assignment)
-        if (newData.grade.uts) newData.grade.uts = parseFloat(newData.grade.uts)
-        if (newData.grade.uas) newData.grade.uas = parseFloat(newData.grade.uas)
-        if (newData.grade.weightValue) newData.grade.weightValue = parseFloat(newData.grade.weightValue)
+        if (newData.grade?.attendance) newData.grade.attendance = parseFloat(newData.grade.attendance)
+        if (newData.grade?.assignment) newData.grade.assignment = parseFloat(newData.grade.assignment)
+        if (newData.grade?.uts) newData.grade.uts = parseFloat(newData.grade.uts)
+        if (newData.grade?.uas) newData.grade.uas = parseFloat(newData.grade.uas)
 
         if (JSON.stringify(newData.grade) !== JSON.stringify(oldData.grade)) {
             return handleGradesCreate({
