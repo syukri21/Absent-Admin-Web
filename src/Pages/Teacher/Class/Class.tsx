@@ -15,17 +15,17 @@ const Class: React.SFC<ClassProps> = (props) => {
             <Grid container spacing={2}>
                 <Grid item lg={3} xl={3} sm={12} xs={12}>
                     <Grid container spacing={2}>
-                        <Grid item lg={12}>
+                        <Grid item lg={12} sm={12} md={12} xs={12}>
                             <React.Suspense fallback={null}>
                                 <SearchBoxSchedule></SearchBoxSchedule>
                             </React.Suspense>
                         </Grid>
-                        <Grid item lg={12}>
+                        <Grid item lg={12} sm={12} md={12} xs={12}>
                             <DetailClass></DetailClass>
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item lg={9} sm={12} xl={9} xs={12}>
+                <Grid item lg={9} xl={9} sm={12} xs={12}>
                     <TableStudentsBySchedule></TableStudentsBySchedule>
                 </Grid>
             </Grid>

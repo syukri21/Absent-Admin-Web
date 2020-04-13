@@ -18,7 +18,7 @@ export interface SidebarNavProps {
     pages: Page[]
 }
 
-const SidebarNav: React.SFC<SidebarNavProps> = props => {
+const SidebarNav: React.SFC<SidebarNavProps> = (props) => {
     const { pages, className, ...rest } = props
     const location = useLocation()
     const classes = useStyles()

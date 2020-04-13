@@ -8,12 +8,16 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import { useTable } from "react-table"
+import PerfectScrollbar from "react-perfect-scrollbar"
 
 import { CustomTheme } from "../../../../../theme/customTheme"
 
 const useStyles = makeStyles((theme: CustomTheme) => ({
     table: {
         minWidth: 650,
+        [theme.breakpoints.down("md")]: {
+            marginBottom: 10,
+        },
     },
     cellExpanded: {
         background: theme.palette.grey[200],
@@ -35,7 +39,7 @@ export default function TableStudentsByScheduleComponent(props: TableStudentsByS
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data })
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={PerfectScrollbar}>
             <Table className={classes.table} {...getTableProps()} aria-label='simple table' size='small'>
                 <TableHead>
                     {headerGroups.map((headerGroup) => (

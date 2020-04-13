@@ -9,6 +9,7 @@ import Pagination from "@material-ui/lab/Pagination"
 import TableStudentsByScheduleComponent from "./TableStudentsByScheduleComponent"
 import useTableStudentsBySchedule from "./useTableStudentsBySchedule"
 
+const defaultCustomProps = (a: any) => ({})
 export default function TableStudentsBySchedule() {
     const { studentByScheduleId, activeSchdule, handleChangePagination, offset } = useTableStudentsBySchedule()
 
@@ -55,6 +56,7 @@ export default function TableStudentsBySchedule() {
             <CardHeader title={`Pertemuan ${activeSchdule.data.numberOfMeeting || ""}`} subheader={`${studentByScheduleId.data.count} in total`} />
             <Divider />
             <TableStudentsByScheduleComponent columns={columns} data={data}></TableStudentsByScheduleComponent>
+
             <Divider />
             <CardActions>
                 <Pagination count={count} color='secondary' onChange={handleChangePagination} />
