@@ -26,7 +26,7 @@ class SocketClient {
         if (this.socket) {
             const token = Api.getToken()
             this.socket.open()
-            this.socket.on("onReconnect", () => {
+            this.socket.once("onReconnect", () => {
                 if (this.socket) this.socket.emit("/join", { name: `absent.${scheduleId}`, token })
             })
             this.socket.on(`absent`, fn)

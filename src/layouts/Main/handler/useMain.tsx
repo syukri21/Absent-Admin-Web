@@ -12,7 +12,7 @@ interface IUseMain {
 export default function useMain(): IUseMain {
     const theme = useTheme<Theme>()
     const isDesktop = useMediaQuery(theme.breakpoints.up("lg"), {
-        defaultMatches: true
+        defaultMatches: true,
     })
 
     const [openSidebar, setOpenSidebar] = useState(false)
@@ -25,12 +25,20 @@ export default function useMain(): IUseMain {
         setOpenSidebar(false)
     }
 
+    const handleToggleSidebar = () => {
+        if (openSidebar) {
+            handleSidebarClose()
+        } else {
+            handleSidebarOpen()
+        }
+    }
+
     const shouldOpenSidebar = isDesktop ? true : openSidebar
 
     return {
         handleSidebarClose,
-        handleSidebarOpen,
+        handleSidebarOpen: handleToggleSidebar,
         isDesktop,
-        shouldOpenSidebar
+        shouldOpenSidebar,
     }
 }
