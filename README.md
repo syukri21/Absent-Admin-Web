@@ -1,5 +1,5 @@
 ---
-description: 'React, Typescript, Material-UI'
+description: React - Typescript - Material-UI
 ---
 
 # Absent Admin Web \(Front-End\)
