@@ -28,6 +28,12 @@ Build application using this command
 $ npm run build
 ```
 
+## Preview
+
+#### Dashboard 
+
+![](.gitbook/assets/screencapture-localhost-3021-2020-04-14-07_30_16.png)
+
 ## Features On Progress
 
 * [x] Login
@@ -35,10 +41,6 @@ $ npm run build
 * [x] Account Profile
 * [ ] Schedule
 * [ ] Absent
-
-## Preview
-
-![](.gitbook/assets/screencapture-localhost-3021-2020-04-14-07_30_16.png)
 
 
 
