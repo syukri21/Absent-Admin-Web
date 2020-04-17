@@ -28,7 +28,13 @@ Build application using this command
 $ npm run build
 ```
 
+## Features On Progress
 
+* [x] Login
+* [x] Dashboard
+* [x] Account Profile
+* [ ] Schedule
+* [ ] Absent
 
 
 
