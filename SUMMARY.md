@@ -1,4 +1,4 @@
 # Table of contents
 
-* [👩‍💼 Absent Admin Web \(Front-End\)](README.md)
+* [Absent Admin Web \(Front-End\)](README.md)
 

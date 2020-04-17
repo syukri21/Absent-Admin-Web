@@ -2,7 +2,7 @@
 description: 'React, Typescript, Material-UI'
 ---
 
-# 👩‍💼 Absent Admin Web \(Front-End\)
+# Absent Admin Web \(Front-End\)
 
 ## Installing
 
