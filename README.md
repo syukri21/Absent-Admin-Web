@@ -1,25 +1,34 @@
-# Absent Admin Web \(FrontEnd\)
+---
+description: 'Frontend Admin Web : React, Typescript, Material-UI'
+---
 
-## Getting Super Powers
+# 👩‍💼 Absent Admin Web \(Front-End\)
 
-Becoming a super hero is a fairly straight forward process:
+## Installing
+
+Install all dependencies is needed:
 
 ```
-$ give me super-powers
+$ npm install
 ```
 
-{% hint style="info" %}
- Super-powers are granted randomly so please submit an issue if you're not happy with yours.
-{% endhint %}
+## Development
 
-Once you're strong enough, save the world:
+Run the application in development mode using this command
 
-{% code title="hello.sh" %}
 ```bash
-# Ain't no code for that yet, sorry
-echo 'You got to trust me on this, I saved the world'
+$ npm start
 ```
-{% endcode %}
+
+## Build
+
+Build application using this command
+
+```bash
+$ npm run build
+```
+
+
 
 
 
