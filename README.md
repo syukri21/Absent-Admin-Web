@@ -2,11 +2,11 @@
 description: 'React, Typescript, Material-UI'
 ---
 
-# 👩‍💼 Absent Admin Web \(Front-End\)
+# Absent Admin Web \(Front-End\)
 
 ## Installing
 
-Install all dependencies is needed:
+Install all dependencies :
 
 ```
 $ npm install
@@ -35,6 +35,4 @@ $ npm run build
 * [x] Account Profile
 * [ ] Schedule
 * [ ] Absent
-
-
 
