@@ -36,3 +36,9 @@ $ npm run build
 * [ ] Schedule
 * [ ] Absent
 
+## Preview
+
+![](.gitbook/assets/screencapture-localhost-3021-2020-04-14-07_30_16.png)
+
+
+
