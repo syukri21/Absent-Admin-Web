@@ -24,7 +24,7 @@
         "@types/socket.io-client": "^1.4.32",
         "@types/uuid": "^7.0.0",
         "@types/yup": "^0.26.34",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "country-state-city": "^1.0.4",
         "date-fns": "^2.10.0",
         "dayjs": "^1.8.21",
