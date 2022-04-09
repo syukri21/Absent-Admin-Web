@@ -33,7 +33,7 @@
         "icons": "^1.0.0",
         "jwt-decode": "^2.2.0",
         "material-table": "^1.57.2",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "node-sass": "^4.13.1",
         "qrcode.react": "^1.0.0",
         "query-string": "^6.12.0",
